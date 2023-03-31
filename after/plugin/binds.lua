@@ -42,7 +42,7 @@ map("n", "<Leader>ff", ":FzfLua git_files<CR>", opts)
 
 map("n", "<Leader>cc", ":lua require'run'.code()<CR>", opts)
 map("n", "<Leader>tt", ":lua require'term'.toggle()<CR>", opts)
-map("n", "<M-b>", "<cmd>lua require'hook'.toggle_win()<CR>", opts)
+map("n", "<M-n>", "<cmd>lua require'hook'.toggle_win()<CR>", opts)
 map("n", "<M-7>", "<cmd>lua require'hook'.pull(1)<CR>", opts)
 map("n", "<M-8>", "<cmd>lua require'hook'.pull(2)<CR>", opts)
 map("n", "<M-9>", "<cmd>lua require'hook'.pull(3)<CR>", opts)

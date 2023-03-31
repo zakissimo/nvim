@@ -35,6 +35,18 @@ return require("packer").startup(function(use)
     use("folke/tokyonight.nvim")
     use({ "rose-pine/neovim", as = "rose-pine" })
     use("nvim-lualine/lualine.nvim")
+    use({
+        "utilyre/barbecue.nvim",
+        tag = "*",
+        requires = {
+            "SmiteshP/nvim-navic",
+            "nvim-tree/nvim-web-devicons", -- optional dependency
+        },
+        after = "nvim-web-devicons", -- keep this if you're using NvChad
+        config = function()
+            require("barbecue").setup()
+        end,
+    })
 
     use("mbbill/undotree")
     use("kyazdani42/nvim-tree.lua")
