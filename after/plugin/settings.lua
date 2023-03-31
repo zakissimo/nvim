@@ -36,3 +36,5 @@ vim.cmd("set fillchars+=eob:│")
 
 set.ch = 1
 set.ls = 3
+
+require('hook').setup.name_prefix = ""

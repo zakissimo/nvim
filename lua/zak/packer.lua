@@ -120,7 +120,6 @@ return require("packer").startup(function(use)
             { "rafamadriz/friendly-snippets" }, -- Optional
         },
     })
-    use("42Paris/42header")
 
     if packer_bootstrap then
         require("packer").sync()
