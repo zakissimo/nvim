@@ -10,6 +10,10 @@ vim.api.nvim_create_autocmd({ "BufEnter" }, {
             set.tabstop = 4
             set.shiftwidth = 4
             set.expandtab = false
+        elseif ft == "javascript" or ft == "typescript" or ft == "css" then
+            set.tabstop = 2
+            set.shiftwidth = 2
+            set.expandtab = true
         else
             set.tabstop = 4
             set.shiftwidth = 4
