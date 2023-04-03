@@ -14,7 +14,7 @@ map("n", "<C-l>", "<C-w>l", opts)
 
 map("x", "<leader>p", '"_dP', opts)
 
-map("n", "<leader>x", ":!chmod +x %<CR>", opts)
+map("n", "<leader>xx", ":!chmod +x %<CR>", opts)
 map("n", "<leader>pr", ":PackerSync<CR>", opts)
 map("n", "<leader>lr", ":w!<CR>:source %<CR>", opts)
 
@@ -32,7 +32,6 @@ map("n", "<Leader>uu", ":UndotreeToggle<CR>", opts)
 map("n", "<Leader>gg", ":LazyGit<CR>", opts)
 
 map("n", "<Leader>gh", ":FzfLua help_tags<CR>", opts)
-
 map("n", "<Leader>fb", ":FzfLua buffers<CR>", opts)
 map("n", "<Leader>fr", ":FzfLua registers<CR>", opts)
 map("n", "<Leader>ft", ":FzfLua tabs<CR>", opts)
