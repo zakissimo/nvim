@@ -32,7 +32,6 @@ map("n", "<Leader>uu", ":UndotreeToggle<CR>", opts)
 map("n", "<Leader>gg", ":LazyGit<CR>", opts)
 
 map("n", "<Leader>gh", ":FzfLua help_tags<CR>", opts)
-
 map("n", "<Leader>fb", ":FzfLua buffers<CR>", opts)
 map("n", "<Leader>fr", ":FzfLua registers<CR>", opts)
 map("n", "<Leader>ft", ":FzfLua tabs<CR>", opts)
