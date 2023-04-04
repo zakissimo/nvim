@@ -5,7 +5,7 @@ require("rose-pine").setup({
     dim_nc_background = false,
     disable_background = true,
     disable_float_background = true,
-    disable_italics = false,
+    disable_italics = true,
     --- @usage string hex value or named color from rosepinetheme.com/palette
     groups = {
         background = "base",
