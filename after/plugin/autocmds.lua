@@ -6,11 +6,11 @@ vim.api.nvim_create_autocmd({ "BufEnter" }, {
     group = vim.api.nvim_create_augroup("TabSpace", { clear = true }),
     callback = function()
         local ft = vim.bo.filetype
-        if ft == "c" or ft == "make" then
-            set.tabstop = 4
-            set.shiftwidth = 4
-            set.expandtab = false
-        elseif ft == "javascript" or ft == "typescript" or ft == "css" then
+        -- if ft == "c" or ft == "make" then
+        --     set.tabstop = 4
+        --     set.shiftwidth = 4
+        --     set.expandtab = false
+        if ft == "javascript" or ft == "typescript" or ft == "css" then
             set.tabstop = 2
             set.shiftwidth = 2
             set.expandtab = true

@@ -39,7 +39,7 @@ map("n", "<Leader>fl", ":FzfLua live_grep<CR>", opts)
 map("n", "<Leader>o", ":lua require'fzf-lua'.files({ cwd='~' })<CR>", opts)
 map("n", "<Leader>ff", ":FzfLua git_files<CR>", opts)
 
-map("n", "<Leader>cc", ":lua require'run'.code()<CR>", opts)
+map("n", "<Leader>cc", ":lua require'run'.cmd()<CR>", opts)
 map("n", "<Leader>tt", ":lua require'term'.toggle()<CR>", opts)
 map("n", "<M-n>", "<cmd>lua require'hook'.toggle()<CR>", opts)
 map("n", "<M-7>", "<cmd>lua require'hook'.pull(1)<CR>", opts)
