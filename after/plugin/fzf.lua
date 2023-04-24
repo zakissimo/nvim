@@ -1,5 +1,4 @@
 require("fzf-lua").setup({
-
     winopts = {
         hl = {
             border = "FloatBorder",
@@ -12,9 +11,9 @@ require("fzf-lua").setup({
         builtin = {
             extensions = {
                 -- neovim terminal only supports `viu` block output
-                ["png"] = { "ueberzug" },
-                ["jpg"] = { "ueberzug" },
-                ["jpeg"] = { "ueberzug" },
+                ["png"] = { "chafa", "-f", "sixels" },
+                ["jpg"] = { "chafa", "-f", "sixels" },
+                ["jpeg"] = { "chafa", "-f", "sixels" },
             },
             -- When using 'ueberzug' we can also control the way images
             -- fill the preview area with ueberzug's image scaler, set to:
