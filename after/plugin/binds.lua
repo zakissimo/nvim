@@ -26,8 +26,6 @@ map("n", "<C-Up>", ":resize +2<CR>", opts)
 map("n", "<C-Left>", ":vertical resize -2<CR>", opts)
 map("n", "<C-Right>", ":vertical resize +2<CR>", opts)
 
-map("n", "gB", ":bprevious<CR>", opts)
-map("n", "gb", ":bnext<CR>", opts)
 map("n", "<Leader>uu", ":UndotreeToggle<CR>", opts)
 map("n", "<Leader>gg", ":LazyGit<CR>", opts)
 
