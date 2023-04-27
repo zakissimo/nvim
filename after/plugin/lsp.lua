@@ -67,9 +67,6 @@ lsp.on_attach(function(client, bufnr)
     vim.keymap.set("n", "<leader>ca", function()
         vim.lsp.buf.code_action()
     end, opts)
-    if client.name ~= "clangd" then
-        vim.keymap.set("n", "<F2>", ":lua vim.lsp.buf.format()<CR>", opts)
-    end
 end)
 
 lsp.nvim_workspace({
@@ -149,7 +146,7 @@ local cmp_config = lsp.defaults.cmp_config({
     sources = cmp.config.sources({
         -- { name = "copilot" },
         { name = "nvim_lsp", max_item_count = 7 },
-        { name = "luasnip",  max_item_count = 3 },
+        { name = "luasnip", max_item_count = 3 },
         { name = "path" },
     }),
 })
