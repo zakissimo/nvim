@@ -5,7 +5,7 @@ require("fzf-lua").setup({
         },
     },
     files = {
-        cmd = "rg --files --hidden -g '!{**/node_modules/*,**/.git/*}' 2> /dev/null",
+        cmd = "rg --files --hidden --ignore-file $XDG_CONFIG_HOME/.ignore 2>/dev/null",
     },
     previewers = {
         builtin = {
