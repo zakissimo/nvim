@@ -42,12 +42,3 @@ vim.keymap.set("n", "<Leader>o", "<CMD>lua require'fzf-lua'.files({ cwd='~' })<C
 
 vim.keymap.set("n", "<Leader>cc", "<CMD>lua require'run'.cmd()<CR>", opts)
 vim.keymap.set("n", "<Leader>tt", "<CMD>lua require'term'.toggle()<CR>", opts)
-vim.keymap.set({"t", "n"}, "<M-n>", "<CMD>lua require'hook'.toggle()<CR>", opts)
-vim.keymap.set({"t", "n"}, "<M-7>", "<CMD>lua require'hook'.pull(1)<CR>", opts)
-vim.keymap.set({"t", "n"}, "<M-8>", "<CMD>lua require'hook'.pull(2)<CR>", opts)
-vim.keymap.set({"t", "n"}, "<M-9>", "<CMD>lua require'hook'.pull(3)<CR>", opts)
-vim.keymap.set({"t", "n"}, "<M-0>", "<CMD>lua require'hook'.pull(4)<CR>", opts)
-vim.keymap.set({"t", "n"}, "<M-u>", "<CMD>lua require'hook'.pull(5)<CR>", opts)
-vim.keymap.set({"t", "n"}, "<M-i>", "<CMD>lua require'hook'.pull(6)<CR>", opts)
-vim.keymap.set({"t", "n"}, "<M-o>", "<CMD>lua require'hook'.pull(7)<CR>", opts)
-vim.keymap.set({"t", "n"}, "<M-p>", "<CMD>lua require'hook'.pull(8)<CR>", opts)
