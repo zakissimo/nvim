@@ -27,7 +27,7 @@ set.incsearch = true
 
 set.timeoutlen = 350
 set.ttimeoutlen = 50
-set.wrap = true
+set.wrap = false
 set.list = true
 set.listchars = "tab:>-,trail:."
 
