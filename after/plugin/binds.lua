@@ -4,6 +4,7 @@ local opts = { noremap = true, silent = true }
 
 vim.keymap.set("n", "<F1>", "<Esc>", opts)
 vim.keymap.set("i", "<F1>", "<Esc>", opts)
+vim.keymap.set("n", "<F2>", "<CMD>lua vim.lsp.buf.format()<CR>", opts)
 
 vim.keymap.set("n", "<esc><esc>", "<CMD>noh<CR>", opts)
 vim.keymap.set("n", "<C-s>", "<CMD>w<CR>", opts)
@@ -30,10 +31,6 @@ vim.keymap.set("n", "<leader>lr", "<CMD>w!<CR><CMD>source %<CR>", opts)
 
 vim.keymap.set("v", "<", "<gv", opts)
 vim.keymap.set("v", ">", ">gv", opts)
-
-vim.keymap.set("n", "<leader>s", [[<CMD>%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
-
-vim.keymap.set("n", "<F2>", "<CMD>lua vim.lsp.buf.format()<CR>", opts)
 
 vim.keymap.set("n", "<C-Down>", "<CMD>resize -2<CR>", opts)
 vim.keymap.set("n", "<C-Up>", "<CMD>resize +2<CR>", opts)
