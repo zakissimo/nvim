@@ -2,8 +2,7 @@ vim.g.mapleader = " "
 
 local opts = { noremap = true, silent = true }
 
-vim.keymap.set("n", "<F1>", "<Esc>", opts)
-vim.keymap.set("i", "<F1>", "<Esc>", opts)
+vim.keymap.set({ "n", "i" }, "<F1>", "<Esc>", opts)
 vim.keymap.set("n", "<F2>", "<CMD>lua vim.lsp.buf.format()<CR>", opts)
 
 vim.keymap.set("n", "<esc><esc>", "<CMD>noh<CR>", opts)
@@ -15,8 +14,8 @@ vim.keymap.set("n", "<C-k>", "<C-w>k", opts)
 vim.keymap.set("n", "<C-h>", "<C-w>h", opts)
 vim.keymap.set("n", "<C-l>", "<C-w>l", opts)
 
-vim.keymap.set("x", "H", "^", opts)
-vim.keymap.set("x", "L", "$", opts)
+vim.keymap.set({ "n", "v" }, "H", "^", opts)
+vim.keymap.set({ "n", "v" }, "L", "$", opts)
 
 vim.keymap.set("n", "n", "nzz", opts)
 vim.keymap.set("n", "N", "Nzz", opts)
