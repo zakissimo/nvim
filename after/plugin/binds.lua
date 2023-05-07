@@ -21,8 +21,6 @@ vim.keymap.set("n", "N", "Nzz", opts)
 vim.keymap.set("n", "*", "*zz", opts)
 vim.keymap.set("n", "#", "#zz", opts)
 
-vim.keymap.set("x", "<leader>p", '"_dP')
-
 vim.keymap.set("n", "<leader>xx", "<CMD>!chmod +x %<CR>", opts)
 vim.keymap.set("n", "<leader>pr", "<CMD>PackerSync<CR>", opts)
 vim.keymap.set("n", "<leader>lr", "<CMD>w!<CR><CMD>source %<CR>", opts)
@@ -43,7 +41,8 @@ vim.keymap.set("n", "<Leader>fb", "<CMD>FzfLua buffers<CR>", opts)
 vim.keymap.set("n", "<Leader>fr", "<CMD>FzfLua registers<CR>", opts)
 vim.keymap.set("n", "<Leader>ft", "<CMD>FzfLua tabs<CR>", opts)
 vim.keymap.set("n", "<Leader>fl", "<CMD>FzfLua live_grep<CR>", opts)
-vim.keymap.set("n", "<Leader>ff", "<CMD>FzfLua git_files<CR>", opts)
+vim.keymap.set("n", "<Leader>ff", "<CMD>FzfLua files<CR>", opts)
+vim.keymap.set("n", "<Leader>gf", "<CMD>FzfLua git_files<CR>", opts)
 vim.keymap.set("n", "<Leader>o", "<CMD>lua require'fzf-lua'.files({ cwd='~' })<CR>", opts)
 
 vim.keymap.set("n", "<Leader>cc", "<CMD>lua require'run'.cmd()<CR>", opts)
