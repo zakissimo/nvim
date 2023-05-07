@@ -2,6 +2,9 @@ vim.g.mapleader = " "
 
 local opts = { noremap = true, silent = true }
 
+vim.keymap.set("n", "<F1>", "<Esc>", opts)
+vim.keymap.set("i", "<F1>", "<Esc>", opts)
+
 vim.keymap.set("n", "<esc><esc>", "<CMD>noh<CR>", opts)
 vim.keymap.set("n", "<C-s>", "<CMD>w<CR>", opts)
 vim.keymap.set("n", "<C-n>", "<CMD>NvimTreeToggle<CR>", opts)
@@ -10,6 +13,14 @@ vim.keymap.set("n", "<C-j>", "<C-w>j", opts)
 vim.keymap.set("n", "<C-k>", "<C-w>k", opts)
 vim.keymap.set("n", "<C-h>", "<C-w>h", opts)
 vim.keymap.set("n", "<C-l>", "<C-w>l", opts)
+
+vim.keymap.set("x", "H", "^", opts)
+vim.keymap.set("x", "L", "$", opts)
+
+vim.keymap.set("n", "n", "nzz", opts)
+vim.keymap.set("n", "N", "Nzz", opts)
+vim.keymap.set("n", "*", "*zz", opts)
+vim.keymap.set("n", "#", "#zz", opts)
 
 vim.keymap.set("x", "<leader>p", '"_dP')
 
