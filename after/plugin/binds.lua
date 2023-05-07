@@ -3,7 +3,6 @@ vim.g.mapleader = " "
 local opts = { noremap = true, silent = true }
 
 vim.keymap.set({ "n", "i" }, "<F1>", "<Esc>", opts)
-vim.keymap.set("n", "<F2>", "<CMD>lua vim.lsp.buf.format()<CR>", opts)
 
 vim.keymap.set("n", "<esc><esc>", "<CMD>noh<CR>", opts)
 vim.keymap.set("n", "<C-s>", "<CMD>w<CR>", opts)

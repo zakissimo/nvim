@@ -67,6 +67,9 @@ lsp.on_attach(function(client, bufnr)
     vim.keymap.set("n", "<leader>ca", function()
         vim.lsp.buf.code_action()
     end, opts)
+    vim.keymap.set("n", "<F2>", function()
+        vim.lsp.buf.format()
+    end, opts)
 end)
 
 lsp.nvim_workspace({
