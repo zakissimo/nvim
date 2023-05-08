@@ -23,11 +23,14 @@ return require("packer").startup(function(use)
     })
     use({ "nvim-lua/plenary.nvim" })
 
-    use({ "zakissimo/run.nvim",
+    use({
+        "zakissimo/run.nvim",
         config = function()
             vim.keymap.set("n", "<Leader>cc", "<CMD>lua require'run'.cmd()<CR>", opts)
-        end,})
-    use({ "zakissimo/term.nvim",
+        end,
+    })
+    use({
+        "zakissimo/term.nvim",
         config = function()
             vim.keymap.set("n", "<Leader>tt", "<CMD>lua require'term'.toggle()<CR>", opts)
         end,
@@ -84,17 +87,19 @@ return require("packer").startup(function(use)
         end,
     })
 
-    use({ "mbbill/undotree",
+    use({
+        "mbbill/undotree",
         config = function()
             vim.keymap.set("n", "<Leader>uu", "<CMD>UndotreeToggle<CR>", opts)
         end,
     })
 
     use("lewis6991/gitsigns.nvim")
-    use({"kdheepak/lazygit.nvim",
-        config = function ()
+    use({
+        "kdheepak/lazygit.nvim",
+        config = function()
             vim.keymap.set("n", "<Leader>gg", "<CMD>LazyGit<CR>", opts)
-        end
+        end,
     })
     use("tpope/vim-fugitive")
 
