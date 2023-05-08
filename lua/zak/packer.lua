@@ -10,6 +10,7 @@ local ensure_packer = function()
 end
 
 local packer_bootstrap = ensure_packer()
+local opts = { noremap = true, silent = true }
 
 return require("packer").startup(function(use)
     use("wbthomason/packer.nvim")
@@ -22,8 +23,15 @@ return require("packer").startup(function(use)
     })
     use({ "nvim-lua/plenary.nvim" })
 
-    use({ "zakissimo/run.nvim" })
-    use({ "zakissimo/term.nvim" })
+    use({ "zakissimo/run.nvim",
+        config = function()
+            vim.keymap.set("n", "<Leader>cc", "<CMD>lua require'run'.cmd()<CR>", opts)
+        end,})
+    use({ "zakissimo/term.nvim",
+        config = function()
+            vim.keymap.set("n", "<Leader>tt", "<CMD>lua require'term'.toggle()<CR>", opts)
+        end,
+    })
     use({
         "zakissimo/hook.nvim",
         config = function()
@@ -32,7 +40,6 @@ return require("packer").startup(function(use)
                 -- win_w = 31,
                 -- win_h = 7,
             })
-            local opts = { noremap = true, silent = true }
             vim.keymap.set({ "t", "n" }, "<M-n>", "<CMD>lua require'hook'.toggle()<CR>", opts)
             vim.keymap.set({ "t", "n" }, "<M-7>", "<CMD>lua require'hook'.pull(1)<CR>", opts)
             vim.keymap.set({ "t", "n" }, "<M-8>", "<CMD>lua require'hook'.pull(2)<CR>", opts)
@@ -49,6 +56,16 @@ return require("packer").startup(function(use)
     use({
         "ibhagwan/fzf-lua",
         requires = { "kyazdani42/nvim-web-devicons" },
+        config = function()
+            vim.keymap.set("n", "<Leader>gh", "<CMD>FzfLua help_tags<CR>", opts)
+            vim.keymap.set("n", "<Leader>fb", "<CMD>FzfLua buffers<CR>", opts)
+            vim.keymap.set("n", "<Leader>fr", "<CMD>FzfLua registers<CR>", opts)
+            vim.keymap.set("n", "<Leader>ft", "<CMD>FzfLua tabs<CR>", opts)
+            vim.keymap.set("n", "<Leader>fl", "<CMD>FzfLua live_grep<CR>", opts)
+            vim.keymap.set("n", "<Leader>ff", "<CMD>FzfLua files<CR>", opts)
+            vim.keymap.set("n", "<Leader>gf", "<CMD>FzfLua git_files<CR>", opts)
+            vim.keymap.set("n", "<Leader>o", "<CMD>lua require'fzf-lua'.files({ cwd='~' })<CR>", opts)
+        end,
     })
 
     use("folke/tokyonight.nvim")
@@ -67,10 +84,18 @@ return require("packer").startup(function(use)
         end,
     })
 
-    use("mbbill/undotree")
+    use({ "mbbill/undotree",
+        config = function()
+            vim.keymap.set("n", "<Leader>uu", "<CMD>UndotreeToggle<CR>", opts)
+        end,
+    })
 
     use("lewis6991/gitsigns.nvim")
-    use("kdheepak/lazygit.nvim")
+    use({"kdheepak/lazygit.nvim",
+        config = function ()
+            vim.keymap.set("n", "<Leader>gg", "<CMD>LazyGit<CR>", opts)
+        end
+    })
     use("tpope/vim-fugitive")
 
     use({
