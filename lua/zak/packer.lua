@@ -28,7 +28,7 @@ return require("packer").startup(function(use)
         "zakissimo/hook.nvim",
         config = function()
             require("hook").setup({
-                name_prefix = "",
+                prefix = "",
                 -- win_w = 31,
                 -- win_h = 7,
             })
@@ -68,7 +68,6 @@ return require("packer").startup(function(use)
     })
 
     use("mbbill/undotree")
-    use("kyazdani42/nvim-tree.lua")
 
     use("lewis6991/gitsigns.nvim")
     use("kdheepak/lazygit.nvim")
