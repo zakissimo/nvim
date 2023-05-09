@@ -126,7 +126,6 @@ return require("packer").startup(function(use)
     use({ "norcalli/nvim-colorizer.lua" })
 
     use("MunifTanjim/nui.nvim")
-    use("dpayne/CodeGPT.nvim")
     use({
         "zbirenbaum/copilot.lua",
         event = "VimEnter",
