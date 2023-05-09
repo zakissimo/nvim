@@ -26,13 +26,13 @@ return require("packer").startup(function(use)
     use({
         "zakissimo/run.nvim",
         config = function()
-            vim.keymap.set("n", "<Leader>cc", "<CMD>lua require'run'.cmd()<CR>", opts)
+            vim.keymap.set("n", "<Space>cc", "<CMD>lua require'run'.cmd()<CR>", opts)
         end,
     })
     use({
         "zakissimo/term.nvim",
         config = function()
-            vim.keymap.set("n", "<Leader>tt", "<CMD>lua require'term'.toggle()<CR>", opts)
+            vim.keymap.set("n", "<Space>tt", "<CMD>lua require'term'.toggle()<CR>", opts)
         end,
     })
     use({
@@ -40,8 +40,6 @@ return require("packer").startup(function(use)
         config = function()
             require("hook").setup({
                 prefix = "",
-                -- win_w = 31,
-                -- win_h = 7,
             })
             vim.keymap.set({ "t", "n" }, "<M-n>", "<CMD>lua require'hook'.toggle()<CR>", opts)
             vim.keymap.set({ "t", "n" }, "<M-7>", "<CMD>lua require'hook'.pull(1)<CR>", opts)
@@ -60,14 +58,14 @@ return require("packer").startup(function(use)
         "ibhagwan/fzf-lua",
         requires = { "kyazdani42/nvim-web-devicons" },
         config = function()
-            vim.keymap.set("n", "<Leader>gh", "<CMD>FzfLua help_tags<CR>", opts)
-            vim.keymap.set("n", "<Leader>fb", "<CMD>FzfLua buffers<CR>", opts)
-            vim.keymap.set("n", "<Leader>fr", "<CMD>FzfLua registers<CR>", opts)
-            vim.keymap.set("n", "<Leader>ft", "<CMD>FzfLua tabs<CR>", opts)
-            vim.keymap.set("n", "<Leader>fl", "<CMD>FzfLua live_grep<CR>", opts)
-            vim.keymap.set("n", "<Leader>ff", "<CMD>FzfLua files<CR>", opts)
-            vim.keymap.set("n", "<Leader>gf", "<CMD>FzfLua git_files<CR>", opts)
-            vim.keymap.set("n", "<Leader>o", "<CMD>lua require'fzf-lua'.files({ cwd='~' })<CR>", opts)
+            vim.keymap.set("n", "<Space>gh", "<CMD>FzfLua help_tags<CR>", opts)
+            vim.keymap.set("n", "<Space>fb", "<CMD>FzfLua buffers<CR>", opts)
+            vim.keymap.set("n", "<Space>fr", "<CMD>FzfLua registers<CR>", opts)
+            vim.keymap.set("n", "<Space>ft", "<CMD>FzfLua tabs<CR>", opts)
+            vim.keymap.set("n", "<Space>fl", "<CMD>FzfLua live_grep<CR>", opts)
+            vim.keymap.set("n", "<Space>ff", "<CMD>FzfLua files<CR>", opts)
+            vim.keymap.set("n", "<Space>gf", "<CMD>FzfLua git_files<CR>", opts)
+            vim.keymap.set("n", "<Space>o", "<CMD>lua require'fzf-lua'.files({ cwd='~' })<CR>", opts)
         end,
     })
 
@@ -90,7 +88,7 @@ return require("packer").startup(function(use)
     use({
         "mbbill/undotree",
         config = function()
-            vim.keymap.set("n", "<Leader>uu", "<CMD>UndotreeToggle<CR>", opts)
+            vim.keymap.set("n", "<Space>uu", "<CMD>UndotreeToggle<CR>", opts)
         end,
     })
 
@@ -98,7 +96,7 @@ return require("packer").startup(function(use)
     use({
         "kdheepak/lazygit.nvim",
         config = function()
-            vim.keymap.set("n", "<Leader>gg", "<CMD>LazyGit<CR>", opts)
+            vim.keymap.set("n", "<Space>gg", "<CMD>LazyGit<CR>", opts)
         end,
     })
     use("tpope/vim-fugitive")
