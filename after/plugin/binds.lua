@@ -12,7 +12,11 @@ vim.keymap.set("n", ">", "V>", opts)
 vim.keymap.set({ "n", "i" }, "<F1>", "<Esc>", opts)
 
 vim.keymap.set({ "n", "i" }, "<C-n>", function()
-        vim.cmd("Ex")
+        if vim.bo.filetype == "netrw" then
+            vim.cmd(":bprev")
+        else
+            vim.cmd("Ex")
+        end
 end, opts)
 
 vim.keymap.set("n", "<esc><esc>", "<CMD>noh<CR>", opts)
