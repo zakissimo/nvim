@@ -2,6 +2,13 @@ vim.g.mapleader = " "
 
 local opts = { noremap = true, silent = true }
 
+vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
+vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
+vim.keymap.set("v", "<", "<gv", opts)
+vim.keymap.set("v", ">", ">gv", opts)
+vim.keymap.set("n", "<", "V<", opts)
+vim.keymap.set("n", ">", "V>", opts)
+
 vim.keymap.set({ "n", "i" }, "<F1>", "<Esc>", opts)
 
 vim.keymap.set({ "n", "i" }, "<C-n>", "<CMD>Ex<CR>", opts)
@@ -24,9 +31,6 @@ vim.keymap.set("n", "#", "#zz", opts)
 vim.keymap.set("n", "<leader>xx", "<CMD>!chmod +x %<CR>", opts)
 vim.keymap.set("n", "<leader>pr", "<CMD>PackerSync<CR>", opts)
 vim.keymap.set("n", "<leader>lr", "<CMD>w!<CR><CMD>source %<CR>", opts)
-
-vim.keymap.set("v", "<", "<gv", opts)
-vim.keymap.set("v", ">", ">gv", opts)
 
 vim.keymap.set("n", "<C-Down>", "<CMD>resize -2<CR>", opts)
 vim.keymap.set("n", "<C-Up>", "<CMD>resize +2<CR>", opts)
