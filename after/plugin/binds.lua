@@ -11,7 +11,10 @@ vim.keymap.set("n", ">", "V>", opts)
 
 vim.keymap.set({ "n", "i" }, "<F1>", "<Esc>", opts)
 
-vim.keymap.set({ "n", "i" }, "<C-n>", "<CMD>Ex<CR>", opts)
+vim.keymap.set({ "n", "i" }, "<C-n>", function()
+        vim.cmd("Ex")
+end, opts)
+
 vim.keymap.set("n", "<esc><esc>", "<CMD>noh<CR>", opts)
 vim.keymap.set("n", "<C-s>", "<CMD>w<CR>", opts)
 
