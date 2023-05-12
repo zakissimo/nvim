@@ -1,3 +1,4 @@
+require("neodev").setup({})
 local lsp = require("lsp-zero")
 lsp.preset("recommended")
 
@@ -14,16 +15,6 @@ lsp.set_preferences({
         warn = "",
         hint = "",
         info = "",
-    },
-})
-
-lsp.configure("sumneko_lua", {
-    settings = {
-        Lua = {
-            diagnostics = {
-                globals = { "vim" },
-            },
-        },
     },
 })
 
@@ -71,10 +62,6 @@ lsp.on_attach(function(client, bufnr)
         vim.lsp.buf.format()
     end, opts)
 end)
-
-lsp.nvim_workspace({
-    library = vim.api.nvim_get_runtime_file("", true),
-})
 
 lsp.setup()
 

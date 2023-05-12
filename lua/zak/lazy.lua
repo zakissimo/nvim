@@ -22,7 +22,15 @@ require("lazy").setup({
             require("impatient")
         end,
     },
+    {
+        "j-hui/fidget.nvim",
+        config = function()
+            require("fidget").setup({ window = { blend = 0 } })
+        end,
+    },
+    { "folke/neodev.nvim" },
     { "nvim-lua/plenary.nvim" },
+    { "lukas-reineke/indent-blankline.nvim" },
 
     {
         "zakissimo/run.nvim",
