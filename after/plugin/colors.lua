@@ -1,5 +1,4 @@
 vim.cmd("colorscheme rose-pine")
--- vim.cmd('colorscheme tokyonight')
 vim.notify = require("notify").setup({
     background_colour = "#000000",
     max_width = 70,

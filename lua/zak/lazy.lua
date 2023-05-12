@@ -1,41 +1,42 @@
-local ensure_packer = function()
-    local fn = vim.fn
-    local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
-    if fn.empty(fn.glob(install_path)) > 0 then
-        fn.system({ "git", "clone", "--depth", "1", "https://github.com/wbthomason/packer.nvim", install_path })
-        vim.cmd([[packadd packer.nvim]])
-        return true
-    end
-    return false
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+    vim.fn.system({
+        "git",
+        "clone",
+        "--filter=blob:none",
+        "https://github.com/folke/lazy.nvim.git",
+        "--branch=stable", -- latest stable release
+        lazypath,
+    })
 end
+vim.opt.rtp:prepend(lazypath)
 
-local packer_bootstrap = ensure_packer()
+vim.g.mapleader = " "
+
 local opts = { noremap = true, silent = true }
 
-return require("packer").startup(function(use)
-    use("wbthomason/packer.nvim")
-
-    use({
+require("lazy").setup({
+    {
         "lewis6991/impatient.nvim",
         config = function()
             require("impatient")
         end,
-    })
-    use({ "nvim-lua/plenary.nvim" })
+    },
+    { "nvim-lua/plenary.nvim" },
 
-    use({
+    {
         "zakissimo/run.nvim",
         config = function()
-            vim.keymap.set("n", "<Space>cc", "<CMD>lua require'run'.cmd()<CR>", opts)
+            vim.keymap.set("n", "<Leader>cc", "<CMD>lua require'run'.cmd()<CR>", opts)
         end,
-    })
-    use({
+    },
+    {
         "zakissimo/term.nvim",
         config = function()
-            vim.keymap.set("n", "<Space>tt", "<CMD>lua require'term'.toggle()<CR>", opts)
+            vim.keymap.set("n", "<Leader>tt", "<CMD>lua require'term'.toggle()<CR>", opts)
         end,
-    })
-    use({
+    },
+    {
         "zakissimo/hook.nvim",
         config = function()
             require("hook").setup({
@@ -51,100 +52,99 @@ return require("packer").startup(function(use)
             vim.keymap.set({ "t", "n" }, "<M-o>", "<CMD>lua require'hook'.pull(7)<CR>", opts)
             vim.keymap.set({ "t", "n" }, "<M-p>", "<CMD>lua require'hook'.pull(8)<CR>", opts)
         end,
-    })
+    },
 
-    use({ "stevearc/dressing.nvim" })
-    use({
+    { "stevearc/dressing.nvim" },
+    {
         "ibhagwan/fzf-lua",
-        requires = { "kyazdani42/nvim-web-devicons" },
+        dependencies = { "kyazdani42/nvim-web-devicons" },
         config = function()
-            vim.keymap.set("n", "<Space>gh", "<CMD>FzfLua help_tags<CR>", opts)
-            vim.keymap.set("n", "<Space>fb", "<CMD>FzfLua buffers<CR>", opts)
-            vim.keymap.set("n", "<Space>fr", "<CMD>FzfLua registers<CR>", opts)
-            vim.keymap.set("n", "<Space>ft", "<CMD>FzfLua tabs<CR>", opts)
-            vim.keymap.set("n", "<Space>fl", "<CMD>FzfLua live_grep<CR>", opts)
-            vim.keymap.set("n", "<Space>ff", "<CMD>FzfLua files<CR>", opts)
-            vim.keymap.set("n", "<Space>gf", "<CMD>FzfLua git_files<CR>", opts)
-            vim.keymap.set("n", "<Space>o", "<CMD>lua require'fzf-lua'.files({ cwd='~' })<CR>", opts)
+            vim.keymap.set("n", "<Leader>gh", "<CMD>FzfLua help_tags<CR>", opts)
+            vim.keymap.set("n", "<Leader>fb", "<CMD>FzfLua buffers<CR>", opts)
+            vim.keymap.set("n", "<Leader>fr", "<CMD>FzfLua registers<CR>", opts)
+            vim.keymap.set("n", "<Leader>ft", "<CMD>FzfLua tabs<CR>", opts)
+            vim.keymap.set("n", "<Leader>fl", "<CMD>FzfLua live_grep<CR>", opts)
+            vim.keymap.set("n", "<Leader>ff", "<CMD>FzfLua files<CR>", opts)
+            vim.keymap.set("n", "<Leader>gf", "<CMD>FzfLua git_files<CR>", opts)
+            vim.keymap.set("n", "<Leader>o", "<CMD>lua require'fzf-lua'.files({ cwd='~' })<CR>", opts)
         end,
-    })
+    },
 
-    use("folke/tokyonight.nvim")
-    use({ "rose-pine/neovim", as = "rose-pine" })
-    use("nvim-lualine/lualine.nvim")
-    use({
+    { "folke/tokyonight.nvim" },
+    { "rose-pine/neovim", name = "rose-pine", config = function ()
+        require('zak.themes.rose')
+    end },
+    { "nvim-lualine/lualine.nvim" },
+    {
         "utilyre/barbecue.nvim",
-        tag = "*",
-        requires = {
+        dependencies = {
             "SmiteshP/nvim-navic",
-            "nvim-tree/nvim-web-devicons", -- optional dependency
+            "kyazdani42/nvim-web-devicons",
         },
-        after = "nvim-web-devicons", -- keep this if you're using NvChad
         config = function()
             require("barbecue").setup()
         end,
-    })
+    },
 
-    use({
+    {
         "mbbill/undotree",
         config = function()
-            vim.keymap.set("n", "<Space>uu", "<CMD>UndotreeToggle<CR>", opts)
+            vim.keymap.set("n", "<Leader>uu", "<CMD>UndotreeToggle<CR>", opts)
         end,
-    })
+    },
 
-    use("lewis6991/gitsigns.nvim")
-    use({
+    { "lewis6991/gitsigns.nvim" },
+    {
         "kdheepak/lazygit.nvim",
         config = function()
-            vim.keymap.set("n", "<Space>gg", "<CMD>LazyGit<CR>", opts)
+            vim.keymap.set("n", "<Leader>gg", "<CMD>LazyGit<CR>", opts)
         end,
-    })
-    use("tpope/vim-fugitive")
+    },
+    { "tpope/vim-fugitive" },
 
-    use({
+    {
         "karb94/neoscroll.nvim",
         config = function()
             require("neoscroll").setup()
         end,
-    })
-    use({
+    },
+    {
         "kylechui/nvim-surround",
-        tag = "*", -- Use for stability; omit to use `main` branch for the latest features
         config = function()
             require("nvim-surround").setup({
-                -- Configuration here, or leave empty to use defaults
+                -- Configuration here, or leave empty to  defaults
             })
         end,
-    })
-    use({ "rcarriga/nvim-notify" })
-    use({
+    },
+    { "rcarriga/nvim-notify" },
+    {
         "numToStr/Comment.nvim",
         config = function()
             require("Comment").setup()
         end,
-    })
-    use({ "norcalli/nvim-colorizer.lua" })
+    },
+    { "norcalli/nvim-colorizer.lua" },
 
-    use("MunifTanjim/nui.nvim")
-    use({
+    { "MunifTanjim/nui.nvim" },
+    {
         "zbirenbaum/copilot.lua",
         event = "VimEnter",
         config = function()
             require("zak.copilot")
         end,
-    })
-    use({
+    },
+    {
         "zbirenbaum/copilot-cmp",
-        after = { "copilot.lua" },
+        dependencies = { "copilot.lua" },
         config = function()
             require("copilot_cmp").setup()
         end,
-    })
-    use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" })
-    use({
+    },
+    { "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" },
+    {
         "VonHeikemen/lsp-zero.nvim",
         branch = "v1.x",
-        requires = {
+        dependencies = {
             -- LSP Support
             { "neovim/nvim-lspconfig" }, -- Required
             { "williamboman/mason.nvim" }, -- Optional
@@ -165,9 +165,5 @@ return require("packer").startup(function(use)
             { "L3MON4D3/LuaSnip" }, -- Required
             { "rafamadriz/friendly-snippets" }, -- Optional
         },
-    })
-
-    if packer_bootstrap then
-        require("packer").sync()
-    end
-end)
+    },
+})

@@ -1,3 +1,1 @@
-require("zak.packer")
-require("zak.themes.rose")
-require("zak.themes.tokyo")
+require("zak.lazy")

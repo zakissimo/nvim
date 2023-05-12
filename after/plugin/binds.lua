@@ -36,7 +36,7 @@ vim.keymap.set("n", "*", "*zz", opts)
 vim.keymap.set("n", "#", "#zz", opts)
 
 vim.keymap.set("n", "<leader>xx", "<CMD>!chmod +x %<CR>", opts)
-vim.keymap.set("n", "<leader>pr", "<CMD>PackerSync<CR>", opts)
+vim.keymap.set("n", "<leader>ls", "<CMD>Lazy sync<CR>", opts)
 vim.keymap.set("n", "<leader>lr", "<CMD>w!<CR><CMD>source %<CR>", opts)
 
 vim.keymap.set("n", "<C-Down>", "<CMD>resize -2<CR>", opts)
