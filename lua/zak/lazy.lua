@@ -71,9 +71,14 @@ require("lazy").setup({
     },
 
     { "folke/tokyonight.nvim" },
-    { "rose-pine/neovim", name = "rose-pine", config = function ()
-        require('zak.themes.rose')
-    end },
+    {
+        "rose-pine/neovim",
+        name = "rose-pine",
+        config = function()
+            require("zak.themes.rose")
+            vim.cmd("colorscheme rose-pine")
+        end,
+    },
     { "nvim-lualine/lualine.nvim" },
     {
         "utilyre/barbecue.nvim",
@@ -111,9 +116,7 @@ require("lazy").setup({
     {
         "kylechui/nvim-surround",
         config = function()
-            require("nvim-surround").setup({
-                -- Configuration here, or leave empty to  defaults
-            })
+            require("nvim-surround").setup({})
         end,
     },
     { "rcarriga/nvim-notify" },
