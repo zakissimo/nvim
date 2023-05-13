@@ -41,7 +41,10 @@ require("lazy").setup({
     {
         "zakissimo/term.nvim",
         config = function()
-            vim.keymap.set("n", "<Leader>tt", "<CMD>lua require'term'.toggle()<CR>", opts)
+            require("term").setup({
+                spawn = false,
+            })
+            vim.keymap.set("n", "T", "<CMD>lua require'term'.toggle()<CR>", opts)
         end,
     },
     {
