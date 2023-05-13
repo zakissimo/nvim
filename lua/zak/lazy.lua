@@ -44,7 +44,7 @@ require("lazy").setup({
             require("term").setup({
                 spawn = false,
             })
-            vim.keymap.set("n", "T", "<CMD>lua require'term'.toggle()<CR>", opts)
+            vim.keymap.set("n", "M-m", "<CMD>lua require'term'.toggle()<CR>", opts)
         end,
     },
     {
