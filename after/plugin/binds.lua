@@ -11,15 +11,6 @@ vim.keymap.set("n", ">", "V>", opts)
 
 vim.keymap.set({ "n", "i" }, "<F1>", "<Esc>", opts)
 
-vim.keymap.set({ "n", "i" }, "<C-n>", function()
-    if vim.bo.filetype == "netrw" then
-        local key = vim.api.nvim_replace_termcodes("<C-6>", true, false, true)
-        vim.api.nvim_feedkeys(key, 'n', false)
-    else
-        vim.cmd("Ex")
-    end
-end, opts)
-
 vim.keymap.set("n", "<esc><esc>", "<CMD>noh<CR>", opts)
 vim.keymap.set("n", "<C-s>", "<CMD>w<CR>", opts)
 

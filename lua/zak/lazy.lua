@@ -64,7 +64,15 @@ require("lazy").setup({
             vim.keymap.set({ "t", "n" }, "<M-p>", "<CMD>lua require'hook'.pull(8)<CR>", opts)
         end,
     },
-
+    {
+        "nvim-tree/nvim-tree.lua",
+        config = function()
+            vim.g.loaded_netrw = 1
+            vim.g.loaded_netrwPlugin = 1
+            require("nvim-tree").setup()
+            vim.keymap.set({ "n", "i" }, "<C-n>", "<CMD>NvimTreeToggle<CR>", opts)
+        end,
+    },
     { "stevearc/dressing.nvim" },
     {
         "ibhagwan/fzf-lua",

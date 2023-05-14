@@ -29,7 +29,10 @@ set.timeoutlen = 350
 set.ttimeoutlen = 50
 set.wrap = false
 set.list = true
-set.listchars = "tab:>-,trail:."
+set.listchars = {
+    tab = ">-",
+    trail = ".",
+}
 
 vim.cmd("set fillchars+=eob:│")
 
