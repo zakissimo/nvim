@@ -65,13 +65,12 @@ require("lazy").setup({
         end,
     },
     {
-        "nvim-tree/nvim-tree.lua",
+        'stevearc/oil.nvim',
+        opts = {},
         config = function()
-            vim.g.loaded_netrw = 1
-            vim.g.loaded_netrwPlugin = 1
-            require("nvim-tree").setup()
-            vim.keymap.set({ "n", "i" }, "<C-n>", "<CMD>NvimTreeToggle<CR>", opts)
-        end,
+            require("oil").setup()
+            vim.keymap.set({ "n", "i" }, "<C-n>", "<CMD>lua require'oil'.open()<CR>", opts)
+        end
     },
     { "stevearc/dressing.nvim" },
     {
