@@ -21,17 +21,11 @@ lsp.set_preferences({
 lsp.on_attach(function(client, bufnr)
     local opts = { buffer = bufnr, remap = false }
 
-    vim.keymap.set("n", "gD", function()
-        vim.lsp.buf.declaration()
-    end, opts)
     vim.keymap.set("n", "gd", function()
         vim.lsp.buf.definition()
     end, opts)
     vim.keymap.set("n", "K", function()
         vim.lsp.buf.hover()
-    end, opts)
-    vim.keymap.set("n", "gI", function()
-        vim.lsp.buf.implementation()
     end, opts)
     vim.keymap.set("n", "<leader>rn", function()
         vim.lsp.buf.rename()
@@ -42,7 +36,7 @@ lsp.on_attach(function(client, bufnr)
     vim.keymap.set("n", "<leader>q", function()
         vim.diagnostic.setloclist()
     end, opts)
-    vim.keymap.set("n", "<leader>el", ":FzfLua lsp_document_diagnostics<CR>", opts)
+    vim.keymap.set("n", "<leader>el", "<CMD>FzfLua lsp_document_diagnostics<CR>", opts)
     vim.keymap.set("n", "<leader>ek", function()
         vim.diagnostic.goto_prev()
     end, opts)
@@ -103,7 +97,7 @@ local cmp_mappings = cmp.mapping.preset.insert({
     ["<Tab>"] = cmp.mapping(function(fallback)
         fallback()
     end, { "i", "s" }),
-    ["S-Tab>"] = cmp.mapping(function(fallback)
+    ["<S-Tab>"] = cmp.mapping(function(fallback)
         fallback()
     end, { "i", "s" }),
 })
@@ -119,10 +113,8 @@ local cmp_config = lsp.defaults.cmp_config({
     },
     mapping = cmp_mappings,
     formatting = {
-        -- fields = { "kind", "abbr", "menu" },
         fields = { "kind", "abbr" },
         format = function(entry, vim_item)
-            -- vim_item.abbr = string.sub(vim_item.abbr, 1, 11)
             local kind = lspkind.cmp_format({ mode = "symbol_text", maxwidth = 50, symbol_map = { Copilot = "" } })(
                 entry,
                 vim_item
@@ -168,7 +160,6 @@ local code_actions = null_ls.builtins.code_actions
 null_ls.setup({
     debug = false,
     on_attach = function(client, bufnr)
-        client.offset_encoding = "utf-8"
         null_opts.on_attach(client, bufnr)
         local format_cmd = function(input)
             vim.lsp.buf.format({
