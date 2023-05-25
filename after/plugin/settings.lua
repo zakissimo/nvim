@@ -8,6 +8,8 @@ set.mouse = "a"
 
 set.number = true
 set.relativenumber = true
+set.colorcolumn = "80"
+vim.api.nvim_set_hl(0, "ColorColumn", { link = "CursorLine" })
 
 set.scrolloff = 5
 
