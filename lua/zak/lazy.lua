@@ -65,12 +65,12 @@ require("lazy").setup({
         end,
     },
     {
-        'stevearc/oil.nvim',
+        "stevearc/oil.nvim",
         opts = {},
         config = function()
             require("oil").setup()
             vim.keymap.set({ "n", "i" }, "<C-n>", "<CMD>lua require'oil'.open()<CR>", opts)
-        end
+        end,
     },
     { "stevearc/dressing.nvim" },
     {
@@ -78,11 +78,11 @@ require("lazy").setup({
         dependencies = { "kyazdani42/nvim-web-devicons" },
         config = function()
             vim.keymap.set("n", "<Leader>gh", "<CMD>FzfLua help_tags<CR>", opts)
-            vim.keymap.set("n", "<Leader>fb", "<CMD>FzfLua buffers<CR>", opts)
-            vim.keymap.set("n", "<Leader>fr", "<CMD>FzfLua registers<CR>", opts)
-            vim.keymap.set("n", "<Leader>ft", "<CMD>FzfLua tabs<CR>", opts)
-            vim.keymap.set("n", "<Leader>fl", "<CMD>FzfLua live_grep<CR>", opts)
-            vim.keymap.set("n", "<Leader>ff", "<CMD>FzfLua files<CR>", opts)
+            vim.keymap.set("n", "<Leader>b", "<CMD>FzfLua buffers<CR>", opts)
+            vim.keymap.set("n", "<Leader>r", "<CMD>FzfLua registers<CR>", opts)
+            vim.keymap.set("n", "<Leader>t", "<CMD>FzfLua tabs<CR>", opts)
+            vim.keymap.set("n", "<Leader>l", "<CMD>FzfLua live_grep<CR>", opts)
+            vim.keymap.set("n", "<Leader>f", "<CMD>FzfLua files<CR>", opts)
             vim.keymap.set("n", "<Leader>gf", "<CMD>FzfLua git_files<CR>", opts)
             vim.keymap.set("n", "<Leader>o", "<CMD>lua require'fzf-lua'.files({ cwd='~' })<CR>", opts)
         end,
@@ -167,23 +167,23 @@ require("lazy").setup({
         branch = "v1.x",
         dependencies = {
             -- LSP Support
-            { "neovim/nvim-lspconfig" }, -- Required
+            { "neovim/nvim-lspconfig" },   -- Required
             { "williamboman/mason.nvim" }, -- Optional
             "jose-elias-alvarez/null-ls.nvim",
             "jay-babu/mason-null-ls.nvim",
             { "williamboman/mason-lspconfig.nvim" }, -- Optional
 
             -- Autocompletion
-            { "hrsh7th/nvim-cmp" }, -- Required
-            { "hrsh7th/cmp-nvim-lsp" }, -- Required
-            { "hrsh7th/cmp-buffer" }, -- Optional
-            { "hrsh7th/cmp-path" }, -- Optional
+            { "hrsh7th/nvim-cmp" },         -- Required
+            { "hrsh7th/cmp-nvim-lsp" },     -- Required
+            { "hrsh7th/cmp-buffer" },       -- Optional
+            { "hrsh7th/cmp-path" },         -- Optional
             { "saadparwaiz1/cmp_luasnip" }, -- Optional
-            { "hrsh7th/cmp-nvim-lua" }, -- Optional
-            { "onsails/lspkind-nvim" }, -- Optional
+            { "hrsh7th/cmp-nvim-lua" },     -- Optional
+            { "onsails/lspkind-nvim" },     -- Optional
 
             -- Snippets
-            { "L3MON4D3/LuaSnip" }, -- Required
+            { "L3MON4D3/LuaSnip" },             -- Required
             { "rafamadriz/friendly-snippets" }, -- Optional
         },
     },
