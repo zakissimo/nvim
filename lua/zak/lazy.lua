@@ -69,7 +69,7 @@ require("lazy").setup({
         opts = {},
         config = function()
             require("oil").setup()
-            vim.keymap.set({ "n", "i" }, "<C-n>", "<CMD>lua require'oil'.open()<CR>", opts)
+            vim.keymap.set({ "n", "i" }, "<C-n>", "<CMD>lua require'oil'.toggle_float()<CR>", opts)
         end,
     },
     { "stevearc/dressing.nvim" },
