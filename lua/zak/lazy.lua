@@ -28,7 +28,8 @@ require("lazy").setup({
             require("fidget").setup({ window = { blend = 0 } })
         end,
     },
-    { "folke/neodev.nvim" },
+    { "MunifTanjim/nui.nvim" },
+    { "stevearc/dressing.nvim" },
     { "nvim-lua/plenary.nvim" },
     { "lukas-reineke/indent-blankline.nvim" },
 
@@ -72,7 +73,6 @@ require("lazy").setup({
             vim.keymap.set({ "n", "i" }, "<C-n>", "<CMD>lua require'oil'.toggle_float()<CR>", opts)
         end,
     },
-    { "stevearc/dressing.nvim" },
     {
         "ibhagwan/fzf-lua",
         dependencies = { "kyazdani42/nvim-web-devicons" },
@@ -160,6 +160,7 @@ require("lazy").setup({
         end,
     },
     { "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" },
+    { "folke/neodev.nvim" },
     {
         "VonHeikemen/lsp-zero.nvim",
         branch = "v1.x",
