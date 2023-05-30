@@ -104,7 +104,12 @@ require("lazy").setup({
             vim.cmd("colorscheme rose-pine")
         end,
     },
-    { "nvim-lualine/lualine.nvim" },
+
+    { "alvarosevilla95/luatab.nvim",
+        config = function()
+            require('luatab').setup({})
+        end,
+    },
     {
         "utilyre/barbecue.nvim",
         dependencies = {
@@ -115,6 +120,8 @@ require("lazy").setup({
             require("barbecue").setup()
         end,
     },
+    { "nvim-lualine/lualine.nvim" },
+
     {
         "karb94/neoscroll.nvim",
         config = function()
