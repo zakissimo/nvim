@@ -145,8 +145,6 @@ require("lazy").setup({
         end,
     },
     { "norcalli/nvim-colorizer.lua" },
-
-    { "MunifTanjim/nui.nvim" },
     {
         "zbirenbaum/copilot.lua",
         event = "VimEnter",
