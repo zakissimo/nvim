@@ -33,6 +33,16 @@ require("lazy").setup({
     { "nvim-lua/plenary.nvim" },
 
     {
+        "willothy/flatten.nvim",
+        config = true,
+        -- or pass configuration with
+        -- opts = {  }
+        -- Ensure that it runs first to minimize delay when opening file from terminal
+        lazy = false,
+        priority = 1001,
+    },
+
+    {
         "zakissimo/run.nvim",
         config = function()
             vim.keymap.set("n", "<Leader>cc", "<CMD>lua require'run'.cmd()<CR>", opts)
@@ -105,9 +115,10 @@ require("lazy").setup({
         end,
     },
 
-    { "alvarosevilla95/luatab.nvim",
+    {
+        "alvarosevilla95/luatab.nvim",
         config = function()
-            require('luatab').setup({})
+            require("luatab").setup({})
         end,
     },
     {
