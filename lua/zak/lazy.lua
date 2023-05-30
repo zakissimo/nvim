@@ -120,6 +120,10 @@ require("lazy").setup({
             vim.keymap.set("n", "<Leader>o", "<CMD>lua require'fzf-lua'.files({ cwd='~' })<CR>", opts)
         end,
     },
+    {
+        "nvim-telescope/telescope.nvim",
+        tag = "0.1.1",
+    },
 
     {
         "numToStr/Comment.nvim",
@@ -129,7 +133,8 @@ require("lazy").setup({
     },
     { "norcalli/nvim-colorizer.lua" },
     { "lukas-reineke/indent-blankline.nvim" },
-    { "folke/tokyonight.nvim",
+    {
+        "folke/tokyonight.nvim",
         config = function()
             -- require("zak.themes.tokyo")
             -- vim.cmd("colorscheme tokyonight")
