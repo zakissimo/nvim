@@ -13,4 +13,5 @@ vim.opt.termguicolors = true
 require("colorizer").setup()
 
 vim.api.nvim_set_hl(0, "FloatBorder", {bg='NONE', fg='White'})
-vim.api.nvim_set_hl(0, "NormalFloat", {bg='NONE', fg='NONE'})
+local synID = vim.fn.hlID('FloatBorder')
+local _ = vim.fn.synIDattr(synID, 'fg')

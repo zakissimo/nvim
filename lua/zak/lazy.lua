@@ -29,7 +29,24 @@ require("lazy").setup({
         end,
     },
     { "MunifTanjim/nui.nvim" },
-    { "stevearc/dressing.nvim" },
+    {
+        "stevearc/dressing.nvim",
+        config = function()
+            require("dressing").setup({
+                input = {
+                    relative = "editor",
+                    win_options = {
+                        winblend = 0,
+                    },
+                    select = {
+                        win_options = {
+                            winblend = 0,
+                        },
+                    },
+                },
+            })
+        end,
+    },
     { "nvim-lua/plenary.nvim" },
 
     {
@@ -78,7 +95,14 @@ require("lazy").setup({
         "stevearc/oil.nvim",
         opts = {},
         config = function()
-            require("oil").setup()
+            require("oil").setup({
+                float = {
+                    padding = 10,
+                    win_options = {
+                        winblend = 0,
+                    },
+                },
+            })
             vim.keymap.set({ "n", "i" }, "<C-n>", "<CMD>lua require'oil'.toggle_float()<CR>", opts)
         end,
     },
@@ -105,7 +129,12 @@ require("lazy").setup({
     },
     { "norcalli/nvim-colorizer.lua" },
     { "lukas-reineke/indent-blankline.nvim" },
-    { "folke/tokyonight.nvim" },
+    { "folke/tokyonight.nvim",
+        config = function()
+            -- require("zak.themes.tokyo")
+            -- vim.cmd("colorscheme tokyonight")
+        end,
+    },
     {
         "rose-pine/neovim",
         name = "rose-pine",
