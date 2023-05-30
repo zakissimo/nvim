@@ -9,6 +9,8 @@ vim.notify = function(msg, ...)
     end
 end
 
-local set = vim.opt
-set.termguicolors = true
+vim.opt.termguicolors = true
 require("colorizer").setup()
+
+vim.api.nvim_set_hl(0, "FloatBorder", {bg='NONE', fg='White'})
+vim.api.nvim_set_hl(0, "NormalFloat", {bg='NONE', fg='NONE'})
