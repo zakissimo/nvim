@@ -31,7 +31,6 @@ require("lazy").setup({
     { "MunifTanjim/nui.nvim" },
     { "stevearc/dressing.nvim" },
     { "nvim-lua/plenary.nvim" },
-    { "lukas-reineke/indent-blankline.nvim" },
 
     {
         "zakissimo/run.nvim",
@@ -88,6 +87,14 @@ require("lazy").setup({
         end,
     },
 
+    {
+        "numToStr/Comment.nvim",
+        config = function()
+            require("Comment").setup()
+        end,
+    },
+    { "norcalli/nvim-colorizer.lua" },
+    { "lukas-reineke/indent-blankline.nvim" },
     { "folke/tokyonight.nvim" },
     {
         "rose-pine/neovim",
@@ -108,23 +115,6 @@ require("lazy").setup({
             require("barbecue").setup()
         end,
     },
-
-    {
-        "mbbill/undotree",
-        config = function()
-            vim.keymap.set("n", "<Leader>uu", "<CMD>UndotreeToggle<CR>", opts)
-        end,
-    },
-
-    { "lewis6991/gitsigns.nvim" },
-    {
-        "kdheepak/lazygit.nvim",
-        config = function()
-            vim.keymap.set("n", "<Leader>gg", "<CMD>LazyGit<CR>", opts)
-        end,
-    },
-    { "tpope/vim-fugitive" },
-
     {
         "karb94/neoscroll.nvim",
         config = function()
@@ -137,19 +127,29 @@ require("lazy").setup({
             require("nvim-surround").setup({})
         end,
     },
-    { "rcarriga/nvim-notify" },
+
+    { "lewis6991/gitsigns.nvim" },
     {
-        "numToStr/Comment.nvim",
+        "kdheepak/lazygit.nvim",
         config = function()
-            require("Comment").setup()
+            vim.keymap.set("n", "<Leader>gg", "<CMD>LazyGit<CR>", opts)
         end,
     },
-    { "norcalli/nvim-colorizer.lua" },
+    { "tpope/vim-fugitive" },
+
+    { "rcarriga/nvim-notify" },
+
     {
         "zbirenbaum/copilot.lua",
         event = "VimEnter",
         config = function()
             require("zak.copilot")
+        end,
+    },
+    {
+        "mbbill/undotree",
+        config = function()
+            vim.keymap.set("n", "<Leader>uu", "<CMD>UndotreeToggle<CR>", opts)
         end,
     },
     {
