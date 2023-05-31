@@ -18,7 +18,7 @@ lsp.set_preferences({
     },
 })
 
-lsp.on_attach(function(client, bufnr)
+local on_attach = function(client, bufnr)
     local opts = { buffer = bufnr, remap = false }
 
     vim.keymap.set("n", "gd", function()
@@ -52,7 +52,9 @@ lsp.on_attach(function(client, bufnr)
     vim.keymap.set("n", "<F2>", function()
         vim.lsp.buf.format()
     end, opts)
-end)
+end
+
+lsp.on_attach(on_attach)
 
 lsp.setup()
 

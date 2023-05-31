@@ -23,6 +23,12 @@ require("lazy").setup({
         end,
     },
     {
+        "goolord/alpha-nvim",
+        config = function()
+            require("alpha").setup(require("alpha.themes.startify").config)
+        end,
+    },
+    {
         "j-hui/fidget.nvim",
         config = function()
             require("fidget").setup({ window = { blend = 0 } })
