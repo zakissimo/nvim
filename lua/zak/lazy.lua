@@ -57,7 +57,7 @@ require("lazy").setup({
                 -- cmdline = {
                 --     opts = {
                 --         relative = "editor",
-                --         position = { row = -3, col = 21 },
+                --         position = { row = "50%", col = "50%" },
                 --     },
                 -- },
                 lsp = {
