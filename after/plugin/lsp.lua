@@ -125,7 +125,7 @@ local cmp_config = lsp.defaults.cmp_config({
         end,
     },
     sources = cmp.config.sources({
-        -- { name = "copilot" },
+        { name = "copilot" },
         { name = "nvim_lsp", max_item_count = 7 },
         { name = "luasnip", max_item_count = 3 },
         { name = "path" },
