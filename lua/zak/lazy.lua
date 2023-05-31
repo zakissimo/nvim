@@ -54,24 +54,30 @@ require("lazy").setup({
         config = function()
             vim.o.showcmdloc = "statusline"
             require("noice").setup({
-                -- cmdline = {
-                --     opts = {
-                --         relative = "editor",
-                --         position = { row = "50%", col = "50%" },
-                --     },
-                -- },
+                views = {
+                    cmdline_popup = {
+                        position = {
+                            row = -2,
+                            col = "50%",
+                        },
+                    },
+                    popupmenu = {
+                        position = {
+                            row = -5,
+                            col = "50%",
+                        },
+                    },
+                },
                 lsp = {
                     progress = {
                         enabled = false,
                     },
-                    -- override markdown rendering so that **cmp** and other plugins use **Treesitter**
                     override = {
                         ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
                         ["vim.lsp.util.stylize_markdown"] = true,
                         ["cmp.entry.get_documentation"] = true,
                     },
                 },
-                -- you can enable a preset for easier configuration
                 presets = {
                     bottom_search = true, -- use a classic bottom cmdline for search
                     command_palette = true, -- position the cmdline and popupmenu together
