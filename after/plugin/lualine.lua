@@ -33,7 +33,7 @@ require("lualine").setup({
             },
         },
         lualine_c = { "filename" },
-        lualine_x = { "selectioncount", "%S", "encoding", "fileformat", "filetype" },
+        lualine_x = { "%S", "selectioncount", "encoding", "fileformat", "filetype" },
         lualine_y = { "progress" },
         lualine_z = { "location" },
     },
