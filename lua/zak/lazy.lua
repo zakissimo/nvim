@@ -29,6 +29,52 @@ require("lazy").setup({
         end,
     },
     { "MunifTanjim/nui.nvim" },
+    { "rcarriga/nvim-notify" },
+    {
+        "smjonas/inc-rename.nvim",
+        config = function()
+            require("inc_rename").setup()
+            vim.keymap.set("n", "<leader>rn", function()
+                return ":IncRename " .. vim.fn.expand("<cword>")
+            end, { expr = true })
+        end,
+    },
+    {
+        "folke/noice.nvim",
+        event = "VeryLazy",
+        opts = {
+            -- add any options here
+        },
+        config = function()
+            require("noice").setup({
+                cmdline = {
+                    opts = {
+                        relative = "editor",
+                        position = { row = -3, col = 21 },
+                    },
+                },
+                lsp = {
+                    progress = {
+                        enabled = false,
+                    },
+                    -- override markdown rendering so that **cmp** and other plugins use **Treesitter**
+                    override = {
+                        ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
+                        ["vim.lsp.util.stylize_markdown"] = true,
+                        ["cmp.entry.get_documentation"] = true,
+                    },
+                },
+                -- you can enable a preset for easier configuration
+                presets = {
+                    bottom_search = true, -- use a classic bottom cmdline for search
+                    command_palette = true, -- position the cmdline and popupmenu together
+                    long_message_to_split = true, -- long messages will be sent to a split
+                    inc_rename = true, -- enables an input dialog for inc-rename.nvim
+                    lsp_doc_border = true, -- add a border to hover docs and signature help
+                },
+            })
+        end,
+    },
     {
         "stevearc/dressing.nvim",
         config = function()
@@ -188,8 +234,6 @@ require("lazy").setup({
         end,
     },
     { "tpope/vim-fugitive" },
-
-    { "rcarriga/nvim-notify" },
 
     {
         "zbirenbaum/copilot.lua",
