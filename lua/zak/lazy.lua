@@ -47,12 +47,12 @@ require("lazy").setup({
         },
         config = function()
             require("noice").setup({
-                cmdline = {
-                    opts = {
-                        relative = "editor",
-                        position = { row = -3, col = 21 },
-                    },
-                },
+                -- cmdline = {
+                --     opts = {
+                --         relative = "editor",
+                --         position = { row = -3, col = 21 },
+                --     },
+                -- },
                 lsp = {
                     progress = {
                         enabled = false,
