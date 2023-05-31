@@ -46,6 +46,7 @@ require("lazy").setup({
             -- add any options here
         },
         config = function()
+            vim.o.showcmdloc = "statusline"
             require("noice").setup({
                 -- cmdline = {
                 --     opts = {
