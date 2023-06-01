@@ -18,9 +18,6 @@ local opts = { noremap = true, silent = true }
 require("lazy").setup({
     {
         "lewis6991/impatient.nvim",
-        config = function()
-            require("impatient")
-        end,
     },
     {
         "goolord/alpha-nvim",
@@ -30,9 +27,7 @@ require("lazy").setup({
     },
     {
         "j-hui/fidget.nvim",
-        config = function()
-            require("fidget").setup({ window = { blend = 0 } })
-        end,
+        opts = { window = { blend = 0 } },
     },
     { "MunifTanjim/nui.nvim" },
     { "rcarriga/nvim-notify" },
@@ -49,71 +44,60 @@ require("lazy").setup({
         "folke/noice.nvim",
         event = "VeryLazy",
         opts = {
-            -- add any options here
+            views = {
+                cmdline_popup = {
+                    position = {
+                        row = -2,
+                        col = "50%",
+                    },
+                },
+                popupmenu = {
+                    position = {
+                        row = -5,
+                        col = "50%",
+                    },
+                },
+            },
+            lsp = {
+                progress = {
+                    enabled = false,
+                },
+                override = {
+                    ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
+                    ["vim.lsp.util.stylize_markdown"] = true,
+                    ["cmp.entry.get_documentation"] = true,
+                },
+            },
+            presets = {
+                bottom_search = true, -- use a classic bottom cmdline for search
+                command_palette = true, -- position the cmdline and popupmenu together
+                long_message_to_split = true, -- long messages will be sent to a split
+                inc_rename = true, -- enables an input dialog for inc-rename.nvim
+                lsp_doc_border = true, -- add a border to hover docs and signature help
+            },
         },
-        config = function()
-            vim.o.showcmdloc = "statusline"
-            require("noice").setup({
-                views = {
-                    cmdline_popup = {
-                        position = {
-                            row = -2,
-                            col = "50%",
-                        },
-                    },
-                    popupmenu = {
-                        position = {
-                            row = -5,
-                            col = "50%",
-                        },
-                    },
-                },
-                lsp = {
-                    progress = {
-                        enabled = false,
-                    },
-                    override = {
-                        ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
-                        ["vim.lsp.util.stylize_markdown"] = true,
-                        ["cmp.entry.get_documentation"] = true,
-                    },
-                },
-                presets = {
-                    bottom_search = true, -- use a classic bottom cmdline for search
-                    command_palette = true, -- position the cmdline and popupmenu together
-                    long_message_to_split = true, -- long messages will be sent to a split
-                    inc_rename = true, -- enables an input dialog for inc-rename.nvim
-                    lsp_doc_border = true, -- add a border to hover docs and signature help
-                },
-            })
-        end,
     },
     {
         "stevearc/dressing.nvim",
-        config = function()
-            require("dressing").setup({
-                input = {
-                    relative = "editor",
+        opts = {
+            input = {
+                relative = "editor",
+                win_options = {
+                    winblend = 0,
+                },
+                select = {
                     win_options = {
                         winblend = 0,
                     },
-                    select = {
-                        win_options = {
-                            winblend = 0,
-                        },
-                    },
                 },
-            })
-        end,
+            },
+        },
     },
     { "nvim-lua/plenary.nvim" },
 
     {
         "willothy/flatten.nvim",
         config = true,
-        -- or pass configuration with
-        -- opts = {  }
-        -- Ensure that it runs first to minimize delay when opening file from terminal
         lazy = false,
         priority = 1001,
     },
@@ -152,7 +136,6 @@ require("lazy").setup({
     },
     {
         "stevearc/oil.nvim",
-        opts = {},
         config = function()
             require("oil").setup({
                 float = {

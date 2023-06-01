@@ -40,3 +40,4 @@ vim.cmd("set fillchars+=eob:│")
 
 set.ch = 1
 set.ls = 3
+set.showcmdloc = 'statusline'
