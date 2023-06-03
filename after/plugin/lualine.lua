@@ -1,3 +1,12 @@
+local filter_mode = function()
+    local m = require("noice").api.status.mode.get()
+    local o = ""
+    if type(m) == "string" and string.sub(m, 1, 2) ~= "--" then
+        o = m
+    end
+    return o
+end
+
 require("lualine").setup({
     options = {
         icons_enabled = true,
@@ -34,7 +43,7 @@ require("lualine").setup({
         },
         lualine_c = {
             {
-                require("noice").api.status.mode.get,
+                filter_mode,
                 cond = require("noice").api.status.mode.has,
                 color = { fg = "Normal" },
             }
