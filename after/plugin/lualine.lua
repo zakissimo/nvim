@@ -32,8 +32,17 @@ require("lualine").setup({
                 },
             },
         },
-        lualine_c = { "filename" },
-        lualine_x = { "%S", "selectioncount", "encoding", "fileformat", "filetype" },
+        lualine_c = {
+            {
+                require("noice").api.status.mode.get,
+                cond = require("noice").api.status.mode.has,
+                color = { fg = "Normal" },
+            }
+        },
+        lualine_x = {
+            "%S",
+            "selectioncount",
+        },
         lualine_y = { "progress" },
         lualine_z = { "location" },
     },
