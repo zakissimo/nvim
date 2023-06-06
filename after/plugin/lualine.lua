@@ -2,7 +2,7 @@ local filter_mode = function()
     local m = require("noice").api.status.mode.get()
     local o = ""
     if type(m) == "string" and string.sub(m, 1, 2) ~= "--" then
-        o = m
+        o = "(" .. m .. ")"
     end
     return o
 end
