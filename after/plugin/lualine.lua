@@ -42,6 +42,7 @@ require("lualine").setup({
             },
         },
         lualine_c = {
+            "filename",
             {
                 filter_mode,
                 cond = require("noice").api.status.mode.has,
