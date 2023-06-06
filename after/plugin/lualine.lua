@@ -27,7 +27,14 @@ require("lualine").setup({
         },
     },
     sections = {
-        lualine_a = { "mode" },
+        lualine_a = {
+            "mode",
+            {
+                filter_mode,
+                cond = require("noice").api.status.mode.has,
+                color = { fg = "Black" },
+            },
+        },
         lualine_b = {
             "branch",
             "diff",
@@ -43,11 +50,6 @@ require("lualine").setup({
         },
         lualine_c = {
             "filename",
-            {
-                filter_mode,
-                cond = require("noice").api.status.mode.has,
-                color = { fg = "Normal" },
-            }
         },
         lualine_x = {
             "%S",
