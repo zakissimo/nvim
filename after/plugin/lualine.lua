@@ -1,10 +1,11 @@
-local filter_mode = function()
-    local m = require("noice").api.status.mode.get()
-    local o = ""
-    if type(m) == "string" and string.sub(m, 1, 2) ~= "--" then
-        o = "(" .. m .. ")"
-    end
-    return o
+local rec_output = function()
+    local r = vim.fn.reg_recording()
+    return "rec(" .. r .. ")"
+end
+
+local recording = function()
+    if vim.fn.reg_recording() ~= "" then return true end
+    return false
 end
 
 require("lualine").setup({
@@ -29,11 +30,6 @@ require("lualine").setup({
     sections = {
         lualine_a = {
             "mode",
-            {
-                filter_mode,
-                cond = require("noice").api.status.mode.has,
-                color = { fg = "Black" },
-            },
         },
         lualine_b = {
             "branch",
@@ -50,6 +46,11 @@ require("lualine").setup({
         },
         lualine_c = {
             "filename",
+            {
+                rec_output,
+                cond = recording,
+                color = { fg = "White" },
+            },
         },
         lualine_x = {
             "%S",
