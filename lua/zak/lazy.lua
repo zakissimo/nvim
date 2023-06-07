@@ -51,7 +51,7 @@ require("lazy").setup({
                         col = "50%",
                     },
                 },
-                popupmenu = {
+                cmdline_popupmenu = {
                     position = {
                         row = -5,
                         col = "50%",
