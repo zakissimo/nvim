@@ -8,6 +8,11 @@ local recording = function()
     return false
 end
 
+local modified = function()
+    if vim.bo.modified then return "󰷫" end
+    return ""
+end
+
 require("lualine").setup({
     options = {
         icons_enabled = true,
@@ -45,11 +50,10 @@ require("lualine").setup({
             },
         },
         lualine_c = {
-            "filename",
+            modified,
             {
                 rec_output,
                 cond = recording,
-                color = { fg = "White" },
             },
         },
         lualine_x = {

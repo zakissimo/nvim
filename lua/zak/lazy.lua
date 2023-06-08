@@ -122,6 +122,7 @@ require("lazy").setup({
         config = function()
             require("hook").setup({
                 prefix = "",
+                suffix = "󰷫",
             })
             vim.keymap.set({ "t", "n" }, "<M-n>", "<CMD>lua require'hook'.toggle()<CR>", opts)
             vim.keymap.set({ "t", "n" }, "<M-7>", "<CMD>lua require'hook'.pull(1)<CR>", opts)
