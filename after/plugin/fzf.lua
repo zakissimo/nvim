@@ -1,7 +1,7 @@
 require("fzf-lua").setup({
     winopts = {
         hl = {
-            border = "FloatBorder",
+            border = "rounded",
         },
     },
     files = {
