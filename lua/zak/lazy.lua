@@ -28,6 +28,7 @@ require("lazy").setup({
     {
         "j-hui/fidget.nvim",
         opts = { window = { blend = 0 } },
+        branch = "legacy"
     },
     { "MunifTanjim/nui.nvim" },
     { "rcarriga/nvim-notify" },
