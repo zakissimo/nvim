@@ -13,7 +13,7 @@ lsp.set_preferences({
     sign_icons = {
         error = "",
         warn = "",
-        hint = "",
+        hint = "",
         info = "",
     },
 })
