@@ -44,7 +44,7 @@ require("lualine").setup({
                 symbols = {
                     error = " ",
                     warn = " ",
-                    hint = " ",
+                    hint = " ",
                     info = " ",
                 },
             },
