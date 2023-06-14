@@ -1,7 +1,8 @@
 vim.notify = require("notify").setup({
     background_colour = "#000000",
     render = "compact",
-    max_width = 70,
+    max_width = 50,
+    top_down = false,
 })
 
 vim.notify = function(msg, ...)
