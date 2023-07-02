@@ -1,6 +1,6 @@
 local rec_output = function()
     local r = vim.fn.reg_recording()
-    return "rec(" .. r .. ")"
+    return "recording @" .. r
 end
 
 local recording = function()
@@ -27,7 +27,7 @@ require("lualine").setup({
         always_divide_middle = true,
         globalstatus = false,
         refresh = {
-            statusline = 1000,
+            statusline = 100,
             tabline = 1000,
             winbar = 1000,
         },
@@ -54,7 +54,8 @@ require("lualine").setup({
             {
                 rec_output,
                 cond = recording,
-            },
+                color = { fg = "#6e6a86" },
+            }
         },
         lualine_x = {
             "%S",
