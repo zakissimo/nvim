@@ -18,22 +18,24 @@ lsp.set_preferences({
     },
 })
 
-local on_attach = function(client, bufnr)
+local on_attach = function(_, bufnr)
     local opts = { buffer = bufnr, remap = false }
 
-    vim.keymap.set("n", "gd", function()
-        vim.lsp.buf.definition()
-    end, opts)
+    vim.keymap.set("n", "gd", "<CMD>FzfLua lsp_definitions<CR>", opts)
+    vim.keymap.set("n", "gD", "<CMD>FzfLua lsp_declarations<CR>", opts)
+    vim.keymap.set("n", "gi", "<CMD>FzfLua lsp_implementations<CR>", opts)
+    vim.keymap.set("n", "gt", "<CMD>FzfLua lsp_typedefs<CR>", opts)
+    vim.keymap.set("n", "gr", "<CMD>FzfLua lsp_references<CR>", opts)
+    vim.keymap.set("n", "<leader>rn", "<CMD>FzfLua lsp_rename<CR>", opts)
+    vim.keymap.set("n", "<leader>el", "<CMD>FzfLua lsp_document_diagnostics<CR>", opts)
+    vim.keymap.set("n", "<leader>ca", "<CMD>FzfLua lsp_code_actions<CR>", opts)
+
     vim.keymap.set("n", "K", function()
         vim.lsp.buf.hover()
-    end, opts)
-    vim.keymap.set("n", "gr", function()
-        vim.lsp.buf.references()
     end, opts)
     vim.keymap.set("n", "<leader>q", function()
         vim.diagnostic.setloclist()
     end, opts)
-    vim.keymap.set("n", "<leader>el", "<CMD>FzfLua lsp_document_diagnostics<CR>", opts)
     vim.keymap.set("n", "<leader>ek", function()
         vim.diagnostic.goto_prev()
     end, opts)
@@ -46,9 +48,6 @@ local on_attach = function(client, bufnr)
     vim.keymap.set("n", "gh", function()
         vim.diagnostic.open_float()
     end, opts)
-    vim.keymap.set("n", "<leader>ca", function()
-        vim.lsp.buf.code_action()
-    end, opts)
     vim.keymap.set("n", "<F2>", function()
         vim.lsp.buf.format()
     end, opts)
@@ -60,6 +59,8 @@ lsp.setup()
 
 local cmp = require("cmp")
 local luasnip = require("luasnip")
+luasnip.config.setup({ enable_autosnippets = true })
+require("luasnip.loaders.from_vscode").lazy_load()
 local cmp_select = { behavior = cmp.SelectBehavior.Select }
 local cmp_mappings = cmp.mapping.preset.insert({
     ["<C-p>"] = cmp.mapping.select_prev_item(cmp_select),
@@ -127,7 +128,8 @@ local cmp_config = lsp.defaults.cmp_config({
     sources = cmp.config.sources({
         { name = "copilot" },
         { name = "nvim_lsp", max_item_count = 7 },
-        { name = "luasnip", max_item_count = 3 },
+        { name = "nvim_lsp_signature_help" },
+        { name = "luasnip", max_item_count = 5 },
         { name = "path" },
     }),
 })
