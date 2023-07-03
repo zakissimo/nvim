@@ -2,6 +2,8 @@ require("neodev").setup({})
 local lsp = require("lsp-zero")
 lsp.preset("recommended")
 
+local servers = require'mason-lspconfig'.get_installed_servers()
+
 lsp.set_preferences({
     suggest_lsp_servers = true,
     setup_servers_on_start = true,
