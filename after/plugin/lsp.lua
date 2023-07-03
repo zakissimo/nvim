@@ -181,7 +181,7 @@ null_ls.setup({
         formatting.shfmt.with({ extra_args = { "--indent", "4" } }),
         formatting.stylua.with({ extra_args = { "--indent-type", "Spaces" } }),
         formatting.autopep8,
-        formatting.clang_format.with({ extra_args = { "-style", "{IndentWidth: 4, TabWidth: 4, UseTab: Never}" } }),
+        formatting.clang_format.with({ extra_args = { "--style", "{IndentWidth: 4, TabWidth: 4, UseTab: Never, PointerAlignment: Left}" } }),
         formatting.prettierd.with({ filetypes = { "markdown", "css", "html" } }),
         formatting.deno_fmt.with({ extra_args = { "--options-single-quote", "--options-indent-width=4" } }),
         diagnostics.shellcheck,
