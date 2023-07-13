@@ -59,6 +59,7 @@ require("lualine").setup({
         },
         lualine_x = {
             "%S",
+            "searchcount",
             "selectioncount",
         },
         lualine_y = { "progress" },
