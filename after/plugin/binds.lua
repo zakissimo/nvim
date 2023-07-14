@@ -16,7 +16,7 @@ vim.keymap.set("n", ">", "V>", opts)
 
 vim.keymap.set({ "n", "i" }, "<F1>", "<Esc>", opts)
 
-vim.keymap.set("n", "<esc><esc>", "<CMD>noh<CR>", opts)
+vim.keymap.set("n", "<esc>", "<CMD>noh<CR><esc>", opts)
 vim.keymap.set("n", "<C-s>", "<CMD>w<CR>", opts)
 
 vim.keymap.set("n", "<C-j>", "<C-w>j", opts)
