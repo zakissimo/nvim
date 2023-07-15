@@ -1,6 +1,6 @@
 require("neodev").setup({})
 
-local on_attach = function(client, bufnr)
+local on_attach = function(_, bufnr)
     local opts = { buffer = bufnr, remap = false }
 
     vim.keymap.set("n", "gd", "<CMD>FzfLua lsp_definitions<CR>", opts)
@@ -140,11 +140,26 @@ cmp.setup({
     }),
 })
 
-require("cmp").setup.cmdline("/", {
+require("cmp").setup.cmdline({ "?", "/" }, {
+    mapping = cmp.mapping.preset.cmdline(),
     sources = cmp.config.sources({
         { name = "nvim_lsp_document_symbol" },
     }, {
         { name = "buffer" },
+    }),
+})
+
+require("cmp").setup.cmdline(":", {
+    mapping = cmp.mapping.preset.cmdline(),
+    sources = cmp.config.sources({
+        { name = "path" },
+    }, {
+        {
+            name = "cmdline",
+            option = {
+                ignore_cmds = { "Man", "!" },
+            },
+        },
     }),
 })
 
