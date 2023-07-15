@@ -5,7 +5,7 @@ if not vim.loop.fs_stat(lazypath) then
         "clone",
         "--filter=blob:none",
         "https://github.com/folke/lazy.nvim.git",
-        "--branch=stable", -- latest stable release
+        "--branch=stable",
         lazypath,
     })
 end
@@ -212,7 +212,11 @@ require("lazy").setup({
 
     { "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" },
 
-    { "folke/neodev.nvim" },
+    { "folke/neodev.nvim",
+        config = function()
+            require("neodev").setup({})
+        end,
+    },
 
     { "neovim/nvim-lspconfig" },
     { "williamboman/mason.nvim", config = true },
