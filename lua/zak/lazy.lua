@@ -212,7 +212,8 @@ require("lazy").setup({
 
     { "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" },
 
-    { "folke/neodev.nvim",
+    {
+        "folke/neodev.nvim",
         config = function()
             require("neodev").setup({})
         end,
@@ -229,6 +230,7 @@ require("lazy").setup({
     { "hrsh7th/cmp-path" },
     { "hrsh7th/cmp-buffer" },
     { "hrsh7th/cmp-cmdline" },
+    { "dmitmel/cmp-cmdline-history" },
     { "hrsh7th/cmp-nvim-lsp" },
     { "hrsh7th/cmp-nvim-lua" },
     { "saadparwaiz1/cmp_luasnip" },
