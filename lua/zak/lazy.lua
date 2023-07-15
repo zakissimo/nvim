@@ -28,7 +28,7 @@ require("lazy").setup({
     {
         "j-hui/fidget.nvim",
         opts = { window = { blend = 0 } },
-        branch = "legacy"
+        branch = "legacy",
     },
     { "MunifTanjim/nui.nvim" },
     { "rcarriga/nvim-notify" },
@@ -209,6 +209,25 @@ require("lazy").setup({
             vim.keymap.set("n", "<Leader>uu", "<CMD>UndotreeToggle<CR>", opts)
         end,
     },
+
+    { "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" },
+
+    { "folke/neodev.nvim" },
+
+    { "neovim/nvim-lspconfig" },
+    { "williamboman/mason.nvim", config = true },
+    { "williamboman/mason-lspconfig.nvim" },
+
+    { "jose-elias-alvarez/null-ls.nvim" },
+    { "jay-babu/mason-null-ls.nvim" },
+
+    { "hrsh7th/nvim-cmp" },
+    { "hrsh7th/cmp-path" },
+    { "hrsh7th/cmp-buffer" },
+    { "hrsh7th/cmp-cmdline" },
+    { "hrsh7th/cmp-nvim-lsp" },
+    { "hrsh7th/cmp-nvim-lua" },
+    { "saadparwaiz1/cmp_luasnip" },
     {
         "zbirenbaum/copilot-cmp",
         dependencies = { "copilot.lua" },
@@ -216,35 +235,13 @@ require("lazy").setup({
             require("copilot_cmp").setup()
         end,
     },
-    { "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" },
-    { "folke/neodev.nvim" },
+
+    { "hrsh7th/cmp-nvim-lsp-signature-help" },
+    { "hrsh7th/cmp-nvim-lsp-document-symbol" },
+
+    { "onsails/lspkind-nvim" },
     {
-        "VonHeikemen/lsp-zero.nvim",
-        branch = "v1.x",
-        dependencies = {
-            -- LSP Support
-            { "neovim/nvim-lspconfig" }, -- Required
-            { "williamboman/mason.nvim" }, -- Optional
-            "jose-elias-alvarez/null-ls.nvim",
-            "jay-babu/mason-null-ls.nvim",
-            { "williamboman/mason-lspconfig.nvim" }, -- Optional
-
-            -- Autocompletion
-            { "hrsh7th/nvim-cmp" }, -- Required
-            { "hrsh7th/cmp-nvim-lsp" }, -- Required
-            { "hrsh7th/cmp-buffer" }, -- Optional
-            { "hrsh7th/cmp-path" }, -- Optional
-            { "hrsh7th/cmp-nvim-lua" }, -- Optional
-            { "hrsh7th/cmp-cmdline" }, -- Optional
-            { "hrsh7th/cmp-nvim-lsp-signature-help" },
-            { "saadparwaiz1/cmp_luasnip" }, -- Optional
-            { "onsails/lspkind-nvim" }, -- Optional
-
-            -- Snippets
-            {
-                "L3MON4D3/LuaSnip",
-                dependencies = { "rafamadriz/friendly-snippets" },
-            },
-        },
+        "L3MON4D3/LuaSnip",
+        dependencies = { "rafamadriz/friendly-snippets" },
     },
 })

@@ -1,26 +1,6 @@
 require("neodev").setup({})
-local lsp = require("lsp-zero")
-lsp.preset("recommended")
 
-local servers = require'mason-lspconfig'.get_installed_servers()
-
-lsp.set_preferences({
-    suggest_lsp_servers = true,
-    setup_servers_on_start = true,
-    set_lsp_keymaps = false,
-    configure_diagnostics = true,
-    cmp_capabilities = true,
-    manage_nvim_cmp = false,
-    call_servers = "local",
-    sign_icons = {
-        error = "",
-        warn = "",
-        hint = "",
-        info = "",
-    },
-})
-
-local on_attach = function(_, bufnr)
+local on_attach = function(client, bufnr)
     local opts = { buffer = bufnr, remap = false }
 
     vim.keymap.set("n", "gd", "<CMD>FzfLua lsp_definitions<CR>", opts)
@@ -31,7 +11,7 @@ local on_attach = function(_, bufnr)
     vim.keymap.set("n", "<leader>el", "<CMD>FzfLua lsp_document_diagnostics<CR>", opts)
     vim.keymap.set("n", "<leader>ca", "<CMD>FzfLua lsp_code_actions<CR>", opts)
 
-    vim.keymap.set("n", "<leader>rn", function ()
+    vim.keymap.set("n", "<leader>rn", function()
         vim.lsp.buf.rename()
     end, opts)
     vim.keymap.set("n", "K", function()
@@ -57,14 +37,36 @@ local on_attach = function(_, bufnr)
     end, opts)
 end
 
-lsp.on_attach(on_attach)
+local servers = require("mason-lspconfig").get_installed_servers()
 
-lsp.setup()
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
+
+local handlers = {
+    ["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" }),
+    ["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = "rounded" }),
+}
+
+local mason_lspconfig = require("mason-lspconfig")
+
+mason_lspconfig.setup({})
+
+mason_lspconfig.setup_handlers({
+    function(server_name)
+        require("lspconfig")[server_name].setup({
+            capabilities = capabilities,
+            handlers = handlers,
+            on_attach = on_attach,
+            settings = servers[server_name],
+        })
+    end,
+})
 
 local cmp = require("cmp")
 local luasnip = require("luasnip")
 luasnip.config.setup({ enable_autosnippets = true })
 require("luasnip.loaders.from_vscode").lazy_load()
+
 local cmp_select = { behavior = cmp.SelectBehavior.Select }
 local cmp_mappings = cmp.mapping.preset.insert({
     ["<C-p>"] = cmp.mapping.select_prev_item(cmp_select),
@@ -108,7 +110,7 @@ local cmp_mappings = cmp.mapping.preset.insert({
 
 vim.api.nvim_set_hl(0, "CmpItemKindCopilot", { fg = "#6CC644" })
 local lspkind = require("lspkind")
-local cmp_config = lsp.defaults.cmp_config({
+cmp.setup({
     window = {
         completion = cmp.config.window.bordered(),
         documentation = cmp.config.window.bordered(),
@@ -138,7 +140,13 @@ local cmp_config = lsp.defaults.cmp_config({
     }),
 })
 
-cmp.setup(cmp_config)
+require("cmp").setup.cmdline("/", {
+    sources = cmp.config.sources({
+        { name = "nvim_lsp_document_symbol" },
+    }, {
+        { name = "buffer" },
+    }),
+})
 
 vim.diagnostic.config({
     virtual_text = false,
@@ -156,36 +164,27 @@ vim.diagnostic.config({
     },
 })
 
+local signs = { Error = " ", Warn = " ", Hint = "󰌵 ", Info = " " }
+for type, icon in pairs(signs) do
+    local hl = "DiagnosticSign" .. type
+    vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "", linehl = "" })
+end
+
 local null_ls = require("null-ls")
-local null_opts = lsp.build_options("null-ls", {})
 local formatting = null_ls.builtins.formatting
 local diagnostics = null_ls.builtins.diagnostics
 local code_actions = null_ls.builtins.code_actions
 
 null_ls.setup({
     debug = false,
-    on_attach = function(client, bufnr)
-        null_opts.on_attach(client, bufnr)
-        local format_cmd = function(input)
-            vim.lsp.buf.format({
-                id = client.id,
-                timeout_ms = 5000,
-                async = input.bang,
-            })
-        end
 
-        local bufcmd = vim.api.nvim_buf_create_user_command
-        bufcmd(bufnr, "NullFormat", format_cmd, {
-            bang = true,
-            range = true,
-            desc = "Format using null-ls",
-        })
-    end,
     sources = {
         formatting.shfmt.with({ extra_args = { "--indent", "4" } }),
         formatting.stylua.with({ extra_args = { "--indent-type", "Spaces" } }),
         formatting.autopep8,
-        formatting.clang_format.with({ extra_args = { "--style", "{IndentWidth: 4, TabWidth: 4, UseTab: Never, PointerAlignment: Left}" } }),
+        formatting.clang_format.with({
+            extra_args = { "--style", "{IndentWidth: 4, TabWidth: 4, UseTab: Never, PointerAlignment: Left}" },
+        }),
         formatting.prettierd.with({ filetypes = { "markdown", "css", "html" } }),
         formatting.deno_fmt.with({ extra_args = { "--options-single-quote", "--options-indent-width=4" } }),
         diagnostics.shellcheck,
