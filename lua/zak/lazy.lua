@@ -203,12 +203,12 @@ require("lazy").setup({
             require("zak.copilot")
         end,
     },
-    {
-        "sourcegraph/sg.nvim",
-        dependencies = { "nvim-lua/plenary.nvim" },
-
-        build = "nvim -l build/init.lua",
-    },
+    -- {
+    --     "sourcegraph/sg.nvim",
+    --     dependencies = { "nvim-lua/plenary.nvim" },
+    --
+    --     build = "nvim -l build/init.lua",
+    -- },
     {
         "mbbill/undotree",
         config = function()
