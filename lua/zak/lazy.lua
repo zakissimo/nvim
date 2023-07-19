@@ -204,6 +204,12 @@ require("lazy").setup({
         end,
     },
     {
+        "sourcegraph/sg.nvim",
+        dependencies = { "nvim-lua/plenary.nvim" },
+
+        build = "nvim -l build/init.lua",
+    },
+    {
         "mbbill/undotree",
         config = function()
             vim.keymap.set("n", "<Leader>uu", "<CMD>UndotreeToggle<CR>", opts)
