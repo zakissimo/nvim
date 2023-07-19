@@ -3,10 +3,10 @@ local luasnip = require("luasnip")
 luasnip.config.setup({ enable_autosnippets = true })
 require("luasnip.loaders.from_vscode").lazy_load()
 
-local cmp_select = { behavior = cmp.SelectBehavior.Select }
-local cmp_mappings = cmp.mapping.preset.insert({
-    ["<C-p>"] = cmp.mapping.select_prev_item(cmp_select),
-    ["<C-n>"] = cmp.mapping.select_next_item(cmp_select),
+local select = { behavior = cmp.SelectBehavior.Select }
+local mapping = {
+    ["<C-p>"] = cmp.mapping.select_prev_item(select),
+    ["<C-n>"] = cmp.mapping.select_next_item(select),
     ["<C-Space>"] = cmp.mapping.complete(),
     ["<C-d>"] = cmp.mapping.scroll_docs(-4),
     ["<C-u>"] = cmp.mapping.scroll_docs(4),
@@ -42,18 +42,23 @@ local cmp_mappings = cmp.mapping.preset.insert({
     ["<S-Tab>"] = cmp.mapping(function(fallback)
         fallback()
     end, { "i", "s" }),
-})
+}
 
 vim.api.nvim_set_hl(0, "CmpItemKindCopilot", { fg = "#6CC644" })
 local lspkind = require("lspkind")
 cmp.setup({
+    snippet = {
+        expand = function(args)
+            luasnip.lsp_expand(args.body)
+        end,
+    },
     window = {
         completion = cmp.config.window.bordered(),
         documentation = cmp.config.window.bordered(),
         col_offset = -3,
         side_padding = 0,
     },
-    mapping = cmp_mappings,
+    mapping = mapping,
     formatting = {
         fields = { "kind", "abbr" },
         format = function(entry, vim_item)

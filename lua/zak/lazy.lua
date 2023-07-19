@@ -220,7 +220,7 @@ require("lazy").setup({
     },
 
     { "neovim/nvim-lspconfig" },
-    { "williamboman/mason.nvim", config = true },
+    { "williamboman/mason.nvim",          config = true },
     { "williamboman/mason-lspconfig.nvim" },
 
     { "jose-elias-alvarez/null-ls.nvim" },
@@ -248,6 +248,6 @@ require("lazy").setup({
     { "onsails/lspkind-nvim" },
     {
         "L3MON4D3/LuaSnip",
-        dependencies = { "rafamadriz/friendly-snippets" },
+        build = "make install_jsregexp",
     },
 })
