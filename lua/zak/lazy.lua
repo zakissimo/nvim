@@ -195,6 +195,7 @@ require("lazy").setup({
         end,
     },
     { "tpope/vim-fugitive" },
+    { "sindrets/diffview.nvim" },
 
     {
         "zbirenbaum/copilot.lua",
