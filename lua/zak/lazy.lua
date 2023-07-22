@@ -13,9 +13,7 @@ vim.opt.rtp:prepend(lazypath)
 
 vim.g.mapleader = " "
 
-local opts = { noremap = true, silent = true }
-
-require("lazy").setup({
+local plugins = {
     {
         "lewis6991/impatient.nvim",
     },
@@ -69,8 +67,9 @@ require("lazy").setup({
     {
         "zakissimo/run.nvim",
         config = function()
-            vim.keymap.set("n", "<Leader>cc", "<CMD>lua require'run'.cmd()<CR>", opts)
+            vim.keymap.set("n", "<Leader>cc", "<CMD>lua require'run'.cmd()<CR>")
         end,
+        dev = false,
     },
     {
         "zakissimo/term.nvim",
@@ -78,8 +77,9 @@ require("lazy").setup({
             require("term").setup({
                 spawn = false,
             })
-            vim.keymap.set({ "n", "i", "t" }, "<M-m>", "<CMD>lua require'term'.toggle()<CR>", opts)
+            vim.keymap.set({ "n", "i", "t" }, "<M-m>", "<CMD>lua require'term'.toggle()<CR>")
         end,
+        dev = false,
     },
     {
         "zakissimo/hook.nvim",
@@ -88,16 +88,17 @@ require("lazy").setup({
                 prefix = "",
                 suffix = "󰷫",
             })
-            vim.keymap.set({ "t", "n" }, "<M-n>", "<CMD>lua require'hook'.toggle()<CR>", opts)
-            vim.keymap.set({ "t", "n" }, "<M-7>", "<CMD>lua require'hook'.pull(1)<CR>", opts)
-            vim.keymap.set({ "t", "n" }, "<M-8>", "<CMD>lua require'hook'.pull(2)<CR>", opts)
-            vim.keymap.set({ "t", "n" }, "<M-9>", "<CMD>lua require'hook'.pull(3)<CR>", opts)
-            vim.keymap.set({ "t", "n" }, "<M-0>", "<CMD>lua require'hook'.pull(4)<CR>", opts)
-            vim.keymap.set({ "t", "n" }, "<M-u>", "<CMD>lua require'hook'.pull(5)<CR>", opts)
-            vim.keymap.set({ "t", "n" }, "<M-i>", "<CMD>lua require'hook'.pull(6)<CR>", opts)
-            vim.keymap.set({ "t", "n" }, "<M-o>", "<CMD>lua require'hook'.pull(7)<CR>", opts)
-            vim.keymap.set({ "t", "n" }, "<M-p>", "<CMD>lua require'hook'.pull(8)<CR>", opts)
+            vim.keymap.set({ "t", "n" }, "<M-n>", "<CMD>lua require'hook'.toggle()<CR>")
+            vim.keymap.set({ "t", "n" }, "<M-7>", "<CMD>lua require'hook'.pull(1)<CR>")
+            vim.keymap.set({ "t", "n" }, "<M-8>", "<CMD>lua require'hook'.pull(2)<CR>")
+            vim.keymap.set({ "t", "n" }, "<M-9>", "<CMD>lua require'hook'.pull(3)<CR>")
+            vim.keymap.set({ "t", "n" }, "<M-0>", "<CMD>lua require'hook'.pull(4)<CR>")
+            vim.keymap.set({ "t", "n" }, "<M-u>", "<CMD>lua require'hook'.pull(5)<CR>")
+            vim.keymap.set({ "t", "n" }, "<M-i>", "<CMD>lua require'hook'.pull(6)<CR>")
+            vim.keymap.set({ "t", "n" }, "<M-o>", "<CMD>lua require'hook'.pull(7)<CR>")
+            vim.keymap.set({ "t", "n" }, "<M-p>", "<CMD>lua require'hook'.pull(8)<CR>")
         end,
+        dev = true,
     },
     {
         "stevearc/oil.nvim",
@@ -110,21 +111,21 @@ require("lazy").setup({
                     },
                 },
             })
-            vim.keymap.set({ "n", "i" }, "<C-n>", "<CMD>lua require'oil'.toggle_float()<CR>", opts)
+            vim.keymap.set({ "n", "i" }, "<C-n>", "<CMD>lua require'oil'.toggle_float()<CR>")
         end,
     },
     {
         "ibhagwan/fzf-lua",
         dependencies = { "kyazdani42/nvim-web-devicons" },
         config = function()
-            vim.keymap.set("n", "<Leader>gh", "<CMD>FzfLua help_tags<CR>", opts)
-            vim.keymap.set("n", "<Leader>b", "<CMD>FzfLua buffers<CR>", opts)
-            vim.keymap.set("n", "<Leader>r", "<CMD>FzfLua registers<CR>", opts)
-            vim.keymap.set("n", "<Leader>t", "<CMD>FzfLua tabs<CR>", opts)
-            vim.keymap.set("n", "<Leader>l", "<CMD>FzfLua live_grep<CR>", opts)
-            vim.keymap.set("n", "<Leader>f", "<CMD>FzfLua files<CR>", opts)
-            vim.keymap.set("n", "<Leader>gf", "<CMD>FzfLua git_files<CR>", opts)
-            vim.keymap.set("n", "<Leader>o", "<CMD>lua require'fzf-lua'.files({ cwd='~' })<CR>", opts)
+            vim.keymap.set("n", "<Leader>gh", "<CMD>FzfLua help_tags<CR>")
+            vim.keymap.set("n", "<Leader>b", "<CMD>FzfLua buffers<CR>")
+            vim.keymap.set("n", "<Leader>r", "<CMD>FzfLua registers<CR>")
+            vim.keymap.set("n", "<Leader>t", "<CMD>FzfLua tabs<CR>")
+            vim.keymap.set("n", "<Leader>l", "<CMD>FzfLua live_grep<CR>")
+            vim.keymap.set("n", "<Leader>f", "<CMD>FzfLua files<CR>")
+            vim.keymap.set("n", "<Leader>gf", "<CMD>FzfLua git_files<CR>")
+            vim.keymap.set("n", "<Leader>o", "<CMD>lua require'fzf-lua'.files({ cwd='~' })<CR>")
         end,
     },
     {
@@ -189,12 +190,12 @@ require("lazy").setup({
 
     { "lewis6991/gitsigns.nvim" },
     {
-        "kdheepak/lazygit.nvim",
+        "NeogitOrg/neogit",
         config = function()
-            vim.keymap.set("n", "<Leader>gg", "<CMD>LazyGit<CR>", opts)
+            require('neogit').setup()
+            vim.keymap.set("n", "<Leader>gg", "<CMD>Neogit<CR>")
         end,
     },
-    { "tpope/vim-fugitive" },
     { "sindrets/diffview.nvim" },
 
     {
@@ -213,7 +214,7 @@ require("lazy").setup({
     {
         "mbbill/undotree",
         config = function()
-            vim.keymap.set("n", "<Leader>uu", "<CMD>UndotreeToggle<CR>", opts)
+            vim.keymap.set("n", "<Leader>uu", "<CMD>UndotreeToggle<CR>")
         end,
     },
 
@@ -227,7 +228,7 @@ require("lazy").setup({
     },
 
     { "neovim/nvim-lspconfig" },
-    { "williamboman/mason.nvim",          config = true },
+    { "williamboman/mason.nvim", config = true },
     { "williamboman/mason-lspconfig.nvim" },
 
     { "jose-elias-alvarez/null-ls.nvim" },
@@ -257,4 +258,18 @@ require("lazy").setup({
         "L3MON4D3/LuaSnip",
         build = "make install_jsregexp",
     },
-})
+}
+
+local opts = {
+    diff = {
+        cmd = "diffview.nvim",
+    },
+    dev = {
+        path = "~/Code/nvim-plugins",
+        patterns = {},
+        fallback = true,
+    },
+    debug = false,
+}
+
+require("lazy").setup(plugins, opts)

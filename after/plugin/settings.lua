@@ -19,6 +19,9 @@ set.smartindent = true
 set.splitbelow = true
 set.splitright = true
 
+set.foldmethod = "expr"
+set.foldexpr = "nvim_treesitter#foldexpr()"
+
 set.swapfile = false
 set.backup = false
 set.undodir = os.getenv("HOME") .. "/.vim/undodir"
