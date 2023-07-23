@@ -111,7 +111,7 @@ local plugins = {
                     },
                 },
             })
-            vim.keymap.set({ "n", "i" }, "<M-n>", "<CMD>lua require'oil'.toggle_float()<CR>")
+            vim.keymap.set({ "n", "i" }, "<C-n>", "<CMD>lua require'oil'.toggle_float()<CR>")
         end,
     },
     {
