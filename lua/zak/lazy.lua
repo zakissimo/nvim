@@ -88,7 +88,7 @@ local plugins = {
                 prefix = "",
                 suffix = "󰷫",
             })
-            vim.keymap.set({ "t", "n" }, "<M-m>", "<CMD>lua require'hook'.toggle()<CR>")
+            vim.keymap.set({ "t", "n" }, "<C-m>", "<CMD>lua require'hook'.toggle()<CR>")
             vim.keymap.set({ "t", "n" }, "<M-7>", "<CMD>lua require'hook'.pull(1)<CR>")
             vim.keymap.set({ "t", "n" }, "<M-8>", "<CMD>lua require'hook'.pull(2)<CR>")
             vim.keymap.set({ "t", "n" }, "<M-9>", "<CMD>lua require'hook'.pull(3)<CR>")
