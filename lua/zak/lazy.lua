@@ -77,7 +77,7 @@ local plugins = {
             require("term").setup({
                 spawn = false,
             })
-            -- vim.keymap.set({ "n", "i", "t" }, "<M-t>", "<CMD>lua require'term'.toggle()<CR>")
+            vim.keymap.set({ "n", "i", "t" }, "<Leader>t", "<CMD>lua require'term'.toggle()<CR>")
         end,
         dev = false,
     },
@@ -121,7 +121,7 @@ local plugins = {
             vim.keymap.set("n", "<Leader>gh", "<CMD>FzfLua help_tags<CR>")
             vim.keymap.set("n", "<Leader>b", "<CMD>FzfLua buffers<CR>")
             vim.keymap.set("n", "<Leader>r", "<CMD>FzfLua registers<CR>")
-            vim.keymap.set("n", "<Leader>t", "<CMD>FzfLua tabs<CR>")
+            -- vim.keymap.set("n", "<Leader>t", "<CMD>FzfLua tabs<CR>")
             vim.keymap.set("n", "<Leader>l", "<CMD>FzfLua live_grep<CR>")
             vim.keymap.set("n", "<Leader>f", "<CMD>FzfLua files<CR>")
             vim.keymap.set("n", "<Leader>gf", "<CMD>FzfLua git_files<CR>")
