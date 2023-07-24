@@ -57,12 +57,12 @@ local plugins = {
     },
     { "nvim-lua/plenary.nvim" },
 
-    {
-        "willothy/flatten.nvim",
-        config = true,
-        lazy = false,
-        priority = 1001,
-    },
+    -- {
+    --     "willothy/flatten.nvim",
+    --     config = true,
+    --     lazy = false,
+    --     priority = 1001,
+    -- },
 
     {
         "zakissimo/run.nvim",
