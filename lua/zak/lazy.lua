@@ -77,7 +77,7 @@ local plugins = {
             require("term").setup({
                 spawn = false,
             })
-            vim.keymap.set({ "n", "i", "t" }, "<Leader>t", "<CMD>lua require'term'.toggle()<CR>")
+            vim.keymap.set({ "n", "t" }, "<Leader>t", "<CMD>lua require'term'.toggle()<CR>")
         end,
         dev = false,
     },
@@ -111,7 +111,7 @@ local plugins = {
                     },
                 },
             })
-            vim.keymap.set({ "n", "i" }, "<Leader>n", "<CMD>lua require'oil'.toggle_float()<CR>")
+            vim.keymap.set({ "t", "n" }, "<Leader>n", "<CMD>lua require'oil'.toggle_float()<CR>")
         end,
     },
     {
