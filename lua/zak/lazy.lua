@@ -218,7 +218,8 @@ local plugins = {
         end,
     },
 
-    { "RaafatTurki/hex.nvim",
+    {
+        "RaafatTurki/hex.nvim",
         config = function()
             require("hex").setup({})
         end,
@@ -233,36 +234,42 @@ local plugins = {
         end,
     },
 
-    { "neovim/nvim-lspconfig" },
-    { "williamboman/mason.nvim", config = true },
-    { "williamboman/mason-lspconfig.nvim" },
-
-    { "jose-elias-alvarez/null-ls.nvim" },
-    { "jay-babu/mason-null-ls.nvim" },
-
-    { "hrsh7th/nvim-cmp" },
-    { "hrsh7th/cmp-path" },
-    { "hrsh7th/cmp-buffer" },
-    { "hrsh7th/cmp-cmdline" },
-    { "dmitmel/cmp-cmdline-history" },
-    { "hrsh7th/cmp-nvim-lsp" },
-    { "hrsh7th/cmp-nvim-lua" },
-    { "saadparwaiz1/cmp_luasnip" },
     {
-        "zbirenbaum/copilot-cmp",
-        dependencies = { "copilot.lua" },
-        config = function()
-            require("copilot_cmp").setup()
-        end,
-    },
+        "neovim/nvim-lspconfig",
+        cmd = "LspInfo",
+        event = { "BufReadPre", "BufNewFile" },
+        dependencies = {
+            { "williamboman/mason.nvim", config = true },
+            { "williamboman/mason-lspconfig.nvim" },
 
-    { "hrsh7th/cmp-nvim-lsp-signature-help" },
-    { "hrsh7th/cmp-nvim-lsp-document-symbol" },
+            { "jose-elias-alvarez/null-ls.nvim" },
+            { "jay-babu/mason-null-ls.nvim" },
 
-    { "onsails/lspkind-nvim" },
-    {
-        "L3MON4D3/LuaSnip",
-        build = "make install_jsregexp",
+            { "hrsh7th/nvim-cmp" },
+            { "hrsh7th/cmp-path" },
+            { "hrsh7th/cmp-buffer" },
+            { "hrsh7th/cmp-cmdline" },
+            { "dmitmel/cmp-cmdline-history" },
+            { "hrsh7th/cmp-nvim-lsp" },
+            { "hrsh7th/cmp-nvim-lua" },
+            { "saadparwaiz1/cmp_luasnip" },
+            {
+                "zbirenbaum/copilot-cmp",
+                dependencies = { "copilot.lua" },
+                config = function()
+                    require("copilot_cmp").setup()
+                end,
+            },
+
+            { "hrsh7th/cmp-nvim-lsp-signature-help" },
+            { "hrsh7th/cmp-nvim-lsp-document-symbol" },
+
+            { "onsails/lspkind-nvim" },
+            {
+                "L3MON4D3/LuaSnip",
+                build = "make install_jsregexp",
+            },
+        },
     },
 }
 
