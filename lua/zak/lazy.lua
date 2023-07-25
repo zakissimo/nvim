@@ -93,15 +93,15 @@ local plugins = {
                 prefix = "",
                 suffix = "󰷫",
             })
-            vim.keymap.set({ "t", "n" }, "<Leader>m", "<CMD>lua require'hook'.toggle()<CR>")
-            vim.keymap.set({ "t", "n" }, "<M-7>", "<CMD>lua require'hook'.pull(1)<CR>")
-            vim.keymap.set({ "t", "n" }, "<M-8>", "<CMD>lua require'hook'.pull(2)<CR>")
-            vim.keymap.set({ "t", "n" }, "<M-9>", "<CMD>lua require'hook'.pull(3)<CR>")
-            vim.keymap.set({ "t", "n" }, "<M-0>", "<CMD>lua require'hook'.pull(4)<CR>")
-            vim.keymap.set({ "t", "n" }, "<M-u>", "<CMD>lua require'hook'.pull(5)<CR>")
-            vim.keymap.set({ "t", "n" }, "<M-i>", "<CMD>lua require'hook'.pull(6)<CR>")
-            vim.keymap.set({ "t", "n" }, "<M-o>", "<CMD>lua require'hook'.pull(7)<CR>")
-            vim.keymap.set({ "t", "n" }, "<M-p>", "<CMD>lua require'hook'.pull(8)<CR>")
+            vim.keymap.set({ "t", "n" }, "<Leader>m", "<CMD>HookToggle<CR>")
+            vim.keymap.set({ "t", "n" }, "<M-7>", "<CMD>HookPull 1<CR>")
+            vim.keymap.set({ "t", "n" }, "<M-8>", "<CMD>HookPull 2<CR>")
+            vim.keymap.set({ "t", "n" }, "<M-9>", "<CMD>HookPull 3<CR>")
+            vim.keymap.set({ "t", "n" }, "<M-0>", "<CMD>HookPull 4<CR>")
+            vim.keymap.set({ "t", "n" }, "<M-u>", "<CMD>HookPull 5<CR>")
+            vim.keymap.set({ "t", "n" }, "<M-i>", "<CMD>HookPull 6<CR>")
+            vim.keymap.set({ "t", "n" }, "<M-o>", "<CMD>HookPull 7<CR>")
+            vim.keymap.set({ "t", "n" }, "<M-p>", "<CMD>HookPull 8<CR>")
         end,
         dev = true,
     },
