@@ -11,12 +11,11 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+vim.loader.enable()
+
 vim.g.mapleader = " "
 
 local plugins = {
-    {
-        "lewis6991/impatient.nvim",
-    },
     {
         "goolord/alpha-nvim",
         config = function()
@@ -28,8 +27,12 @@ local plugins = {
         opts = { window = { blend = 0 } },
         branch = "legacy",
     },
-    { "MunifTanjim/nui.nvim" },
-    { "rcarriga/nvim-notify" },
+    {
+        "MunifTanjim/nui.nvim",
+    },
+    {
+        "rcarriga/nvim-notify",
+    },
     {
         "smjonas/inc-rename.nvim",
         config = function()
@@ -55,7 +58,9 @@ local plugins = {
             },
         },
     },
-    { "nvim-lua/plenary.nvim" },
+    {
+        "nvim-lua/plenary.nvim",
+    },
 
     -- {
     --     "willothy/flatten.nvim",
@@ -116,6 +121,7 @@ local plugins = {
     },
     {
         "ibhagwan/fzf-lua",
+        lazy = true,
         dependencies = { "kyazdani42/nvim-web-devicons" },
         config = function()
             vim.keymap.set("n", "<Leader>gh", "<CMD>FzfLua help_tags<CR>")
@@ -130,6 +136,7 @@ local plugins = {
     },
     {
         "nvim-telescope/telescope.nvim",
+        lazy = true,
         tag = "0.1.1",
     },
 
@@ -139,8 +146,12 @@ local plugins = {
             require("Comment").setup()
         end,
     },
-    { "norcalli/nvim-colorizer.lua" },
-    { "lukas-reineke/indent-blankline.nvim" },
+    {
+        "norcalli/nvim-colorizer.lua",
+    },
+    {
+        "lukas-reineke/indent-blankline.nvim",
+    },
     {
         "folke/tokyonight.nvim",
         config = function()
@@ -173,7 +184,9 @@ local plugins = {
             require("barbecue").setup()
         end,
     },
-    { "nvim-lualine/lualine.nvim" },
+    {
+        "nvim-lualine/lualine.nvim",
+    },
 
     {
         "karb94/neoscroll.nvim",
@@ -188,23 +201,22 @@ local plugins = {
         end,
     },
 
-    { "lewis6991/gitsigns.nvim" },
+    {
+        "lewis6991/gitsigns.nvim",
+    },
     {
         "NeogitOrg/neogit",
+        lazy = true,
         config = function()
             require("neogit").setup()
             vim.keymap.set("n", "<Leader>gg", "<CMD>Neogit<CR>")
         end,
     },
-    { "sindrets/diffview.nvim" },
-
     {
-        "zbirenbaum/copilot.lua",
-        event = "VimEnter",
-        config = function()
-            require("zak.copilot")
-        end,
+        "sindrets/diffview.nvim",
+        lazy = true,
     },
+
     -- {
     --     "sourcegraph/sg.nvim",
     --     dependencies = { "nvim-lua/plenary.nvim" },
@@ -213,6 +225,7 @@ local plugins = {
     -- },
     {
         "mbbill/undotree",
+        lazy = true,
         config = function()
             vim.keymap.set("n", "<Leader>uu", "<CMD>UndotreeToggle<CR>")
         end,
@@ -220,6 +233,7 @@ local plugins = {
 
     {
         "RaafatTurki/hex.nvim",
+        lazy = true,
         config = function()
             require("hex").setup({})
         end,
@@ -254,7 +268,16 @@ local plugins = {
             { "hrsh7th/cmp-nvim-lua" },
             { "saadparwaiz1/cmp_luasnip" },
             {
+                "zbirenbaum/copilot.lua",
+                lazy = true,
+                event = "VimEnter",
+                config = function()
+                    require("zak.copilot")
+                end,
+            },
+            {
                 "zbirenbaum/copilot-cmp",
+                lazy = true,
                 dependencies = { "copilot.lua" },
                 config = function()
                     require("copilot_cmp").setup()
