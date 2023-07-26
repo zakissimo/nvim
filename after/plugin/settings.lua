@@ -19,7 +19,7 @@ set.smartindent = true
 set.splitbelow = true
 set.splitright = true
 
-set.foldmethod = "expr"
+-- set.foldmethod = "expr"
 set.foldexpr = "nvim_treesitter#foldexpr()"
 
 set.swapfile = false
