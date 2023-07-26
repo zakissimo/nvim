@@ -15,7 +15,7 @@ vim.loader.enable()
 
 vim.g.mapleader = " "
 
-local plugins = {
+require("lazy").setup({
     {
         "goolord/alpha-nvim",
         config = function()
@@ -213,7 +213,6 @@ local plugins = {
     },
     {
         "sindrets/diffview.nvim",
-        lazy = true,
     },
 
     -- {
@@ -293,9 +292,7 @@ local plugins = {
             },
         },
     },
-}
-
-local opts = {
+}, {
     diff = {
         cmd = "diffview.nvim",
     },
@@ -305,6 +302,4 @@ local opts = {
         fallback = true,
     },
     debug = false,
-}
-
-require("lazy").setup(plugins, opts)
+})
