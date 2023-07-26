@@ -206,7 +206,6 @@ local plugins = {
     },
     {
         "NeogitOrg/neogit",
-        lazy = true,
         config = function()
             require("neogit").setup()
             vim.keymap.set("n", "<Leader>gg", "<CMD>Neogit<CR>")
