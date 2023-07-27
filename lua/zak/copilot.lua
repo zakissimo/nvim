@@ -1,4 +1,9 @@
-require("copilot").setup({
+local copilot_ok, copilot = pcall(require, "copilot")
+if not copilot_ok then
+    return
+end
+
+copilot.setup({
     panel = {
         enabled = false,
         auto_refresh = false,

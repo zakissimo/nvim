@@ -1,5 +1,13 @@
-local cmp = require("cmp")
-local luasnip = require("luasnip")
+local cmp_ok, cmp = pcall(require, "cmp")
+if not cmp_ok then
+    return
+end
+
+local luasnip_ok, luasnip = pcall(require, "luasnip")
+if not luasnip_ok then
+    return
+end
+
 luasnip.config.setup({ enable_autosnippets = true })
 require("luasnip.loaders.from_vscode").lazy_load()
 
