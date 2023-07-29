@@ -14,6 +14,33 @@ vim.opt.rtp:prepend(lazypath)
 vim.g.mapleader = " "
 
 require("lazy").setup("plugins", {
+    performance = {
+        cache = {
+            enabled = true,
+        },
+        rtp = {
+            disabled_plugins = {
+                "netrw",
+                "netrwPlugin",
+                "netrwSettings",
+                "netrwFileHandlers",
+                "gzip",
+                "zip",
+                "zipPlugin",
+                "tar",
+                "tarPlugin",
+                "getscript",
+                "getscriptPlugin",
+                "vimball",
+                "vimballPlugin",
+                "2html_plugin",
+                "logipat",
+                "rrhelper",
+                "spellfile_plugin",
+                "matchit",
+            },
+        },
+    },
     diff = {
         cmd = "diffview.nvim",
     },
@@ -22,5 +49,4 @@ require("lazy").setup("plugins", {
         patterns = {},
         fallback = true,
     },
-    debug = false,
 })
