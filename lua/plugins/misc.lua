@@ -6,7 +6,7 @@ return {
             enable_check_bracket_line = true,
             ignored_next_char = "[%w%.]",
             fast_wrap = {
-                map = "<C-]>",
+                map = "<M-e>",
                 chars = { "{", "[", "(", '"', "'" },
                 pattern = [=[[%'%"%>%]%)%}%,]]=],
                 end_key = "$",
