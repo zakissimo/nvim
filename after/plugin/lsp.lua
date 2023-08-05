@@ -63,6 +63,7 @@ mason_lspconfig.setup_handlers({
 
 vim.diagnostic.config({
     virtual_text = false,
+    virtual_lines = false,
     signs = true,
     update_in_insert = true,
     underline = false,
