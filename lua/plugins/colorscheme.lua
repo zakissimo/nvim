@@ -10,6 +10,6 @@ return {
         name = "rose-pine",
     },
     {
-        "norcalli/nvim-colorizer.lua",
+        "NvChad/nvim-colorizer.lua",
     },
 }
