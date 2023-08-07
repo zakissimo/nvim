@@ -41,7 +41,5 @@ set.listchars = {
 
 vim.cmd("set fillchars+=eob:│")
 
-set.ch = 1
+set.ch = 0
 set.ls = 3
-set.cmdheight = 0
-set.showcmdloc = 'statusline'

@@ -21,7 +21,7 @@ return {
     -- },
     {
         "mbbill/undotree",
-        on_attach = function()
+        config = function()
             vim.keymap.set("n", "<Leader>uu", "<CMD>UndotreeToggle<CR>")
         end,
     },
