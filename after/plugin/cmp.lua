@@ -11,12 +11,9 @@ end
 luasnip.config.setup({ enable_autosnippets = true })
 require("luasnip.loaders.from_vscode").lazy_load()
 
-local autopairs_ok, cmp_autopairs = pcall(require, 'nvim-autopairs.completion.cmp')
+local autopairs_ok, cmp_autopairs = pcall(require, "nvim-autopairs.completion.cmp")
 if autopairs_ok then
-    cmp.event:on(
-      'confirm_done',
-      cmp_autopairs.on_confirm_done()
-    )
+    cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
 end
 
 local select = { behavior = cmp.SelectBehavior.Select }
@@ -75,6 +72,7 @@ cmp.setup({
     },
     mapping = mapping,
     formatting = {
+        expandable_indicator = true,
         fields = { "kind", "abbr" },
         format = function(entry, vim_item)
             local kind = lspkind.cmp_format({ mode = "symbol_text", maxwidth = 50, symbol_map = { Copilot = "" } })(
@@ -89,9 +87,9 @@ cmp.setup({
     },
     sources = cmp.config.sources({
         { name = "copilot" },
-        { name = "nvim_lsp", max_item_count = 7 },
+        { name = "nvim_lsp",               max_item_count = 7 },
         { name = "nvim_lsp_signature_help" },
-        { name = "luasnip", max_item_count = 5 },
+        { name = "luasnip",                max_item_count = 5 },
         { name = "path" },
     }),
 })
@@ -107,8 +105,11 @@ require("cmp").setup.cmdline({ "?", "/" }, {
 
 require("cmp").setup.cmdline(":", {
     mapping = cmp.mapping.preset.cmdline(),
-    sources = cmp.config.sources({ { name = "path" }, },
-        { { name = "cmdline", }, },
-        { { name = "cmdline_history", }, }
-    ),
+    sources = cmp.config.sources({
+        { name = "path" },
+    }, {
+        { name = "cmdline" },
+    }, {
+        { name = "cmdline_history" },
+    }),
 })
