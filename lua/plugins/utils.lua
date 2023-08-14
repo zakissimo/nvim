@@ -9,6 +9,11 @@ return {
     --     lazy = false,
     --     priority = 1001,
     -- },
+    {
+        "danymat/neogen",
+        dependencies = "nvim-treesitter/nvim-treesitter",
+        config = true,
+    },
 
     {
         "numToStr/Comment.nvim",
@@ -45,7 +50,8 @@ return {
             },
         },
     },
-    { "zakissimo/smoji.nvim",
+    {
+        "zakissimo/smoji.nvim",
         config = function()
             require("smoji")
             vim.keymap.set("n", "<Leader><Leader>e", "<CMD>Smoji<CR>")
