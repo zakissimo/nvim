@@ -21,8 +21,8 @@ local mapping = {
     ["<C-p>"] = cmp.mapping.select_prev_item(select),
     ["<C-n>"] = cmp.mapping.select_next_item(select),
     ["<C-Space>"] = cmp.mapping.complete(),
-    ["<C-d>"] = cmp.mapping.scroll_docs(-4),
-    ["<C-u>"] = cmp.mapping.scroll_docs(4),
+    ["<C-u>"] = cmp.mapping.scroll_docs(-4),
+    ["<C-d>"] = cmp.mapping.scroll_docs(4),
     ["<C-e>"] = cmp.mapping.close(),
     ["<CR>"] = cmp.mapping.confirm({
         select = true,
@@ -56,7 +56,6 @@ local mapping = {
     end, { "i", "s" }),
 }
 
-vim.api.nvim_set_hl(0, "CmpItemKindCopilot", { fg = "#6CC644" })
 local lspkind = require("lspkind")
 cmp.setup({
     snippet = {
@@ -85,11 +84,20 @@ cmp.setup({
             return kind
         end,
     },
+    sorting = {
+        comparators = {
+            cmp.config.compare.offset,
+            cmp.config.compare.exact,
+            cmp.config.compare.score,
+            cmp.config.compare.recently_used,
+            require("cmp-under-comparator").under,
+            cmp.config.compare.kind,
+        },
+    },
     sources = cmp.config.sources({
-        { name = "copilot" },
-        { name = "nvim_lsp",               max_item_count = 7 },
+        { name = "nvim_lsp" },
         { name = "nvim_lsp_signature_help" },
-        { name = "luasnip",                max_item_count = 5 },
+        { name = "luasnip" },
         { name = "path" },
     }),
 })

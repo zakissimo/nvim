@@ -12,6 +12,7 @@ set.colorcolumn = "81"
 vim.api.nvim_set_hl(0, "ColorColumn", { link = "CursorLine" })
 
 set.scrolloff = 5
+set.pumheight = 10
 
 set.smartcase = true
 set.smartindent = true

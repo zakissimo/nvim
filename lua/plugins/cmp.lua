@@ -13,5 +13,6 @@ return {
         "hrsh7th/cmp-nvim-lsp-document-symbol",
         "onsails/lspkind-nvim",
         "L3MON4D3/LuaSnip",
+        "lukas-reineke/cmp-under-comparator",
     },
 }
