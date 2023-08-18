@@ -1,5 +1,8 @@
 return {
     {
+        "sheerun/vim-polyglot"
+    },
+    {
         "neovim/nvim-lspconfig",
         cmd = "LspInfo",
         event = { "BufReadPre", "BufNewFile" },

@@ -1,1 +1,1 @@
-vim.opt.makeprg="cargo run"
+-- vim.opt.makeprg="cargo run"
