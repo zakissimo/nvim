@@ -8,7 +8,7 @@ return {
         event = { "BufReadPre", "BufNewFile" },
         dependencies = {
             { "mfussenegger/nvim-dap" },
-            { "williamboman/mason.nvim", config = true },
+            { "williamboman/mason.nvim",          config = true },
             { "williamboman/mason-lspconfig.nvim" },
 
             {
@@ -36,7 +36,6 @@ return {
 
             {
                 "windwp/nvim-ts-autotag",
-                config = function() end,
             },
         },
     },

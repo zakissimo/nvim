@@ -1,6 +1,6 @@
 local set = vim.opt
 
-set.autochdir = true
+set.autochdir = false
 set.cursorline = true
 set.fileencoding = "utf-8"
 set.ignorecase = true
