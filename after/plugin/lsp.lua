@@ -58,7 +58,7 @@ mason_lspconfig.setup_handlers({
             on_attach = on_attach,
             settings = servers[server_name],
         })
-    end,
+    end
 })
 
 vim.diagnostic.config({

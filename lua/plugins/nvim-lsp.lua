@@ -1,12 +1,13 @@
 return {
     {
-        "sheerun/vim-polyglot"
+        "sheerun/vim-polyglot",
     },
     {
         "neovim/nvim-lspconfig",
         cmd = "LspInfo",
         event = { "BufReadPre", "BufNewFile" },
         dependencies = {
+            { "mfussenegger/nvim-dap" },
             { "williamboman/mason.nvim", config = true },
             { "williamboman/mason-lspconfig.nvim" },
 
