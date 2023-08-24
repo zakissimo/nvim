@@ -38,6 +38,7 @@ return {
         dependencies = { "kyazdani42/nvim-web-devicons" },
         config = function()
             vim.keymap.set("n", "<Leader>gh", "<CMD>FzfLua help_tags<CR>")
+            vim.keymap.set("n", "<Leader>gt", "<CMD>FzfLua lsp_typedefs<CR>")
             vim.keymap.set("n", "<Leader>b", "<CMD>FzfLua buffers<CR>")
             vim.keymap.set("n", "<Leader>r", "<CMD>FzfLua registers<CR>")
             -- vim.keymap.set("n", "<Leader>t", "<CMD>FzfLua tabs<CR>")
