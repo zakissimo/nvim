@@ -16,12 +16,4 @@ return {
             require("zak.copilot")
         end,
     },
-    {
-        "zbirenbaum/copilot-cmp",
-        lazy = true,
-        dependencies = { "copilot.lua" },
-        config = function()
-            require("copilot_cmp").setup()
-        end,
-    }
 }
