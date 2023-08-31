@@ -46,7 +46,7 @@ local on_attach = function(_, bufnr)
     end, opts)
 end
 
--- require("sg").setup({ on_attach = on_attach })
+require("sg").setup({ on_attach = on_attach })
 
 mason_lspconfig.setup({})
 
