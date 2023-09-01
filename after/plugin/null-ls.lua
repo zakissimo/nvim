@@ -7,14 +7,6 @@ local formatting = null_ls.builtins.formatting
 local diagnostics = null_ls.builtins.diagnostics
 local code_actions = null_ls.builtins.code_actions
 
-local function clang_file_present()
-    local get_root_dir = require("null-ls.utils").root_pattern(".null-ls-root", "Makefile", ".git")
-    local root_dir = get_root_dir(vim.fn.getcwd())
-    local clang_format_file = root_dir .. '/.clang-format'
-
-    return vim.fn.filereadable(clang_format_file) == 1
-end
-
 null_ls.setup({
     debug = false,
 
@@ -23,7 +15,7 @@ null_ls.setup({
         formatting.stylua.with({ extra_args = { "--indent-type", "Spaces" } }),
         formatting.autopep8,
         formatting.clang_format.with({
-            extra_args = clang_file_present() and {} or { "--style", "{IndentWidth: 4, TabWidth: 4, UseTab: Never, PointerAlignment: Left}" },
+            extra_args = { "--style", "{IndentWidth: 4, TabWidth: 4, UseTab: Never, PointerAlignment: Left}" },
         }),
         formatting.prettierd.with({ filetypes = { "markdown", "css", "html" } }),
         formatting.deno_fmt.with({ extra_args = { "--options-single-quote", "--options-indent-width=4" } }),
