@@ -3,6 +3,9 @@ return {
         "nvim-lua/plenary.nvim",
     },
 
+    {
+        'sbulav/nredir.nvim'
+    },
     -- {
     --     "willothy/flatten.nvim",
     --     config = true,
