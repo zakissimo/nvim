@@ -7,9 +7,6 @@ vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 
-vim.keymap.set("v", "J", ":m '>+1<cr>gv=gv", { desc = "Move down" })
-vim.keymap.set("v", "K", ":m '<-2<cr>gv=gv", { desc = "Move up" })
-
 vim.keymap.set("v", "<", "<gv", opts)
 vim.keymap.set("v", ">", ">gv", opts)
 vim.keymap.set("n", "<", "V<", opts)
