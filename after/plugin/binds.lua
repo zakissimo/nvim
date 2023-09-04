@@ -38,3 +38,7 @@ vim.keymap.set("n", "<C-Down>", "<CMD>resize -2<CR>", opts)
 vim.keymap.set("n", "<C-Up>", "<CMD>resize +2<CR>", opts)
 vim.keymap.set("n", "<C-Left>", "<CMD>vertical resize -2<CR>", opts)
 vim.keymap.set("n", "<C-Right>", "<CMD>vertical resize +2<CR>", opts)
+
+vim.api.nvim_set_keymap('c', '<C-p>', '<Up>', { noremap = true })
+vim.api.nvim_set_keymap('c', '<C-n>', '<Down>', { noremap = true })
+
