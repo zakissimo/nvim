@@ -7,8 +7,23 @@ local formatting = null_ls.builtins.formatting
 local diagnostics = null_ls.builtins.diagnostics
 local code_actions = null_ls.builtins.code_actions
 
+local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
+
+local on_attach = function(client, bufnr)
+    if client.supports_method("textDocument/formatting") then
+        vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
+        vim.api.nvim_create_autocmd("BufWritePre", {
+            group = augroup,
+            buffer = bufnr,
+            callback = function()
+                vim.lsp.buf.format({ bufnr = bufnr })
+            end,
+        })
+    end
+end
+
 null_ls.setup({
-    debug = false,
+    debug = true,
 
     sources = {
         formatting.shfmt.with({ extra_args = { "--indent", "4" } }),
@@ -19,7 +34,11 @@ null_ls.setup({
         }),
         formatting.prettierd.with({ filetypes = { "markdown", "css", "html" } }),
         formatting.deno_fmt.with({ extra_args = { "--options-single-quote", "--options-indent-width=4" } }),
-        diagnostics.shellcheck,
+        diagnostics.eslint_d.with({
+            condition = function(utils)
+                return utils.root_has_file({ ".eslintrc.js" })
+            end,
+        }),
         diagnostics.pylint.with({
             extra_args = {
                 "--disable=C0111",
@@ -34,6 +53,7 @@ null_ls.setup({
                 "--disable=W0614",
             },
         }),
-        code_actions.eslint,
+        code_actions.eslint_d,
     },
+    on_attach = on_attach,
 })

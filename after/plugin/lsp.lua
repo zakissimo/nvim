@@ -46,6 +46,7 @@ local on_attach = function(_, bufnr)
     end, opts)
 end
 
+require("mason").setup()
 mason_lspconfig.setup({})
 
 mason_lspconfig.setup_handlers({
@@ -56,7 +57,7 @@ mason_lspconfig.setup_handlers({
             on_attach = on_attach,
             settings = servers[server_name],
         })
-    end
+    end,
 })
 
 vim.diagnostic.config({
@@ -83,7 +84,7 @@ for type, icon in pairs(signs) do
 end
 
 require("mason-null-ls").setup({
-    ensure_installed = {},
+    ensure_installed = { "shfmt", "stylua", "autopep8", "clang_format", "prettierd", "deno_fmt", "eslint_d", "pylint" },
     automatic_installation = true,
     automatic_setup = true,
 })
