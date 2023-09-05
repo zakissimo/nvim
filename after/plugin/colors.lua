@@ -73,7 +73,7 @@ local tokyonight_setup = {
 
 if rose_pine_ok then
     rose_pine.setup(rose_pine_setup)
-    vim.cmd("colorscheme rose-pine")
+    vim.cmd("colorscheme rose-pine-main")
 elseif tokyonight_ok then
     tokyonight.setup(tokyonight_setup)
     vim.cmd("colorscheme tokyonight")

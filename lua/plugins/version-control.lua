@@ -1,8 +1,5 @@
 return {
     {
-        "lewis6991/gitsigns.nvim",
-    },
-    {
         "NeogitOrg/neogit",
         config = function()
             require("neogit").setup()

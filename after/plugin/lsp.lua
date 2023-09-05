@@ -88,6 +88,3 @@ require("mason-null-ls").setup({
     automatic_installation = true,
     automatic_setup = true,
 })
-
--- Required when `automatic_setup` is true
-require("mason-null-ls").setup_handlers({})
