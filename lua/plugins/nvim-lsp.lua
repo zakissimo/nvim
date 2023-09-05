@@ -7,8 +7,9 @@ return {
         cmd = "LspInfo",
         event = { "BufReadPre", "BufNewFile" },
         dependencies = {
+            { "nvim-lua/plenary.nvim" },
             { "mfussenegger/nvim-dap" },
-            { "williamboman/mason.nvim",          config = true },
+            { "williamboman/mason.nvim", config = true },
             { "williamboman/mason-lspconfig.nvim" },
 
             {

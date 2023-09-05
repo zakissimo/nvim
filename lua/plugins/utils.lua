@@ -1,17 +1,13 @@
 return {
     {
-        "nvim-lua/plenary.nvim",
+        "sbulav/nredir.nvim",
     },
-
     {
-        'sbulav/nredir.nvim'
+        "willothy/flatten.nvim",
+        config = true,
+        lazy = false,
+        priority = 1001,
     },
-    -- {
-    --     "willothy/flatten.nvim",
-    --     config = true,
-    --     lazy = false,
-    --     priority = 1001,
-    -- },
     {
         "danymat/neogen",
         dependencies = "nvim-treesitter/nvim-treesitter",
@@ -58,7 +54,7 @@ return {
         config = function()
             require("smoji")
             vim.keymap.set("n", "<Leader><Leader>e", "<CMD>Smoji<CR>")
-        end
+        end,
     },
     {
         "ziontee113/icon-picker.nvim",
