@@ -84,7 +84,7 @@ for type, icon in pairs(signs) do
 end
 
 require("mason-null-ls").setup({
-    ensure_installed = { "shfmt", "stylua", "autopep8", "clang_format", "prettierd", "deno_fmt", "eslint_d", "pylint" },
+    ensure_installed = { "shfmt", "stylua", "autopep8", "clang_format", "prettierd", "eslint_d", "pylint" },
     automatic_installation = true,
     automatic_setup = true,
 })
