@@ -60,6 +60,12 @@ mason_lspconfig.setup_handlers({
     end,
 })
 
+if pcall(require, "sg") then
+    require("sg").setup({
+        on_attach = on_attach,
+    })
+end
+
 vim.diagnostic.config({
     virtual_text = false,
     virtual_lines = false,
