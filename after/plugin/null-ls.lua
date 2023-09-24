@@ -7,9 +7,7 @@ local formatting = null_ls.builtins.formatting
 local diagnostics = null_ls.builtins.diagnostics
 local code_actions = null_ls.builtins.code_actions
 
-local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
-
-local on_attach = function(client, bufnr)
+local on_attach = function(_, bufnr)
     local opts = { buffer = bufnr, remap = false }
     vim.keymap.set("n", "<F2>", function()
         vim.lsp.buf.format()
@@ -26,8 +24,7 @@ null_ls.setup({
         formatting.clang_format.with({
             extra_args = { "--style", "{IndentWidth: 4, TabWidth: 4, UseTab: Never, PointerAlignment: Left}" },
         }),
-        formatting.prettierd, --.with({ filetypes = { "markdown", "css", "html" } }),
-        formatting.deno_fmt.with({ extra_args = { "--options-single-quote", "--options-indent-width=4" } }),
+        formatting.prettierd,
         diagnostics.eslint_d.with({
             condition = function(utils)
                 return utils.root_has_file({ ".eslintrc.js" })
