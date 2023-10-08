@@ -23,6 +23,7 @@ configs.setup({
         "json",
         "php",
         "regex",
+        "rust",
         "yaml",
     }, -- one of "all", "maintained" (parsers with maintainers), or a list of languages
     sync_install = false, -- install languages synchronously (only applied to `ensure_installed`)
