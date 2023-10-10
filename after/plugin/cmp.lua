@@ -103,8 +103,13 @@ cmp.setup({
     }),
 })
 
+local cmdline_mapping = cmp.mapping.preset.cmdline({
+    ["<C-p>"] = cmp.mapping.select_prev_item(select),
+    ["<C-n>"] = cmp.mapping.select_next_item(select),
+})
+
 require("cmp").setup.cmdline({ "?", "/" }, {
-    mapping = cmp.mapping.preset.cmdline(),
+    mapping = cmdline_mapping,
     sources = cmp.config.sources({
         { name = "nvim_lsp_document_symbol" },
     }, {
@@ -113,7 +118,7 @@ require("cmp").setup.cmdline({ "?", "/" }, {
 })
 
 require("cmp").setup.cmdline(":", {
-    mapping = cmp.mapping.preset.cmdline(),
+    mapping = cmdline_mapping,
     sources = cmp.config.sources({
         { name = "path" },
     }, {
