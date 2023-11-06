@@ -1,5 +1,17 @@
 return {
     {
+        "lukas-reineke/indent-blankline.nvim",
+        main = "ibl",
+        config = function()
+            require("ibl").setup({
+                indent = {
+                    char = "▏"
+                },
+                scope = { enabled = false },
+            })
+        end,
+    },
+    {
         "goolord/alpha-nvim",
         config = function()
             require("alpha").setup(require("alpha.themes.startify").config)

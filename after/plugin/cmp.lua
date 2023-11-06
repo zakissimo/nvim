@@ -75,10 +75,14 @@ cmp.setup({
         expandable_indicator = true,
         fields = { "kind", "abbr" },
         format = function(entry, vim_item)
-            local kind = lspkind.cmp_format({ mode = "symbol_text", maxwidth = 50, symbol_map = { Copilot = "" } })(
-                entry,
-                vim_item
-            )
+            local kind = lspkind.cmp_format({
+                mode = "symbol_text",
+                maxwidth = 50,
+                symbol_map = {
+                    Copilot = "",
+                    Cody = "",
+                },
+            })(entry, vim_item)
             local strings = vim.split(kind.kind, "%s", { trimempty = true })
             kind.kind = " " .. (strings[1] or "") .. " "
             kind.menu = ""
@@ -96,6 +100,7 @@ cmp.setup({
         },
     },
     sources = cmp.config.sources({
+        { name = "cody" },
         { name = "nvim_lua" },
         { name = "nvim_lsp" },
         { name = "luasnip" },
