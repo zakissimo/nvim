@@ -9,7 +9,7 @@ local code_actions = null_ls.builtins.code_actions
 
 local on_attach = function(_, bufnr)
     local opts = { buffer = bufnr, remap = false }
-    vim.keymap.set("n", "<F2>", function()
+    vim.keymap.set("n", "<C-f>", function()
         vim.lsp.buf.format()
     end, opts)
 end

@@ -41,7 +41,7 @@ local on_attach = function(_, bufnr)
     vim.keymap.set("n", "gh", function()
         vim.diagnostic.open_float()
     end, opts)
-    vim.keymap.set("n", "<F2>", function()
+    vim.keymap.set("n", "<C-f>", function()
         vim.lsp.buf.format()
     end, opts)
 end
