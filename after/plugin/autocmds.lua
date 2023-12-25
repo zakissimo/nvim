@@ -29,14 +29,6 @@ vim.api.nvim_create_autocmd({ "TextYankPost" }, {
     end,
 })
 
-vim.api.nvim_create_autocmd({ "BufReadPost, FileReadPost" }, {
-    group = vim.api.nvim_create_augroup("OpenFold", { clear = true }),
-    callback = function()
-        vim.api.nvim_command("normal! zR")
-    end,
-})
-
-
 vim.api.nvim_create_autocmd({ "TermOpen" }, {
     group = vim.api.nvim_create_augroup("TermOpen", { clear = true }),
     callback = function()
