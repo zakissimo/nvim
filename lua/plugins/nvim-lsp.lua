@@ -25,7 +25,7 @@ return {
                 end,
             },
 
-            { "jose-elias-alvarez/null-ls.nvim" },
+            { "nvimtools/none-ls.nvim" },
             { "jay-babu/mason-null-ls.nvim" },
             {
                 "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
