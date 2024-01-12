@@ -22,7 +22,15 @@ null_ls.setup({
         formatting.stylua.with({ extra_args = { "--indent-type", "Spaces" } }),
         formatting.autopep8,
         formatting.clang_format.with({
+            condition = function(utils)
+                            return utils.root_has_file(".clang-format")
+                        end
+        }),
+        formatting.clang_format.with({
             extra_args = { "--style", "{IndentWidth: 4, TabWidth: 4, UseTab: Never, PointerAlignment: Left}" },
+            condition = function(utils)
+                            return not utils.root_has_file(".clang-format")
+                        end
         }),
         formatting.prettierd,
         diagnostics.eslint_d.with({
