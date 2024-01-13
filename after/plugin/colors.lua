@@ -3,25 +3,38 @@ local tokyonight_ok, tokyonight = pcall (require ,"tokyonight")
 local notify_ok, _ = pcall (require ,"notify")
 
 local rose_pine_setup = {
-    --- @usage 'main' | 'moon'
-    dark_variant = "main",
-    bold_vert_split = false,
-    dim_nc_background = false,
-    disable_background = true,
-    disable_float_background = true,
-    disable_italics = true,
-    --- @usage string hex value or named color from rosepinetheme.com/palette
+    variant = "auto", -- auto, main, moon, or dawn
+    dark_variant = "main", -- main, moon, or dawn
+    dim_inactive_windows = false,
+    extend_background_behind_borders = true,
+
+    styles = {
+        bold = true,
+        italic = false,
+        transparency = true,
+    },
+
     groups = {
-        background = "base",
-        panel = "surface",
-        border = "highlight_med",
-        comment = "muted",
+        border = "muted",
         link = "iris",
-        punctuation = "subtle",
+        panel = "surface",
+
         error = "love",
         hint = "iris",
         info = "foam",
         warn = "gold",
+
+        git_add = "foam",
+        git_change = "rose",
+        git_delete = "love",
+        git_dirty = "rose",
+        git_ignore = "muted",
+        git_merge = "iris",
+        git_rename = "pine",
+        git_stage = "iris",
+        git_text = "rose",
+        git_untracked = "subtle",
+
         headings = {
             h1 = "iris",
             h2 = "foam",
@@ -30,15 +43,26 @@ local rose_pine_setup = {
             h5 = "pine",
             h6 = "foam",
         },
-        -- or set all headings at once
-        -- headings = 'subtle'
+        -- Alternatively, set all headings at once.
+        -- headings = "subtle",
     },
-    -- Change specific vim highlight groups
+
     highlight_groups = {
-        ColorColumn = { bg = "rose" },
-        CursorLine = { bg = "foam", blend = 10 },
-        StatusLine = { fg = "love", bg = "love", blend = 10 },
+        -- Comment = { fg = "foam" },
+        -- VertSplit = { fg = "muted", bg = "muted" },
     },
+
+    before_highlight = function(group, highlight, palette)
+        -- Disable all undercurls
+        -- if highlight.undercurl then
+        --     highlight.undercurl = false
+        -- end
+        --
+        -- Change palette colour
+        -- if highlight.fg == palette.pine then
+        --     highlight.fg = palette.foam
+        -- end
+    end,
 }
 
 local tokyonight_setup = {

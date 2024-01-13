@@ -30,7 +30,7 @@ vim.api.nvim_create_autocmd({ "TextYankPost" }, {
 })
 
 vim.api.nvim_create_autocmd({ "TermOpen" }, {
-    group = vim.api.nvim_create_augroup("TermOpen", { clear = true }),
+    group = vim.api.nvim_create_augroup("TermBinds", { clear = true }),
     callback = function()
         vim.opt_local.number = false
         vim.opt_local.relativenumber = false
