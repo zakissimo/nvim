@@ -12,7 +12,6 @@ configs.setup({
         "python",
         "javascript",
         "typescript",
-        "jsx",
         "tsx",
         "query",
         "css",
