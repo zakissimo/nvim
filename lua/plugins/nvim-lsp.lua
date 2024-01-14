@@ -9,7 +9,7 @@ return {
         dependencies = {
             { "nvim-lua/plenary.nvim" },
             { "mfussenegger/nvim-dap" },
-            { "williamboman/mason.nvim", config = true },
+            { "williamboman/mason.nvim",          config = true },
             { "williamboman/mason-lspconfig.nvim" },
 
             {
@@ -27,6 +27,11 @@ return {
 
             { "nvimtools/none-ls.nvim" },
             { "jay-babu/mason-null-ls.nvim" },
+            {
+                'mrcjkb/rustaceanvim',
+                version = '^3',
+                ft = { 'rust' },
+            },
             {
                 "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
                 config = function()
