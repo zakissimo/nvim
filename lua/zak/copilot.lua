@@ -24,11 +24,11 @@ copilot.setup({
         auto_trigger = false,
         debounce = 75,
         keymap = {
-            accept = "<C-]>",
+            accept = "<C-l>",
             accept_word = false,
             accept_line = false,
             next = "<C-h>",
-            prev = "<C-l>",
+            prev = "<C-;>",
             dismiss = "<C-c>",
         },
     },
