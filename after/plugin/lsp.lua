@@ -55,6 +55,19 @@ mason_lspconfig.setup({})
 
 mason_lspconfig.setup_handlers({
     function(server_name)
+        if server_name == "rust_analyzer" then
+            servers[server_name] = {
+                ["rust-analyzer"] = {
+                    lens = {
+                        enable = true,
+                    },
+                    checkOnSave = {
+                        enable = true,
+                        command = "clippy",
+                    },
+                },
+            }
+        end
         require("lspconfig")[server_name].setup({
             capabilities = capabilities,
             handlers = handlers,
