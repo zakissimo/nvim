@@ -7,11 +7,27 @@ local formatting = null_ls.builtins.formatting
 local diagnostics = null_ls.builtins.diagnostics
 local code_actions = null_ls.builtins.code_actions
 
-local on_attach = function(_, bufnr)
-    local opts = { buffer = bufnr, remap = false }
-    vim.keymap.set("n", "<C-f>", function()
-        vim.lsp.buf.format()
-    end, opts)
+local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
+
+local auto_format = function(bufnr)
+    vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
+    vim.api.nvim_create_autocmd("BufWritePost", {
+        group = augroup,
+        buffer = bufnr,
+        callback = function()
+            vim.lsp.buf.format()
+        end,
+    })
+end
+
+local on_attach = function(client, bufnr)
+    if client.supports_method("textDocument/formatting") then
+        auto_format(bufnr)
+        local opts = { buffer = bufnr, remap = false }
+        vim.keymap.set("n", "<C-f>", function()
+            vim.lsp.buf.format()
+        end, opts)
+    end
 end
 
 null_ls.setup({
@@ -23,14 +39,14 @@ null_ls.setup({
         formatting.autopep8,
         formatting.clang_format.with({
             condition = function(utils)
-                            return utils.root_has_file(".clang-format")
-                        end
+                return utils.root_has_file(".clang-format")
+            end,
         }),
         formatting.clang_format.with({
             extra_args = { "--style", "{IndentWidth: 4, TabWidth: 4, UseTab: Never, PointerAlignment: Left}" },
             condition = function(utils)
-                            return not utils.root_has_file(".clang-format")
-                        end
+                return not utils.root_has_file(".clang-format")
+            end,
         }),
         formatting.prettierd,
         diagnostics.eslint_d.with({
