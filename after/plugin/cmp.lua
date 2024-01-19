@@ -23,7 +23,7 @@ local mapping = {
     ["<C-Space>"] = cmp.mapping.complete(),
     ["<C-u>"] = cmp.mapping.scroll_docs(-4),
     ["<C-d>"] = cmp.mapping.scroll_docs(4),
-    ["<C-e>"] = cmp.mapping.close(),
+    ["<C-c>"] = cmp.mapping.close(),
     ["<C-y>"] = cmp.mapping.confirm({
         behavior = cmp.ConfirmBehavior.Insert,
         select = true,
@@ -90,6 +90,7 @@ cmp.setup({
         end,
     },
     sorting = {
+        priority_weight = 2,
         comparators = {
             cmp.config.compare.offset,
             cmp.config.compare.exact,
@@ -100,6 +101,7 @@ cmp.setup({
         },
     },
     sources = cmp.config.sources({
+        { name = "copilot" },
         { name = "cody" },
         { name = "nvim_lua" },
         { name = "nvim_lsp" },
