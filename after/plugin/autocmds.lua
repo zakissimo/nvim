@@ -37,10 +37,10 @@ vim.api.nvim_create_autocmd({ "TermOpen" }, {
         vim.opt_local.relativenumber = false
         if vim.fn.win_gettype() ~= "popup" then
             bufmap(0, "t", "<Esc>", [[<C-\><C-n>]], opt)
-            bufmap(0, "t", "<C-j>", [[<C-\><C-n><C-W>j]], opt)
-            bufmap(0, "t", "<C-k>", [[<C-\><C-n><C-W>k]], opt)
-            bufmap(0, "t", "<C-h>", [[<C-\><C-n><C-W>h]], opt)
-            -- bufmap(0, "t", "<C-l>", [[<C-\><C-n><C-W>l]], opt)
+            bufmap(0, "t", "<C-w>j", [[<C-\><C-n><C-W>j]], opt)
+            bufmap(0, "t", "<C-w>k", [[<C-\><C-n><C-W>k]], opt)
+            bufmap(0, "t", "<C-w>h", [[<C-\><C-n><C-W>h]], opt)
+            bufmap(0, "t", "<C-w>l", [[<C-\><C-n><C-W>l]], opt)
             bufmap(0, "t", "<C-Down>", [[<C-\><C-n>":resize -2<CR>"]], opt)
             bufmap(0, "t", "<C-Up>", [[<C-\><C-n>":resize +2<CR>"]], opt)
             bufmap(0, "t", "<C-Left>", [[<C-\><C-n>":vertical resize -2<CR>"]], opt)

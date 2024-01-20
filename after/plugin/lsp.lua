@@ -9,19 +9,6 @@ local handlers = {
 
 local mason_lspconfig = require("mason-lspconfig")
 
-local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
-
-local auto_format = function(bufnr)
-    vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
-    vim.api.nvim_create_autocmd("BufWritePost", {
-        group = augroup,
-        buffer = bufnr,
-        callback = function()
-            vim.lsp.buf.format()
-        end,
-    })
-end
-
 local on_attach = function(client, bufnr)
     local opts = { buffer = bufnr, remap = false }
 
@@ -59,10 +46,17 @@ local on_attach = function(client, bufnr)
         vim.lsp.inlay_hint.enable(bufnr, true)
     end
     if client.supports_method("textDocument/formatting") then
-        auto_format(bufnr)
         vim.keymap.set("n", "<C-f>", function()
             vim.lsp.buf.format()
         end, opts)
+    end
+    if client.name == "lua_ls" then
+        client.server_capabilities.documentFormattingProvider = false
+        client.server_capabilities.documentRangeFormattingProvider = false
+    end
+    if client.name == "clangd" then
+        client.server_capabilities.documentFormattingProvider = false
+        client.server_capabilities.documentRangeFormattingProvider = false
     end
 end
 
