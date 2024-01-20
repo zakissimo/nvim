@@ -5,6 +5,7 @@ local bufmap = vim.api.nvim_buf_set_keymap
 vim.api.nvim_create_autocmd({ "BufEnter" }, {
     group = vim.api.nvim_create_augroup("TabSpace", { clear = true }),
     callback = function()
+        set.ls = 3
         local ft = vim.bo.filetype
         if ft == "make" then
             set.tabstop = 4
