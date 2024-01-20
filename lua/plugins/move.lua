@@ -31,10 +31,8 @@ return {
                     },
                 },
             })
+            vim.keymap.set("n", "<Leader>n", "<CMD>lua require'oil'.toggle_float()<CR>")
         end,
-        keys = {
-            { "<Leader>n", "<CMD>lua require'oil'.toggle_float()<CR>", { "t", "n" } },
-        },
     },
     {
         "ibhagwan/fzf-lua",
