@@ -6,17 +6,19 @@ return {
                 prefix = "",
                 suffix = "󰷫",
             })
-            vim.keymap.set({ "t", "n" }, "<Leader>m", "<CMD>HookToggle<CR>")
-            vim.keymap.set({ "t", "n" }, "<M-7>", "<CMD>HookPull 1<CR>")
-            vim.keymap.set({ "t", "n" }, "<M-8>", "<CMD>HookPull 2<CR>")
-            vim.keymap.set({ "t", "n" }, "<M-9>", "<CMD>HookPull 3<CR>")
-            vim.keymap.set({ "t", "n" }, "<M-0>", "<CMD>HookPull 4<CR>")
-            vim.keymap.set({ "t", "n" }, "<M-u>", "<CMD>HookPull 5<CR>")
-            vim.keymap.set({ "t", "n" }, "<M-i>", "<CMD>HookPull 6<CR>")
-            vim.keymap.set({ "t", "n" }, "<M-o>", "<CMD>HookPull 7<CR>")
-            vim.keymap.set({ "t", "n" }, "<M-p>", "<CMD>HookPull 8<CR>")
         end,
         dev = true,
+        keys = {
+            { "<Leader>m", "<CMD>HookToggle<CR>", { "t", "n" } },
+            { "<M-7>", "<CMD>HookPull 1<CR>", { "t", "n" } },
+            { "<M-8>", "<CMD>HookPull 2<CR>", { "t", "n" } },
+            { "<M-9>", "<CMD>HookPull 3<CR>", { "t", "n" } },
+            { "<M-0>", "<CMD>HookPull 4<CR>", { "t", "n" } },
+            { "<M-u>", "<CMD>HookPull 5<CR>", { "t", "n" } },
+            { "<M-i>", "<CMD>HookPull 6<CR>", { "t", "n" } },
+            { "<M-o>", "<CMD>HookPull 7<CR>", { "t", "n" } },
+            { "<M-p>", "<CMD>HookPull 8<CR>", { "t", "n" } },
+        },
     },
     {
         "stevearc/oil.nvim",
@@ -29,29 +31,29 @@ return {
                     },
                 },
             })
-            vim.keymap.set({ "t", "n" }, "<Leader>n", "<CMD>lua require'oil'.toggle_float()<CR>")
         end,
+        keys = {
+            { "<Leader>n", "<CMD>lua require'oil'.toggle_float()<CR>", { "t", "n" } },
+        },
     },
     {
         "ibhagwan/fzf-lua",
         lazy = true,
         dependencies = { "kyazdani42/nvim-web-devicons" },
-        config = function()
-            vim.keymap.set("n", "<Leader>gh", "<CMD>FzfLua help_tags<CR>")
-            vim.keymap.set("n", "<Leader>gt", "<CMD>FzfLua lsp_typedefs<CR>")
-            vim.keymap.set("n", "<Leader>b", "<CMD>FzfLua buffers<CR>")
-            vim.keymap.set("n", "<Leader>r", "<CMD>FzfLua registers<CR>")
-            -- vim.keymap.set("n", "<Leader>t", "<CMD>FzfLua tabs<CR>")
-            vim.keymap.set("n", "<Leader>l", "<CMD>FzfLua live_grep<CR>")
-            vim.keymap.set("n", "<Leader>f", "<CMD>FzfLua files<CR>")
-            vim.keymap.set("n", "<Leader>gf", "<CMD>FzfLua git_files<CR>")
-            vim.keymap.set("n", "<Leader>o", "<CMD>lua require'fzf-lua'.files({ cwd='~' })<CR>")
-        end,
+        keys = {
+            { "<Leader>gh", "<CMD>FzfLua help_tags<CR>", "n" },
+            { "<Leader>gt", "<CMD>FzfLua lsp_typedefs<CR>", "n" },
+            { "<Leader>b", "<CMD>FzfLua buffers<CR>", "n" },
+            { "<Leader>r", "<CMD>FzfLua registers<CR>", "n" },
+            { "<Leader>l", "<CMD>FzfLua live_grep<CR>", "n" },
+            { "<Leader>f", "<CMD>FzfLua files<CR>", "n" },
+            { "<Leader>gf", "<CMD>FzfLua git_files<CR>", "n" },
+            { "<Leader>o", "<CMD>lua require'fzf-lua'.files({ cwd='~'})<CR>", "n" },
+        },
     },
     {
         "nvim-telescope/telescope.nvim",
         lazy = true,
-        tag = "0.1.1",
     },
     {
         "karb94/neoscroll.nvim",

@@ -1,4 +1,4 @@
-local servers = require("mason-lspconfig").get_installed_servers()
+local _ = require("mason-lspconfig").get_installed_servers()
 
 local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
 
@@ -8,6 +8,29 @@ local handlers = {
 }
 
 local mason_lspconfig = require("mason-lspconfig")
+
+local function is_null_ls_ft(curr, null_ls_fts)
+    for _, ft in ipairs(curr) do
+        if vim.list_contains(null_ls_fts, ft) then
+            return true
+        end
+    end
+    return false
+end
+
+local function get_null_ls_fts()
+    local null_ls_ok, null_ls = pcall(require, "null-ls")
+    if not null_ls_ok then
+        return
+    end
+    local fts = {}
+    for _, ft_tbl in pairs(null_ls.builtins.formatting) do
+        for _, ft in ipairs(ft_tbl.filetypes) do
+            table.insert(fts, ft)
+        end
+    end
+    return fts
+end
 
 local on_attach = function(client, bufnr)
     local opts = { buffer = bufnr, remap = false }
@@ -45,18 +68,18 @@ local on_attach = function(client, bufnr)
     if vim.lsp.inlay_hint then
         vim.lsp.inlay_hint.enable(bufnr, true)
     end
-    if client.supports_method("textDocument/formatting") then
+
+    -- If a filetype is handled by null-ls let it handle formatting
+    local null_ls_fts = get_null_ls_fts()
+    if is_null_ls_ft(client.config.filetypes, null_ls_fts) then
+        client.server_capabilities.documentFormattingProvider = false
+        client.server_capabilities.documentRangeFormattingProvider = false
+    end
+
+    if client.server_capabilities.documentFormattingProvider then
         vim.keymap.set("n", "<C-f>", function()
             vim.lsp.buf.format()
         end, opts)
-    end
-    if client.name == "lua_ls" then
-        client.server_capabilities.documentFormattingProvider = false
-        client.server_capabilities.documentRangeFormattingProvider = false
-    end
-    if client.name == "clangd" then
-        client.server_capabilities.documentFormattingProvider = false
-        client.server_capabilities.documentRangeFormattingProvider = false
     end
 end
 
@@ -65,8 +88,9 @@ mason_lspconfig.setup({})
 
 mason_lspconfig.setup_handlers({
     function(server_name)
+        local settings = {}
         if server_name == "rust_analyzer" then
-            servers[server_name] = {
+            settings = {
                 ["rust-analyzer"] = {
                     lens = {
                         enable = true,
@@ -82,7 +106,7 @@ mason_lspconfig.setup_handlers({
             capabilities = capabilities,
             handlers = handlers,
             on_attach = on_attach,
-            settings = servers[server_name],
+            settings = settings,
         })
     end,
 })

@@ -9,7 +9,7 @@ return {
         dependencies = {
             { "nvim-lua/plenary.nvim" },
             { "mfussenegger/nvim-dap" },
-            { "williamboman/mason.nvim",          config = true },
+            { "williamboman/mason.nvim", config = true },
             { "williamboman/mason-lspconfig.nvim" },
 
             {
@@ -31,15 +31,17 @@ return {
                 "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
                 config = function()
                     require("lsp_lines").setup()
-                    vim.keymap.set("", "<Leader><Leader>l", require("lsp_lines").toggle, { desc = "Toggle lsp_lines" })
                 end,
+                keys = {
+                    { "<Leader><Leader>l", "<cmd>lua require(\"lsp_lines\").toggle<cr>", { desc = "Toggle lsp_lines" } },
+                },
             },
 
             {
                 "windwp/nvim-ts-autotag",
                 config = function()
                     require("nvim-ts-autotag").setup()
-                end
+                end,
             },
         },
     },

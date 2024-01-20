@@ -53,8 +53,10 @@ return {
         "zakissimo/smoji.nvim",
         config = function()
             require("smoji")
-            vim.keymap.set("n", "<Leader><Leader>e", "<CMD>Smoji<CR>")
         end,
+        keys = {
+            { "<Leader><Leader>e", "<CMD>Smoji<CR>" },
+        },
     },
     {
         "ziontee113/icon-picker.nvim",
@@ -62,16 +64,18 @@ return {
             require("icon-picker").setup({
                 disable_legacy_commands = true,
             })
-            vim.keymap.set("n", "<Leader><Leader>i", "<cmd>IconPickerNormal<cr>")
         end,
+        keys = {
+            { "<Leader><Leader>i", "<cmd>IconPickerNormal<cr>" },
+        },
     },
 
     {
         "zakissimo/run.nvim",
-        config = function()
-            vim.keymap.set("n", "<Leader>cc", "<CMD>lua require'run'.cmd()<CR>")
-        end,
         dev = false,
+        keys = {
+            { "<Leader>cc", "<CMD>lua require'run'.cmd()<CR>" },
+        },
     },
     {
         "zakissimo/term.nvim",
@@ -79,8 +83,10 @@ return {
             require("term").setup({
                 spawn = false,
             })
-            vim.keymap.set({ "n", "t" }, "<Leader>t", "<CMD>lua require'term'.toggle()<CR>")
         end,
         dev = false,
+        keys = {
+            { "<Leader>t", "<CMD>lua require'term'.toggle()<CR>" },
+        },
     },
 }
