@@ -4,6 +4,9 @@ return {
         dependencies = {
             "nvim-lua/plenary.nvim", --[[ "nvim-telescope/telescope.nvim ]]
         },
+        keys = {
+            { "<leader>co", "<cmd>CodyToggle<cr>" }
+        }
     },
     {
         "zbirenbaum/copilot.lua",
