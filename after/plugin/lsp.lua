@@ -66,7 +66,9 @@ local on_attach = function(client, bufnr)
     end, opts)
 
     if vim.lsp.inlay_hint then
-        vim.lsp.inlay_hint.enable(bufnr, true)
+        vim.keymap.set("n", "<leader>ih", function()
+            vim.lsp.inlay_hint.enable(bufnr, not vim.lsp.inlay_hint.is_enabled())
+        end, opts)
     end
 
     -- If a filetype is handled by null-ls let it handle formatting
