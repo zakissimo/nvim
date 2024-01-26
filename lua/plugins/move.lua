@@ -1,6 +1,7 @@
 return {
     {
         "zakissimo/hook.nvim",
+        lazy = false,
         config = function()
             require("hook").setup({
                 prefix = "",
