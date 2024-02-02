@@ -1,6 +1,6 @@
-local rose_pine_ok, rose_pine = pcall (require ,"rose-pine")
-local tokyonight_ok, tokyonight = pcall (require ,"tokyonight")
-local notify_ok, _ = pcall (require ,"notify")
+local rose_pine_ok, rose_pine = pcall(require, "rose-pine")
+local tokyonight_ok, tokyonight = pcall(require, "tokyonight")
+local notify_ok, _ = pcall(require, "notify")
 
 local rose_pine_setup = {
     variant = "auto", -- auto, main, moon, or dawn
@@ -122,6 +122,6 @@ vim.opt.termguicolors = true
 
 require("colorizer").setup()
 
-vim.api.nvim_set_hl(0, "FloatBorder", {bg='NONE', fg='White'})
-local synID = vim.fn.hlID('FloatBorder')
-local _ = vim.fn.synIDattr(synID, 'fg')
+vim.api.nvim_set_hl(0, "FloatBorder", { bg = "NONE", fg = "White" })
+local synID = vim.fn.hlID("FloatBorder")
+local _ = vim.fn.synIDattr(synID, "fg")
