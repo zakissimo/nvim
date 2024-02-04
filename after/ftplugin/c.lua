@@ -8,7 +8,7 @@ if root_dir ~= nil then
         vim.opt.makeprg = "make"
     elseif vim.fn.filereadable(build_sh_path) == 1 then
         vim.opt.makeprg = "sh build.sh"
-    else
-        vim.opt.makeprg = "cc -Wall -Wextra -ggdb %:p:h/*.c -o main && ./main"
     end
+else
+    vim.opt.makeprg = "cc -DTEST -Wall -Wextra -ggdb %:p:h/*.c -o main && ./main"
 end
