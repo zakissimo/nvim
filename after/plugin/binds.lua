@@ -41,3 +41,5 @@ vim.keymap.set("n", "<C-Right>", "<CMD>vertical resize +2<CR>", opts)
 
 vim.api.nvim_set_keymap("c", "<C-p>", "<Up>", { noremap = true })
 vim.api.nvim_set_keymap("c", "<C-n>", "<Down>", { noremap = true })
+vim.api.nvim_set_keymap("c", "<C-a>", "<Home>", { noremap = true })
+vim.api.nvim_set_keymap("c", "<C-e>", "<End>", { noremap = true })

@@ -40,13 +40,12 @@ return {
         lazy = true,
         dependencies = { "kyazdani42/nvim-web-devicons" },
         keys = {
-            { "<Leader>gh", "<CMD>FzfLua help_tags<CR>", "n" },
-            { "<Leader>gt", "<CMD>FzfLua lsp_typedefs<CR>", "n" },
+            { "<Leader>h", "<CMD>FzfLua help_tags<CR>", "n" },
             { "<Leader>b", "<CMD>FzfLua buffers<CR>", "n" },
             { "<Leader>r", "<CMD>FzfLua registers<CR>", "n" },
             { "<Leader>l", "<CMD>FzfLua live_grep<CR>", "n" },
             { "<Leader>f", "<CMD>FzfLua files<CR>", "n" },
-            { "<Leader>gf", "<CMD>FzfLua git_files<CR>", "n" },
+            { "<Leader>p", "<CMD>FzfLua git_files<CR>", "n" },
             { "<Leader>o", "<CMD>lua require'fzf-lua'.files({ cwd='~'})<CR>", "n" },
         },
     },
@@ -61,11 +60,28 @@ return {
         end,
     },
     {
-        "fedepujol/move.nvim",
+        "echasnovski/mini.move",
+        version = "*",
         config = function()
-            local opts = { noremap = true, silent = true }
-            vim.keymap.set("v", "J", ":MoveBlock(1)<CR>", opts)
-            vim.keymap.set("v", "K", ":MoveBlock(-1)<CR>", opts)
+            require("mini.move").setup({
+                mappings = {
+                    -- Move visual selection in Visual mode.
+                    left = "",
+                    right = "",
+                    down = "<M-j>",
+                    up = "<M-k>",
+
+                    -- Move current line in Normal mode
+                    line_left = "",
+                    line_right = "",
+                    line_down = "<M-j>",
+                    line_up = "<M-k>",
+                },
+                options = {
+                    -- Automatically reindent selection during linewise vertical move
+                    reindent_linewise = true,
+                },
+            })
         end,
     },
 }

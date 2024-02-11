@@ -5,7 +5,7 @@ return {
             require("neogit").setup()
         end,
         keys = {
-            { "<Leader>gg", "<CMD>Neogit<CR>" },
+            { "<Leader>g", "<CMD>Neogit<CR>" },
         },
     },
     {
@@ -14,7 +14,7 @@ return {
     {
         "mbbill/undotree",
         keys = {
-            { "<Leader>uu", "<CMD>UndotreeToggle<CR>" },
+            { "<Leader>u", "<CMD>UndotreeToggle<CR>" },
         },
     },
 }
