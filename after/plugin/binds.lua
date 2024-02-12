@@ -4,8 +4,15 @@ local opts = { noremap = true, silent = true }
 
 vim.keymap.set({ "n", "v" }, "<Space>", "<Nop>", { silent = true })
 
-vim.keymap.set("n", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
+vim.keymap.set("v", "<leader>y", '"+y', opts)
+vim.keymap.set("n", "<leader>p", '"+p', opts)
+vim.keymap.set("n", "<C-V>", '"+p', opts)
+
+vim.keymap.set("v", "J", ":move '>+1<CR>gv=gv")
+vim.keymap.set("v", "K", ":move '<-2<CR>gv=gv")
+
 vim.keymap.set("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
+vim.keymap.set("n", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 
 vim.keymap.set("v", "<", "<gv", opts)
 vim.keymap.set("v", ">", ">gv", opts)
@@ -39,7 +46,7 @@ vim.keymap.set("n", "<C-Up>", "<CMD>resize +2<CR>", opts)
 vim.keymap.set("n", "<C-Left>", "<CMD>vertical resize -2<CR>", opts)
 vim.keymap.set("n", "<C-Right>", "<CMD>vertical resize +2<CR>", opts)
 
-vim.api.nvim_set_keymap("c", "<C-p>", "<Up>", { noremap = true })
-vim.api.nvim_set_keymap("c", "<C-n>", "<Down>", { noremap = true })
-vim.api.nvim_set_keymap("c", "<C-a>", "<Home>", { noremap = true })
-vim.api.nvim_set_keymap("c", "<C-e>", "<End>", { noremap = true })
+vim.keymap.set("c", "<C-p>", "<Up>", opts)
+vim.keymap.set("c", "<C-n>", "<Down>", opts)
+vim.keymap.set("c", "<C-a>", "<Home>", opts)
+vim.keymap.set("c", "<C-e>", "<End>", opts)

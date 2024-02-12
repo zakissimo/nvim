@@ -5,7 +5,7 @@ return {
             require("neogit").setup()
         end,
         keys = {
-            { "<Leader>g", "<CMD>Neogit<CR>" },
+            { "<Leader>s", "<CMD>Neogit<CR>" },
         },
     },
     {
