@@ -5,8 +5,7 @@ local opts = { noremap = true, silent = true }
 vim.keymap.set({ "n", "v" }, "<Space>", "<Nop>", { silent = true })
 
 vim.keymap.set("v", "<leader>y", '"+y', opts)
-vim.keymap.set("n", "<leader>p", '"+p', opts)
-vim.keymap.set("n", "<C-V>", '"+p', opts)
+vim.keymap.set({ "n", "v" }, "<leader>p", '"+p', opts)
 
 vim.keymap.set("v", "J", ":move '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":move '<-2<CR>gv=gv")
