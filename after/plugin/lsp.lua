@@ -10,6 +10,9 @@ local handlers = {
 local mason_lspconfig = require("mason-lspconfig")
 
 local function is_null_ls_ft(curr, null_ls_fts)
+    if not curr or not null_ls_fts then
+        return false
+    end
     for _, ft in ipairs(curr) do
         if vim.list_contains(null_ls_fts, ft) then
             return true
