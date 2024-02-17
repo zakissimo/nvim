@@ -40,6 +40,9 @@ set.listchars = {
     trail = ".",
 }
 
+set.spelllang = "en,fr"
+set.spell = true
+
 vim.cmd("set fillchars+=eob:│")
 
 set.ch = 0
