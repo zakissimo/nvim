@@ -18,6 +18,7 @@ configs.setup({
         "scss",
         "html",
         "dockerfile",
+        "svelte",
         "go",
         "json",
         "php",
