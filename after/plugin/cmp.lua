@@ -107,6 +107,7 @@ cmp.setup({
         { name = "nvim_lsp" },
         { name = "luasnip" },
         { name = "path" },
+        { name = "spell", max_item_count = 2 },
     }),
 })
 

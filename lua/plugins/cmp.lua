@@ -7,6 +7,7 @@ return {
         "dmitmel/cmp-cmdline-history",
         "hrsh7th/cmp-nvim-lsp",
         "hrsh7th/cmp-nvim-lua",
+        "f3fora/cmp-spell",
         "saadparwaiz1/cmp_luasnip",
         "rafamadriz/friendly-snippets",
         "hrsh7th/cmp-nvim-lsp-signature-help",
