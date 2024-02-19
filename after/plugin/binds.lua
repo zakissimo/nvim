@@ -36,6 +36,7 @@ vim.keymap.set("n", "N", "Nzz", opts)
 vim.keymap.set("n", "*", "*zz", opts)
 vim.keymap.set("n", "#", "#zz", opts)
 
+vim.keymap.set("n", "<leader>t", "<CMD>:term<CR>", opts)
 vim.keymap.set("n", "<leader>xx", "<CMD>!chmod +x %<CR>", opts)
 vim.keymap.set("n", "<leader>rl", "<CMD>Lazy sync<CR>", opts)
 vim.keymap.set("n", "<leader>rs", "<CMD>w!<CR><CMD>source %<CR>", opts)

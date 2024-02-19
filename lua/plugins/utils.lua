@@ -77,16 +77,4 @@ return {
             { "<Leader>cc", "<CMD>lua require'run'.cmd()<CR>" },
         },
     },
-    {
-        "zakissimo/term.nvim",
-        config = function()
-            require("term").setup({
-                spawn = false,
-            })
-        end,
-        dev = false,
-        keys = {
-            { "<Leader>t", "<CMD>lua require'term'.toggle()<CR>" },
-        },
-    },
 }
