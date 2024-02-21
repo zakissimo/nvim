@@ -11,11 +11,6 @@ end
 luasnip.config.setup({ enable_autosnippets = true })
 require("luasnip.loaders.from_vscode").lazy_load()
 
-local autopairs_ok, cmp_autopairs = pcall(require, "nvim-autopairs.completion.cmp")
-if autopairs_ok then
-    cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
-end
-
 local select = { behavior = cmp.SelectBehavior.Select }
 local mapping = {
     ["<C-p>"] = cmp.mapping.select_prev_item(select),
