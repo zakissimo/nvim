@@ -91,27 +91,39 @@ end
 require("mason").setup()
 mason_lspconfig.setup({})
 
+local servers = {
+    rust_analyzer = {
+        settings = {
+            ["rust-analyzer"] = {
+                lens = {
+                    enable = true,
+                },
+                checkOnSave = {
+                    enable = true,
+                    command = "clippy",
+                },
+            },
+        },
+    },
+    lua_ls = {
+        settings = {
+            Lua = {
+                workspace = { checkThirdParty = false },
+                telemetry = { enable = false },
+                diagnostics = { disable = { "missing-fields" } },
+            },
+        },
+    },
+}
+
 mason_lspconfig.setup_handlers({
     function(server_name)
-        local settings = {}
-        if server_name == "rust_analyzer" then
-            settings = {
-                ["rust-analyzer"] = {
-                    lens = {
-                        enable = true,
-                    },
-                    checkOnSave = {
-                        enable = true,
-                        command = "clippy",
-                    },
-                },
-            }
-        end
+        local server = servers[server_name] or {}
         require("lspconfig")[server_name].setup({
             capabilities = capabilities,
             handlers = handlers,
             on_attach = on_attach,
-            settings = settings,
+            settings = server.settings,
         })
     end,
 })
