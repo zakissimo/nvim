@@ -25,7 +25,7 @@ set.foldexpr = "nvim_treesitter#foldexpr()"
 
 set.swapfile = false
 set.backup = false
-set.undodir = os.getenv("HOME") .. "/.vim/undodir"
+set.undodir = { os.getenv("HOME") .. "/.vim/undodir" }
 set.undofile = true
 
 set.hlsearch = true
