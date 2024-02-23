@@ -48,5 +48,5 @@ vim.keymap.set("n", "<C-Right>", "<CMD>vertical resize +2<CR>", opts)
 
 vim.keymap.set("c", "<C-p>", "<Up>", opts)
 vim.keymap.set("c", "<C-n>", "<Down>", opts)
-vim.keymap.set("c", "<C-a>", "<Home>", opts)
-vim.keymap.set("c", "<C-e>", "<End>", opts)
+vim.keymap.set({ "c", "i" }, "<C-a>", "<Home>", opts)
+vim.keymap.set({ "c", "i" }, "<C-e>", "<End>", opts)
