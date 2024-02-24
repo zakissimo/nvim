@@ -9,33 +9,7 @@ local handlers = {
 
 local mason_lspconfig = require("mason-lspconfig")
 
-local function is_null_ls_ft(curr, null_ls_fts)
-    if not curr or not null_ls_fts then
-        return false
-    end
-    for _, ft in ipairs(curr) do
-        if vim.list_contains(null_ls_fts, ft) then
-            return true
-        end
-    end
-    return false
-end
-
-local function get_null_ls_fts()
-    local null_ls_ok, null_ls = pcall(require, "null-ls")
-    if not null_ls_ok then
-        return
-    end
-    local fts = {}
-    for _, ft_tbl in pairs(null_ls.builtins.formatting) do
-        for _, ft in ipairs(ft_tbl.filetypes) do
-            table.insert(fts, ft)
-        end
-    end
-    return fts
-end
-
-local on_attach = function(client, bufnr)
+local on_attach = function(_, bufnr)
     local opts = { buffer = bufnr, remap = false }
 
     vim.keymap.set("n", "gd", "<CMD>FzfLua lsp_definitions<CR>", opts)
@@ -71,19 +45,6 @@ local on_attach = function(client, bufnr)
     if vim.lsp.inlay_hint then
         vim.keymap.set("n", "<leader>ih", function()
             vim.lsp.inlay_hint.enable(bufnr, not vim.lsp.inlay_hint.is_enabled())
-        end, opts)
-    end
-
-    -- If a filetype is handled by null-ls let it handle formatting
-    local null_ls_fts = get_null_ls_fts()
-    if is_null_ls_ft(client.config.filetypes, null_ls_fts) then
-        client.server_capabilities.documentFormattingProvider = false
-        client.server_capabilities.documentRangeFormattingProvider = false
-    end
-
-    if client.server_capabilities.documentFormattingProvider then
-        vim.keymap.set("n", "<C-f>", function()
-            vim.lsp.buf.format()
         end, opts)
     end
 end
@@ -156,9 +117,3 @@ for type, icon in pairs(signs) do
     local hl = "DiagnosticSign" .. type
     vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "", linehl = "" })
 end
-
-require("mason-null-ls").setup({
-    ensure_installed = { "shfmt", "stylua", "autopep8", "clang_format", "prettierd", "eslint_d", "pylint" },
-    automatic_installation = true,
-    automatic_setup = true,
-})

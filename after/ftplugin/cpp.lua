@@ -1,5 +1,4 @@
-local get_root_dir = require("null-ls.utils").root_pattern("build.sh", ".null-ls-root", "Makefile", ".git")
-local root_dir = get_root_dir(vim.fn.getcwd())
+local root_dir = vim.fs.dirname(vim.fs.find({ "build.sh", "Makefile", ".git" }, { upward = true })[1])
 
 if root_dir ~= nil then
     local Makefile_path = root_dir .. "/Makefile"

@@ -12,6 +12,8 @@ return {
             { "williamboman/mason.nvim", config = true },
             { "williamboman/mason-lspconfig.nvim" },
 
+            { "stevearc/conform.nvim" },
+
             {
                 "j-hui/fidget.nvim",
                 opts = { window = { blend = 0 } },
@@ -24,9 +26,6 @@ return {
                     require("neodev").setup({})
                 end,
             },
-
-            { "nvimtools/none-ls.nvim" },
-            { "jay-babu/mason-null-ls.nvim" },
 
             {
                 "windwp/nvim-ts-autotag",
