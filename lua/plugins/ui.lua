@@ -55,7 +55,7 @@ return {
             require("barbecue").setup()
         end,
     },
-    {
-        "nvim-lualine/lualine.nvim",
-    },
+    -- {
+    --     "nvim-lualine/lualine.nvim",
+    -- },
 }
