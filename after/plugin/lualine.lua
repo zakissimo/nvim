@@ -4,8 +4,7 @@ if not lualine_ok then
 end
 
 local rec_output = function()
-    local r = vim.fn.reg_recording()
-    return "recording @" .. r
+    return "recording @" .. vim.fn.reg_recording()
 end
 
 local recording = function()
@@ -15,11 +14,12 @@ local recording = function()
     return false
 end
 
-local modified = function()
+local filename = function()
+    local file = vim.fn.expand("%:t")
     if vim.bo.modified then
-        return "󰷫"
+        return file .. " 󰷫"
     end
-    return ""
+    return file
 end
 
 lualine.setup({
@@ -59,7 +59,7 @@ lualine.setup({
             },
         },
         lualine_c = {
-            modified,
+            filename,
             {
                 rec_output,
                 cond = recording,
