@@ -38,9 +38,6 @@ local on_attach = function(_, bufnr)
     vim.keymap.set("n", "<leader>k", function()
         vim.lsp.buf.signature_help()
     end, opts)
-    vim.keymap.set("n", "gh", function()
-        vim.diagnostic.open_float()
-    end, opts)
 
     if vim.lsp.inlay_hint then
         vim.keymap.set("n", "<leader>ih", function()
