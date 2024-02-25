@@ -16,10 +16,9 @@ if fzf_ok then
         previewers = {
             builtin = {
                 extensions = {
-                    -- neovim terminal only supports `viu` block output
-                    -- ["png"] = { "chafa", "-f", "sixels" },
-                    -- ["jpg"] = { "chafa", "-f", "sixels" },
-                    -- ["jpeg"] = { "chafa", "-f", "sixels" },
+                    ["png"] = { "viu", "-b" },
+                    ["jpg"] = { "viu", "-b" },
+                    ["jpeg"] = { "viu", "-b" },
                 },
             },
         },
