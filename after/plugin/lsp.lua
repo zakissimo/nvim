@@ -1,4 +1,15 @@
-local _ = require("mason-lspconfig").get_installed_servers()
+local mason_ok, mason = pcall(require, "mason")
+if not mason_ok then
+    return
+end
+
+local mason_lspconfig_ok, mason_lspconfig = pcall(require, "mason-lspconfig")
+if not mason_lspconfig_ok then
+    return
+end
+
+mason.setup()
+mason_lspconfig.setup({})
 
 local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
 
@@ -7,47 +18,33 @@ local handlers = {
     ["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = "rounded" }),
 }
 
-local mason_lspconfig = require("mason-lspconfig")
-
 local on_attach = function(_, bufnr)
-    local opts = { buffer = bufnr, remap = false }
+    local map = function(keys, func)
+        vim.keymap.set("n", keys, func, { buffer = bufnr })
+    end
 
-    vim.keymap.set("n", "gd", "<CMD>FzfLua lsp_definitions<CR>", opts)
-    vim.keymap.set("n", "gD", "<CMD>FzfLua lsp_declarations<CR>", opts)
-    vim.keymap.set("n", "gi", "<CMD>FzfLua lsp_implementations<CR>", opts)
-    vim.keymap.set("n", "gt", "<CMD>FzfLua lsp_typedefs<CR>", opts)
-    vim.keymap.set("n", "gr", "<CMD>FzfLua lsp_references<CR>", opts)
-    vim.keymap.set("n", "<leader>el", "<CMD>FzfLua lsp_document_diagnostics<CR>", opts)
-    vim.keymap.set("n", "<leader>ca", "<CMD>FzfLua lsp_code_actions<CR>", opts)
+    map("gd", "<CMD>FzfLua lsp_definitions<CR>")
+    map("gD", "<CMD>FzfLua lsp_declarations<CR>")
+    map("gi", "<CMD>FzfLua lsp_implementations<CR>")
+    map("gt", "<CMD>FzfLua lsp_typedefs<CR>")
+    map("gr", "<CMD>FzfLua lsp_references<CR>")
+    map("<leader>el", "<CMD>FzfLua lsp_document_diagnostics<CR>")
+    map("<leader>ca", "<CMD>FzfLua lsp_code_actions<CR>")
 
-    vim.keymap.set("n", "<leader>rn", function()
-        vim.lsp.buf.rename()
-    end, opts)
-    vim.keymap.set("n", "K", function()
-        vim.lsp.buf.hover()
-    end, opts)
-    vim.keymap.set("n", "<leader>q", function()
-        vim.diagnostic.setloclist()
-    end, opts)
-    vim.keymap.set("n", "<leader>ek", function()
-        vim.diagnostic.goto_prev()
-    end, opts)
-    vim.keymap.set("n", "<leader>ej", function()
-        vim.diagnostic.goto_next()
-    end, opts)
-    vim.keymap.set("n", "<leader>k", function()
-        vim.lsp.buf.signature_help()
-    end, opts)
+    map("K", vim.lsp.buf.hover)
+    map("gh", vim.diagnostic.open_float)
+    map("<leader>rn", vim.lsp.buf.rename)
+    map("<leader>q", vim.diagnostic.setloclist)
+    map("<leader>ek", vim.diagnostic.goto_prev)
+    map("<leader>ej", vim.diagnostic.goto_next)
+    map("<leader>k", vim.lsp.buf.signature_help)
 
     if vim.lsp.inlay_hint then
-        vim.keymap.set("n", "<leader>ih", function()
+        map("<leader>ih", function()
             vim.lsp.inlay_hint.enable(bufnr, not vim.lsp.inlay_hint.is_enabled())
-        end, opts)
+        end)
     end
 end
-
-require("mason").setup()
-mason_lspconfig.setup({})
 
 local servers = {
     rust_analyzer = {
