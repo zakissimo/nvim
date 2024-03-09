@@ -7,6 +7,9 @@ return {
         keys = {
             { "<leader>co", "<cmd>CodyToggle<cr>" },
         },
+        config = function()
+            require("sg").setup()
+        end
     },
     {
         "zbirenbaum/copilot.lua",
