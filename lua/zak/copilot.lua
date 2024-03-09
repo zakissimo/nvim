@@ -20,15 +20,15 @@ copilot.setup({
         },
     },
     suggestion = {
-        enabled = false,
+        enabled = true,
         auto_trigger = false,
         debounce = 75,
         keymap = {
             accept = "<C-l>",
             accept_word = false,
             accept_line = false,
-            next = "<C-h>",
-            prev = "<C-;>",
+            next = "<C-j>",
+            prev = "<C-k>",
             dismiss = "<C-c>",
         },
     },

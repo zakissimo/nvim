@@ -2,14 +2,14 @@ return {
     {
         "sourcegraph/sg.nvim",
         dependencies = {
-            "nvim-lua/plenary.nvim", --[[ "nvim-telescope/telescope.nvim ]]
+            "nvim-lua/plenary.nvim",
         },
         keys = {
             { "<leader>co", "<cmd>CodyToggle<cr>" },
         },
         config = function()
-            require("sg").setup()
-        end
+            require("sg").setup({ require("zak.utils").on_attach })
+        end,
     },
     {
         "zbirenbaum/copilot.lua",

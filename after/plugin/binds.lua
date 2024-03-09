@@ -1,50 +1,53 @@
 vim.g.mapleader = " "
 
-local opts = { noremap = true, silent = true }
+local map = function(mode, keys, func, opts)
+    opts = opts or { noremap = true, silent = true }
+    vim.keymap.set(mode, keys, func, opts)
+end
 
-vim.keymap.set({ "n", "v" }, "<Space>", "<Nop>", { silent = true })
+map({ "n", "v" }, "<Space>", "<Nop>")
 
-vim.keymap.set("v", "<leader>y", '"+y', opts)
-vim.keymap.set({ "n", "v" }, "<leader>p", '"+p', opts)
+map("v", "<leader>y", '"+y')
+map({ "n", "v" }, "<leader>p", '"+p')
 
-vim.keymap.set("v", "J", ":move '>+1<CR>gv=gv")
-vim.keymap.set("v", "K", ":move '<-2<CR>gv=gv")
+map("v", "J", ":move '>+1<CR>gv=gv")
+map("v", "K", ":move '<-2<CR>gv=gv")
 
-vim.keymap.set("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
-vim.keymap.set("n", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
+map("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
+map("n", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 
-vim.keymap.set("v", "<", "<gv", opts)
-vim.keymap.set("v", ">", ">gv", opts)
-vim.keymap.set("n", "<", "V<", opts)
-vim.keymap.set("n", ">", "V>", opts)
+map("v", "<", "<gv")
+map("v", ">", ">gv")
+map("n", "<", "V<")
+map("n", ">", "V>")
 
-vim.keymap.set({ "n", "i" }, "<F1>", "<Esc>", opts)
+map({ "n", "i" }, "<F1>", "<Esc>")
 
-vim.keymap.set("n", "<esc>", "<CMD>noh<CR><esc>", opts)
-vim.keymap.set("n", "<C-s>", "<CMD>w<CR>", opts)
+map("n", "<esc>", "<CMD>noh<CR><esc>")
+map("n", "<C-s>", "<CMD>w<CR>")
 
-vim.keymap.set("n", "<C-j>", "<C-w>j", opts)
-vim.keymap.set("n", "<C-k>", "<C-w>k", opts)
-vim.keymap.set("n", "<C-h>", "<C-w>h", opts)
-vim.keymap.set("n", "<C-l>", "<C-w>l", opts)
+map("n", "<C-j>", "<C-w>j")
+map("n", "<C-k>", "<C-w>k")
+map("n", "<C-h>", "<C-w>h")
+map("n", "<C-l>", "<C-w>l")
 
-vim.keymap.set({ "n", "v" }, "H", "^", opts)
-vim.keymap.set({ "n", "v" }, "L", "$", opts)
+map({ "n", "v" }, "H", "^")
+map({ "n", "v" }, "L", "$")
 
-vim.keymap.set("n", "n", "nzz", opts)
-vim.keymap.set("n", "N", "Nzz", opts)
-vim.keymap.set("n", "*", "*zz", opts)
-vim.keymap.set("n", "#", "#zz", opts)
+map("n", "n", "nzz")
+map("n", "N", "Nzz")
+map("n", "*", "*zz")
+map("n", "#", "#zz")
 
-vim.keymap.set("n", "<leader>t", "<CMD>:term<CR>", opts)
-vim.keymap.set("n", "<leader>xx", "<CMD>!chmod +x %<CR>", opts)
-vim.keymap.set("n", "<leader>rl", "<CMD>Lazy sync<CR>", opts)
-vim.keymap.set("n", "<leader>rs", "<CMD>w!<CR><CMD>source %<CR>", opts)
+map("n", "<leader>t", "<CMD>:term<CR>")
+map("n", "<leader>xx", "<CMD>!chmod +x %<CR>")
+map("n", "<leader>rl", "<CMD>Lazy sync<CR>")
+map("n", "<leader>rs", "<CMD>w!<CR><CMD>source %<CR>")
 
-vim.keymap.set("n", "<C-Down>", "<CMD>resize -2<CR>", opts)
-vim.keymap.set("n", "<C-Up>", "<CMD>resize +2<CR>", opts)
-vim.keymap.set("n", "<C-Left>", "<CMD>vertical resize -2<CR>", opts)
-vim.keymap.set("n", "<C-Right>", "<CMD>vertical resize +2<CR>", opts)
+map("n", "<C-Down>", "<CMD>resize -2<CR>")
+map("n", "<C-Up>", "<CMD>resize +2<CR>")
+map("n", "<C-Left>", "<CMD>vertical resize -2<CR>")
+map("n", "<C-Right>", "<CMD>vertical resize +2<CR>")
 
-vim.keymap.set({ "c", "i" }, "<C-a>", "<Home>", opts)
-vim.keymap.set({ "c", "i" }, "<C-e>", "<End>", opts)
+map({ "c", "i" }, "<C-a>", "<Home>")
+map({ "c", "i" }, "<C-e>", "<End>")

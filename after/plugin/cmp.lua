@@ -96,7 +96,7 @@ cmp.setup({
         },
     },
     sources = cmp.config.sources({
-        { name = "copilot" },
+        -- { name = "copilot" },
         { name = "cody" },
         { name = "nvim_lua" },
         { name = "nvim_lsp" },
