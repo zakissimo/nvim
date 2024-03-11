@@ -7,9 +7,6 @@ return {
         keys = {
             { "<leader>co", "<cmd>CodyToggle<cr>" },
         },
-        config = function()
-            require("sg").setup({ require("zak.utils").on_attach })
-        end,
     },
     {
         "zbirenbaum/copilot.lua",
