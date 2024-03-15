@@ -31,7 +31,7 @@ conform.setup({
         },
         clang_format = {
             prepend_args = function(_, _)
-                local format_files = vim.fs.find(".clang-format", { upward = true, stop = vim.uv.os_homedir() })
+                local format_files = vim.fs.find(".clang-format", { upward = true, stop = vim.fn.expand("$HOME") })
                 if #format_files == 0 then
                     return {}
                 end
