@@ -33,9 +33,9 @@ conform.setup({
             prepend_args = function(_, _)
                 local format_files = vim.fs.find(".clang-format", { upward = true, stop = vim.fn.expand("$HOME") })
                 if #format_files == 0 then
-                    return {}
+                    return { "-style", "{IndentWidth: 4, TabWidth: 4, UseTab: Never, PointerAlignment: Left}" }
                 end
-                return { "-style", "{IndentWidth: 4, TabWidth: 4, UseTab: Never, PointerAlignment: Left}" }
+                return {}
             end,
         },
     },

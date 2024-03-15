@@ -10,6 +10,18 @@ vim.api.nvim_create_autocmd("LspAttach", {
     callback = on_attach,
 })
 
+local root_files = {
+    ".clangd",
+    ".clang-tidy",
+    ".clang-format",
+    "compile_commands.json",
+    "compile_flags.txt",
+    "build.sh", -- buildProject
+    "configure.ac", -- AutoTools
+    "run",
+    "compile",
+}
+
 local servers = {
     rust_analyzer = {
         settings = {
@@ -32,6 +44,38 @@ local servers = {
                 diagnostics = { disable = { "missing-fields" } },
             },
         },
+    },
+    clangd = {
+        cmd = {
+            "clangd",
+            "--all-scopes-completion",
+            "--background-index",
+            "--clang-tidy",
+            "--compile_args_from=filesystem",
+            "--completion-parse=always",
+            "--completion-style=bundled",
+            "--cross-file-rename",
+            "--debug-origin",
+            "--enable-config",
+            "--fallback-style=Qt",
+            "--folding-ranges",
+            "--function-arg-placeholders",
+            "--header-insertion=iwyu",
+            "--log=error",
+            "--pch-storage=memory",
+            "--suggest-missing-includes",
+            "-j=12",
+        },
+        filetypes = { "c", "cpp", "objc", "objcpp" },
+        root_dir = function(fname)
+            return require("lspconfig.util").root_pattern(unpack(root_files))(fname)
+                or require("lspconfig.util").find_git_ancestor(fname)
+        end,
+        single_file_support = true,
+        init_options = {
+            compilationDatabasePath = vim.fn.getcwd() .. "/build",
+        },
+        commands = {},
     },
 }
 
