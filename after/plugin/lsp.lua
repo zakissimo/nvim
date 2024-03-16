@@ -10,18 +10,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
     callback = on_attach,
 })
 
-local root_files = {
-    ".clangd",
-    ".clang-tidy",
-    ".clang-format",
-    "compile_commands.json",
-    "compile_flags.txt",
-    "build.sh", -- buildProject
-    "configure.ac", -- AutoTools
-    "run",
-    "compile",
-}
-
 local servers = {
     rust_analyzer = {
         settings = {
@@ -68,13 +56,21 @@ local servers = {
         },
         filetypes = { "c", "cpp", "objc", "objcpp" },
         root_dir = function(fname)
+            local root_files = {
+                ".clangd",
+                ".clang-tidy",
+                ".clang-format",
+                "compile_commands.json",
+                "compile_flags.txt",
+                "build.sh",
+                "configure.ac",
+                "run",
+                "compile",
+            }
             return require("lspconfig.util").root_pattern(unpack(root_files))(fname)
                 or require("lspconfig.util").find_git_ancestor(fname)
         end,
         single_file_support = true,
-        init_options = {
-            compilationDatabasePath = vim.fn.getcwd() .. "/build",
-        },
         commands = {},
     },
 }
@@ -84,7 +80,9 @@ if not mason_ok then
     return
 end
 
-mason.setup()
+mason.setup({
+    PATH = "append",
+})
 
 local mason_tool_installer_ok, mason_tool_installer = pcall(require, "mason-tool-installer")
 if not mason_tool_installer_ok then
