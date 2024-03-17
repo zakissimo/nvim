@@ -8,7 +8,10 @@ return {
         event = { "BufReadPre", "BufNewFile" },
         dependencies = {
             { "nvim-lua/plenary.nvim" },
+
             { "mfussenegger/nvim-dap" },
+            { "rcarriga/nvim-dap-ui" },
+
             { "williamboman/mason.nvim", config = true },
             { "williamboman/mason-lspconfig.nvim" },
             { "WhoIsSethDaniel/mason-tool-installer.nvim" },
@@ -24,7 +27,9 @@ return {
             {
                 "folke/neodev.nvim",
                 config = function()
-                    require("neodev").setup({})
+                    require("neodev").setup({
+                        library = { plugins = { "nvim-dap-ui" }, types = true },
+                    })
                 end,
             },
 
