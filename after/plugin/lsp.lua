@@ -10,29 +10,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
     callback = on_attach,
 })
 
-local servers = {
-    rust_analyzer = {
-        settings = {
-            ["rust-analyzer"] = {
-                lens = {
-                    enable = true,
-                },
-                checkOnSave = {
-                    enable = true,
-                    command = "clippy",
-                },
-            },
-        },
-    },
-    lua_ls = {
-        settings = {
-            Lua = {
-                workspace = { checkThirdParty = false },
-                telemetry = { enable = false },
-                diagnostics = { disable = { "missing-fields" } },
-            },
-        },
-    },
+local system_servers = {
     clangd = {
         cmd = {
             "clangd",
@@ -75,21 +53,44 @@ local servers = {
     },
 }
 
+local mason_servers = {
+    rust_analyzer = {
+        settings = {
+            ["rust-analyzer"] = {
+                lens = {
+                    enable = true,
+                },
+                checkOnSave = {
+                    enable = true,
+                    command = "clippy",
+                },
+            },
+        },
+    },
+    lua_ls = {
+        settings = {
+            Lua = {
+                workspace = { checkThirdParty = false },
+                telemetry = { enable = false },
+                diagnostics = { disable = { "missing-fields" } },
+            },
+        },
+    },
+}
+
 local mason_ok, mason = pcall(require, "mason")
 if not mason_ok then
     return
 end
 
-mason.setup({
-    PATH = "append",
-})
+mason.setup()
 
 local mason_tool_installer_ok, mason_tool_installer = pcall(require, "mason-tool-installer")
 if not mason_tool_installer_ok then
     return
 end
 
-local ensure_installed = vim.tbl_keys(servers or {})
+local ensure_installed = vim.tbl_keys(mason_servers or {})
 vim.list_extend(ensure_installed, {
     "stylua",
 })
@@ -108,10 +109,15 @@ local handlers = {
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
 
+for server, config in pairs(system_servers) do
+    config.handlers = handlers
+    require("lspconfig")[server].setup(config)
+end
+
 mason_lspconfig.setup({
     handlers = {
         function(server_name)
-            local server = servers[server_name] or {}
+            local server = mason_servers[server_name] or {}
             server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
             server.handlers = handlers
             require("lspconfig")[server_name].setup(server)
