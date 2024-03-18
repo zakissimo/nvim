@@ -55,7 +55,23 @@ dap.configurations.rust = {
         type = "codelldb",
         request = "launch",
         program = function()
-            return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
+            return coroutine.create(function(coro)
+                local opts = {}
+                pickers
+                    .new(opts, {
+                        prompt_title = "Path to executable",
+                        finder = finders.new_oneshot_job({ "fd", "--hidden", "--no-ignore", "--type", "x" }, {}),
+                        sorter = conf.generic_sorter(opts),
+                        attach_mappings = function(buffer_number)
+                            actions.select_default:replace(function()
+                                actions.close(buffer_number)
+                                coroutine.resume(coro, action_state.get_selected_entry()[1])
+                            end)
+                            return true
+                        end,
+                    })
+                    :find()
+            end)
         end,
         cwd = "${workspaceFolder}",
         stopOnEntry = false,
@@ -105,15 +121,12 @@ end
 map("<Leader>dt", dapui.toggle)
 
 map("<Leader>do", dap.continue)
-map("<Leader>dn", dap.step_into)
+map("<Leader>di", dap.step_into)
 map("<Leader>dp", dap.step_out)
-map("<Leader>ds", dap.step_over)
+map("<Leader>dn", dap.step_over)
 map("<Leader>db", dap.toggle_breakpoint)
-map("<Leader>dr", dap.repl.toggle)
+map("<Leader>dr", dap.run_last)
 
--- vim.keymap.set("n", "<Leader>dl", function()
---     require("dap").run_last()
--- end)
 -- vim.keymap.set({ "n", "v" }, "<Leader>dh", function()
 --     require("dap.ui.widgets").hover()
 -- end)
