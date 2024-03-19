@@ -42,6 +42,12 @@ dap.configurations.cpp = {
                     :find()
             end)
         end,
+        initCommands = function()
+            return {
+                string.format("command script import %s/formatters/qtlldb/QtFormatters.py", vim.fn.stdpath("config")),
+                string.format("command source %s/formatters/qtlldb/QtFormatters.lldb", vim.fn.stdpath("config")),
+            }
+        end,
         cwd = "${workspaceFolder}",
         stopOnEntry = false,
     },
