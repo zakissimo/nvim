@@ -1,12 +1,23 @@
 import lldb
 from builtins import chr
 
+def __lldb_init_module(debugger, dict):
+    debugger.HandleCommand('type summary add -x "^.*QUrl$" -e -F QtFormatters.QUrl_SummaryProvider')
+    debugger.HandleCommand('type summary add -x "^.*QString$" -e -F QtFormatters.QString_SummaryProvider')
+    debugger.HandleCommand('type synthetic add -x "^.*QVector<.+>$" -l QtFormatters.QVector_SyntheticProvider')
+    debugger.HandleCommand('type summary add -x "^.*QVector<.+>$" -e -s "size=${svar%#}"')
+    debugger.HandleCommand('type synthetic add -x "^.*QList<.+>$" -l QtFormatters.QList_SyntheticProvider')
+    debugger.HandleCommand('type summary add -x "^.*QList<.+>$" -e -s "size=${svar%#}"')
+    debugger.HandleCommand('type synthetic add -x "^.*QPointer<.+>$" -l QtFormatters.QPointer_SyntheticProvider')
+    debugger.HandleCommand('type summary add -x "^.*QPointer<.+>$" -e -s "filled="${svar%#}"')
+
 def QUrl_SummaryProvider(valobj, internal_dict):
    return valobj.GetFrame().EvaluateExpression(valobj.GetName() + '.toString((QUrl::FormattingOptions)QUrl::PrettyDecoded)');
 
 def QString_SummaryProvider(valobj, internal_dict):
+
    def make_string_from_pointer_with_offset(F,OFFS,L):
-       strval = 'u"'
+       strval = ''
        try:
            data_array = F.GetPointeeData(0, L).uint16
            for X in range(OFFS, L):
@@ -16,7 +27,6 @@ def QString_SummaryProvider(valobj, internal_dict):
                strval += chr(V)
        except:
            pass
-       strval = strval + '"'
        return strval.encode('utf-8')
 
    #qt5
@@ -24,7 +34,7 @@ def QString_SummaryProvider(valobj, internal_dict):
        try:
            d = value.GetChildMemberWithName('d')
            #have to divide by 2 (size of unsigned short = 2)
-           offset = d.GetChildMemberWithName('offset').GetValueAsUnsigned() / 2
+           offset = int(d.GetChildMemberWithName('offset').GetValueAsUnsigned() / 2) or 0
            size = get_max_size(value)
            return make_string_from_pointer_with_offset(d, offset, size)
        except:
@@ -143,4 +153,3 @@ class QPointer_SyntheticProvider:
         except:
             print("boned getchild")
             return None
-
