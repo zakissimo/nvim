@@ -107,7 +107,10 @@ cmp.setup({
 })
 
 require("cmp").setup.cmdline({ "?", "/" }, {
-    mapping = cmp.mapping.preset.cmdline(),
+    mapping = cmp.mapping.preset.cmdline({
+        ["<C-n>"] = cmp.config.disable,
+        ["<C-p>"] = cmp.config.disable,
+    }),
     sources = cmp.config.sources({
         { name = "nvim_lsp_document_symbol" },
     }, {
