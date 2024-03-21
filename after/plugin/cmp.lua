@@ -49,7 +49,7 @@ local mapping = {
         end
     end, { "i", "s" }),
     ["<Tab>"] = cmp.config.disable,
-    ["<S-Tab>"] = cmp.config.disabe,
+    ["<S-Tab>"] = cmp.config.disable,
 }
 
 local lspkind = require("lspkind")
@@ -116,7 +116,10 @@ require("cmp").setup.cmdline({ "?", "/" }, {
 })
 
 require("cmp").setup.cmdline(":", {
-    mapping = cmp.mapping.preset.cmdline(),
+    mapping = cmp.mapping.preset.cmdline({
+        ["<C-n>"] = cmp.config.disable,
+        ["<C-p>"] = cmp.config.disable,
+    }),
     sources = cmp.config.sources({
         { name = "path" },
     }, {
