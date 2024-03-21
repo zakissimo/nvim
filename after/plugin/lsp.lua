@@ -1,8 +1,8 @@
-local on_attach = require("zak.utils").on_attach
+local on_attach = require("zak.lsp").on_attach
 
 local sg_ok, sg = pcall(require, "sg")
 if sg_ok then
-    sg.setup({ require("zak.utils").on_attach })
+    sg.setup({ on_attach })
 end
 
 vim.api.nvim_create_autocmd("LspAttach", {
@@ -32,24 +32,6 @@ local system_servers = {
             "--suggest-missing-includes",
             "-j=12",
         },
-        filetypes = { "c", "cpp", "objc", "objcpp" },
-        root_dir = function(fname)
-            local root_files = {
-                ".clangd",
-                ".clang-tidy",
-                ".clang-format",
-                "compile_commands.json",
-                "compile_flags.txt",
-                "build.sh",
-                "configure.ac",
-                "run",
-                "compile",
-            }
-            return require("lspconfig.util").root_pattern(unpack(root_files))(fname)
-                or require("lspconfig.util").find_git_ancestor(fname)
-        end,
-        single_file_support = true,
-        commands = {},
     },
 }
 
@@ -136,7 +118,7 @@ vim.diagnostic.config({
         focusable = true,
         style = "minimal",
         border = "rounded",
-        source = "always",
+        source = true,
         header = "",
         prefix = "",
     },
