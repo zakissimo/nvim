@@ -16,14 +16,12 @@ local system_servers = {
             "clangd",
             "--all-scopes-completion",
             "--background-index",
-            "--clang-tidy",
             "--compile_args_from=filesystem",
             "--completion-parse=always",
             "--completion-style=bundled",
             "--cross-file-rename",
             "--debug-origin",
             "--enable-config",
-            "--fallback-style=Qt",
             "--folding-ranges",
             "--function-arg-placeholders",
             "--header-insertion=iwyu",
@@ -99,7 +97,7 @@ end
 mason_lspconfig.setup({
     handlers = {
         function(server_name)
-            local server = mason_servers[server_name] or {}
+            local server = mason_servers[server_name] or system_servers[server_name] or {}
             server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
             server.handlers = handlers
             require("lspconfig")[server_name].setup(server)
