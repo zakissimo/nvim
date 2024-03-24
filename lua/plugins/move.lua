@@ -1,24 +1,23 @@
 return {
     {
-        "zakissimo/hook.nvim",
+        "zakissimo/hooked.nvim",
         lazy = false,
         config = function()
-            require("hook").setup({
+            require("hooked").setup({
                 prefix = "",
                 suffix = "󰷫",
             })
         end,
         dev = true,
         keys = {
-            { "<Leader>m", "<CMD>HookToggle<CR>", { "n" } },
-            { "<M-7>", "<CMD>HookPull 1<CR>", { "n", "i" } },
-            { "<M-8>", "<CMD>HookPull 2<CR>", { "n", "i" } },
-            { "<M-9>", "<CMD>HookPull 3<CR>", { "n", "i" } },
-            { "<M-0>", "<CMD>HookPull 4<CR>", { "n", "i" } },
-            { "<M-u>", "<CMD>HookPull 5<CR>", { "n", "i" } },
-            { "<M-i>", "<CMD>HookPull 6<CR>", { "n", "i" } },
-            { "<M-o>", "<CMD>HookPull 7<CR>", { "n", "i" } },
-            { "<M-p>", "<CMD>HookPull 8<CR>", { "n", "i" } },
+            { "<Leader>m", "<CMD>HookedToggle<CR>", { "n" } },
+            { "<M-m>", "<CMD>HookedMark<CR>", { "n" } },
+            { "<M-j>", "<CMD>HookedPull 1<CR>", { "n" } },
+            { "<M-k>", "<CMD>HookedPull 2<CR>", { "n" } },
+            { "<M-u>", "<CMD>HookedPull 3<CR>", { "n" } },
+            { "<M-i>", "<CMD>HookedPull 4<CR>", { "n" } },
+            { "<M-7>", "<CMD>HookedPull 5<CR>", { "n" } },
+            { "<M-8>", "<CMD>HookedPull 6<CR>", { "n" } },
         },
     },
     {
