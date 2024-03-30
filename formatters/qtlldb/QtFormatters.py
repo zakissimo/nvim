@@ -33,8 +33,7 @@ def QString_SummaryProvider(valobj, internal_dict):
    def qstring_summary(value):
        try:
            d = value.GetChildMemberWithName('d')
-           #have to divide by 2 (size of unsigned short = 2)
-           offset = int(d.GetChildMemberWithName('offset').GetValueAsUnsigned() / 2) or 0
+           offset = d.GetChildMemberWithName('offset').GetValueAsUnsigned() // 2 or 0
            size = get_max_size(value)
            return make_string_from_pointer_with_offset(d, offset, size)
        except:
