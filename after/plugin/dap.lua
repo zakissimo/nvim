@@ -126,12 +126,20 @@ end
 
 map("<Leader>dt", dapui.toggle)
 
+map("<F5>", dap.continue)
 map("<Leader>do", dap.continue)
-map("<Leader>di", dap.step_into)
-map("<Leader>dp", dap.step_out)
-map("<Leader>dn", dap.step_over)
+
+map("<F17>", dap.toggle_breakpoint)
 map("<Leader>db", dap.toggle_breakpoint)
-map("<Leader>dr", dap.run_last)
+
+map("<F3>", dap.step_into)
+map("<Leader>di", dap.step_into)
+
+map("<F15>", dap.step_out)
+map("<Leader>dp", dap.step_out)
+
+map("<F4>", dap.step_over)
+map("<Leader>dn", dap.step_over)
 
 -- vim.keymap.set({ "n", "v" }, "<Leader>dh", function()
 --     require("dap.ui.widgets").hover()
