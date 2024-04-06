@@ -17,5 +17,14 @@ return {
         plugins = {
             non_standalone = true,
         },
+        injector = {
+            ["python3"] = {
+                before = true,
+            },
+            ["cpp"] = {
+                before = { "#include <bits/stdc++.h>", "using namespace std;" },
+                after = "int main() {}",
+            },
+        },
     },
 }
