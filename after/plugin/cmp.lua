@@ -11,14 +11,16 @@ end
 luasnip.config.setup({ enable_autosnippets = true })
 require("luasnip.loaders.from_vscode").lazy_load()
 
-local select = { behavior = cmp.SelectBehavior.Select }
 local mapping = {
-    ["<C-p>"] = cmp.mapping.select_prev_item(select),
-    ["<C-n>"] = cmp.mapping.select_next_item(select),
+    ["<C-p>"] = cmp.mapping(cmp.mapping.select_prev_item(), { "i", "c" }),
+    ["<C-n>"] = cmp.mapping(cmp.mapping.select_next_item(), { "i", "c" }),
     ["<C-Space>"] = cmp.mapping.complete(),
-    ["<C-u>"] = cmp.mapping.scroll_docs(-4),
-    ["<C-d>"] = cmp.mapping.scroll_docs(4),
-    ["<C-c>"] = cmp.mapping.close(),
+    ["<C-u>"] = cmp.mapping(cmp.mapping.scroll_docs(-1), { "i", "c" }),
+    ["<C-d>"] = cmp.mapping(cmp.mapping.scroll_docs(1), { "i", "c" }),
+    ["<C-c>"] = cmp.mapping({
+        i = cmp.mapping.abort(),
+        c = cmp.mapping.close(),
+    }),
     ["<C-y>"] = cmp.mapping.confirm({
         behavior = cmp.ConfirmBehavior.Insert,
         select = true,
@@ -106,11 +108,11 @@ cmp.setup({
     }),
 })
 
-require("cmp").setup.cmdline({ "?", "/" }, {
-    mapping = cmp.mapping.preset.cmdline({
-        ["<C-n>"] = cmp.config.disable,
-        ["<C-p>"] = cmp.config.disable,
-    }),
+cmp.setup.cmdline({ "?", "/" }, {
+    -- mapping = cmp.mapping.preset.cmdline({
+    --     ["<C-n>"] = cmp.config.disable,
+    --     ["<C-p>"] = cmp.config.disable,
+    -- }),
     sources = cmp.config.sources({
         { name = "nvim_lsp_document_symbol" },
     }, {
@@ -118,11 +120,11 @@ require("cmp").setup.cmdline({ "?", "/" }, {
     }),
 })
 
-require("cmp").setup.cmdline(":", {
-    mapping = cmp.mapping.preset.cmdline({
-        ["<C-n>"] = cmp.config.disable,
-        ["<C-p>"] = cmp.config.disable,
-    }),
+cmp.setup.cmdline(":", {
+    -- mapping = cmp.mapping.preset.cmdline({
+    --     ["<C-n>"] = cmp.config.disable,
+    --     ["<C-p>"] = cmp.config.disable,
+    -- }),
     sources = cmp.config.sources({
         { name = "path" },
     }, {
