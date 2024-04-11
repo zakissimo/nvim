@@ -26,5 +26,22 @@ return {
                 after = "int main() {}",
             },
         },
+        hooks = {
+            ["question_enter"] = {
+                function()
+                    local file_extension = vim.fn.expand("%:e")
+                    if file_extension == "rs" then
+                        local script = string.format("%s/leetcode/rust_init", tostring(vim.fn.stdpath("data")))
+                        local success, error_message = os.execute(script)
+                        if success then
+                            print("Successfully updated rust-project.json")
+                            vim.cmd("LspRestart rust_analyzer")
+                        else
+                            print(string.format("Failed update rust-project.json. Error: %s", error_message))
+                        end
+                    end
+                end,
+            },
+        },
     },
 }
