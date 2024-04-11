@@ -104,15 +104,11 @@ cmp.setup({
         { name = "nvim_lsp" },
         { name = "luasnip" },
         { name = "path" },
-        { name = "spell", max_item_count = 2 },
+        { name = "spell", max_item_count = 2, option = { keyword_pattern = [[\k\+]] } },
     }),
 })
 
 cmp.setup.cmdline({ "?", "/" }, {
-    -- mapping = cmp.mapping.preset.cmdline({
-    --     ["<C-n>"] = cmp.config.disable,
-    --     ["<C-p>"] = cmp.config.disable,
-    -- }),
     sources = cmp.config.sources({
         { name = "nvim_lsp_document_symbol" },
     }, {
@@ -121,10 +117,6 @@ cmp.setup.cmdline({ "?", "/" }, {
 })
 
 cmp.setup.cmdline(":", {
-    -- mapping = cmp.mapping.preset.cmdline({
-    --     ["<C-n>"] = cmp.config.disable,
-    --     ["<C-p>"] = cmp.config.disable,
-    -- }),
     sources = cmp.config.sources({
         { name = "path" },
     }, {
