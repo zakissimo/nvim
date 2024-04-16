@@ -22,6 +22,18 @@ return {
     },
     {
         "rcarriga/nvim-notify",
+        event = "VeryLazy",
+        config = function()
+            require("notify").setup({
+                background_colour = "#000000",
+                render = "compact",
+                max_width = 50,
+                top_down = true,
+                stages = "slide",
+            })
+
+            vim.notify = require("notify")
+        end,
     },
     {
         "stevearc/dressing.nvim",

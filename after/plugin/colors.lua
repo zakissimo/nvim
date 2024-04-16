@@ -1,6 +1,5 @@
 local rose_pine_ok, rose_pine = pcall(require, "rose-pine")
 local tokyonight_ok, tokyonight = pcall(require, "tokyonight")
-local notify_ok, _ = pcall(require, "notify")
 
 local rose_pine_setup = {
     variant = "auto", -- auto, main, moon, or dawn
@@ -101,21 +100,6 @@ if rose_pine_ok then
 elseif tokyonight_ok then
     tokyonight.setup(tokyonight_setup)
     vim.cmd("colorscheme tokyonight")
-end
-
-if notify_ok then
-    vim.notify = require("notify").setup({
-        background_colour = "#000000",
-        render = "compact",
-        max_width = 50,
-        top_down = false,
-    })
-
-    vim.notify = function(msg, ...)
-        if msg:match("warning: multiple different client offset_encodings") then
-            return
-        end
-    end
 end
 
 vim.opt.termguicolors = true
