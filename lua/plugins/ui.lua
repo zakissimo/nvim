@@ -26,8 +26,7 @@ return {
         config = function()
             require("notify").setup({
                 background_colour = "#000000",
-                render = "compact",
-                max_width = 50,
+                render = "minimal",
                 top_down = true,
                 stages = "slide",
             })
