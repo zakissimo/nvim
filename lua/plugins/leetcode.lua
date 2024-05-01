@@ -12,7 +12,7 @@ return {
         "nvim-tree/nvim-web-devicons",
     },
     opts = {
-        lang = "rust",
+        lang = "cpp",
 
         plugins = {
             non_standalone = true,
@@ -45,8 +45,10 @@ return {
                             string.format('{"sysroot_src": "%s", "crates": [%s]}', sysroot_src, crates)
                         local success, error_message = pcall(function()
                             local file = io.open(vim.fn.stdpath("data") .. "/leetcode/rust-project.json", "w")
-                            file:write(rust_project_json)
-                            file:close()
+                            if file ~= nil then
+                                file:write(rust_project_json)
+                                file:close()
+                            end
                         end)
 
                         if success then
