@@ -12,7 +12,7 @@ return {
         "nvim-tree/nvim-web-devicons",
     },
     opts = {
-        lang = "cpp",
+        lang = "rust",
 
         plugins = {
             non_standalone = true,
