@@ -31,6 +31,7 @@ return {
                     },
                 },
             })
+            vim.keymap.set("n", "-", "<CMD>Oil<CR>")
             vim.keymap.set("n", "<Leader>n", "<CMD>lua require'oil'.toggle_float()<CR>")
         end,
     },

@@ -23,6 +23,7 @@ return {
             { "WhoIsSethDaniel/mason-tool-installer.nvim" },
 
             { "stevearc/conform.nvim" },
+            { "mfussenegger/nvim-lint" },
 
             {
                 "j-hui/fidget.nvim",
