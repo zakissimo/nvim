@@ -41,8 +41,6 @@ return {
         dependencies = { "kyazdani42/nvim-web-devicons" },
         keys = {
             { "<Leader>h", "<CMD>FzfLua help_tags<CR>", "n" },
-            { "<Leader>b", "<CMD>FzfLua buffers<CR>", "n" },
-            { "<Leader>r", "<CMD>FzfLua registers<CR>", "n" },
             { "<Leader>l", "<CMD>FzfLua live_grep<CR>", "n" },
             { "<Leader>f", "<CMD>FzfLua files<CR>", "n" },
             { "<Leader>g", "<CMD>FzfLua git_files<CR>", "n" },

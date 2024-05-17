@@ -120,40 +120,42 @@ dap.listeners.before.event_exited.dapui_config = function()
     dapui.close()
 end
 
+local function get_cmd(s)
+    return coroutine.create(function(coro)
+        local args = {}
+        vim.ui.input({ prompt = s .. ": ", completion = "file" }, function(input)
+            args = vim.split(input, " ")
+            coroutine.resume(coro, args[1])
+        end)
+    end)
+end
+
 local map = function(keys, func)
     vim.keymap.set("n", keys, func)
 end
 
 map("<Leader>dt", dapui.toggle)
-
-map("<F5>", dap.continue)
-map("<Leader>do", dap.continue)
-
-map("<F17>", dap.toggle_breakpoint)
+map("<Leader>b", dap.run_to_cursor)
 map("<Leader>db", dap.toggle_breakpoint)
 
-map("<F3>", dap.step_into)
-map("<Leader>di", dap.step_into)
+map("<F5>", function()
+    local program = get_cmd("Program")
+    local args = get_cmd("Arguments")
+    dap.run({
+        name = "Launch file",
+        type = "codelldb",
+        request = "launch",
+        cwd = "${workspaceFolder}",
+        program = program,
+        args = { args },
+    })
+end)
 
-map("<F15>", dap.step_out)
-map("<Leader>dp", dap.step_out)
-
-map("<F4>", dap.step_over)
-map("<Leader>dn", dap.step_over)
-
--- vim.keymap.set({ "n", "v" }, "<Leader>dh", function()
---     require("dap.ui.widgets").hover()
--- end)
--- vim.keymap.set({ "n", "v" }, "<Leader>dp", function()
---     require("dap.ui.widgets").preview()
--- end)
--- vim.keymap.set("n", "<Leader>df", function()
---     local widgets = require("dap.ui.widgets")
---     widgets.centered_float(widgets.frames)
--- end)
--- vim.keymap.set("n", "<Leader>ds", function()
---     local widgets = require("dap.ui.widgets")
---     widgets.centered_float(widgets.scopes)
--- end)
+map("<F6>", dap.continue)
+map("<F7>", dap.step_into)
+map("<F8>", dap.step_over)
+map("<F9>", dap.step_out)
+map("<F10>", dap.step_back)
+map("<F11>", dap.restart)
 
 dapui.setup()
