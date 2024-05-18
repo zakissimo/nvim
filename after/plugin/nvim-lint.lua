@@ -4,11 +4,11 @@ if not lint_ok then
 end
 
 lint.linters_by_ft = {
-    cpp = { "cpplint" },
+    -- cpp = { "cpplint" },
 }
 
 vim.api.nvim_create_autocmd({ "BufWritePost" }, {
     callback = function()
-        lint.try_lint()
+        -- lint.try_lint()
     end,
 })
