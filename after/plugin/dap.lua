@@ -124,8 +124,10 @@ local function get_cmd(s)
     return coroutine.create(function(coro)
         local args = {}
         vim.ui.input({ prompt = s .. ": ", completion = "file" }, function(input)
-            args = vim.split(input, " ")
-            coroutine.resume(coro, args[1])
+            if input ~= nil then
+                args = vim.split(input, " ")
+                coroutine.resume(coro, args[1])
+            end
         end)
     end)
 end
