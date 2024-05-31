@@ -1,10 +1,5 @@
 local on_attach = require("zak.lsp").on_attach
 
--- local sg_ok, sg = pcall(require, "sg")
--- if sg_ok then
---     sg.setup({ on_attach })
--- end
-
 vim.api.nvim_create_autocmd("LspAttach", {
     group = vim.api.nvim_create_augroup("lsp-attach", { clear = true }),
     callback = on_attach,

@@ -4,8 +4,6 @@ set.mouse = "a"
 
 set.autochdir = false
 
-set.fileencoding = "utf-8"
-
 set.number = true
 set.relativenumber = true
 

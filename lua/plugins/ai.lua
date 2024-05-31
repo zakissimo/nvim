@@ -1,14 +1,5 @@
 return {
     {
-        "sourcegraph/sg.nvim",
-        dependencies = {
-            "nvim-lua/plenary.nvim",
-        },
-        keys = {
-            { "<leader>co", "<cmd>CodyToggle<cr>" },
-        },
-    },
-    {
         "zbirenbaum/copilot.lua",
         lazy = true,
         event = "VimEnter",
