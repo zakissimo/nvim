@@ -41,8 +41,7 @@ map("n", "#", "#zz")
 
 map("n", "<leader>t", "<CMD>:term<CR>")
 map("n", "<leader>xx", "<CMD>!chmod +x %<CR>")
-map("n", "<leader>rl", "<CMD>Lazy sync<CR>")
-map("n", "<leader>rs", "<CMD>w!<CR><CMD>source %<CR>")
+map("n", "<leader>r", "<CMD>Lazy sync<CR>")
 
 map("n", "<C-Down>", "<CMD>resize -2<CR>")
 map("n", "<C-Up>", "<CMD>resize +2<CR>")

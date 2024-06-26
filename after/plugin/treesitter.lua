@@ -14,6 +14,7 @@ configs.setup({
         "html",
         "javascript",
         "json",
+        "kotlin",
         "lua",
         "php",
         "python",
@@ -44,10 +45,6 @@ configs.setup({
     context_commentstring = {
         enable = true,
         enable_autocmd = false,
-    },
-    autotag = {
-        enable = true,
-        disable = { "xml" },
     },
     rainbow = {
         enable = true,

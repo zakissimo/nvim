@@ -17,6 +17,7 @@ conform.setup({
         lua = { "stylua" },
         c = { "clang_format" },
         cpp = { "clang_format" },
+        -- kotlin = { "ktlint" },
     },
     format_on_save = {
         timeout_ms = 500,

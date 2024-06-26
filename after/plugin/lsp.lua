@@ -6,6 +6,11 @@ vim.api.nvim_create_autocmd("LspAttach", {
 })
 
 local system_servers = {
+    sourcekit = {
+        cmd = { "sourcekit-lsp" },
+        filetypes = { "swift", "c", "cpp", "objective-c", "objective-cpp" },
+        root_dir = require("lspconfig").util.root_pattern(".git", "Package.swift", "compile_commands.json"),
+    },
     clangd = {
         cmd = {
             "clangd",
@@ -71,6 +76,8 @@ end
 local ensure_installed = vim.tbl_keys(mason_servers or {})
 vim.list_extend(ensure_installed, {
     "stylua",
+    "ktlint",
+    "kotlin_language_server",
 })
 mason_tool_installer.setup({ ensure_installed = ensure_installed })
 
