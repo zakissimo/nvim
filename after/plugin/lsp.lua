@@ -6,6 +6,14 @@ vim.api.nvim_create_autocmd("LspAttach", {
 })
 
 local system_servers = {
+    qmlls = {
+        manual_install = true,
+        cmd = {
+            "qmlls",
+        },
+        filetypes = { "qml" },
+        single_file_support = true,
+    },
     sourcekit = {
         cmd = { "sourcekit-lsp" },
         filetypes = { "swift", "c", "cpp", "objective-c", "objective-cpp" },
@@ -68,18 +76,14 @@ end
 
 mason.setup()
 
-local mason_tool_installer_ok, mason_tool_installer = pcall(require, "mason-tool-installer")
-if not mason_tool_installer_ok then
-    return
-end
+-- local mason_tool_installer_ok, mason_tool_installer = pcall(require, "mason-tool-installer")
+-- if not mason_tool_installer_ok then
+--     return
+-- end
 
-local ensure_installed = vim.tbl_keys(mason_servers or {})
-vim.list_extend(ensure_installed, {
-    "stylua",
-    "ktlint",
-    "kotlin_language_server",
-})
-mason_tool_installer.setup({ ensure_installed = ensure_installed })
+-- local ensure_installed = vim.tbl_keys(mason_servers or {})
+-- vim.list_extend(ensure_installed, {})
+-- mason_tool_installer.setup({ ensure_installed = ensure_installed })
 
 local mason_lspconfig_ok, mason_lspconfig = pcall(require, "mason-lspconfig")
 if not mason_lspconfig_ok then

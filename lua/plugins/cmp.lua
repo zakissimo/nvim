@@ -15,5 +15,6 @@ return {
         "onsails/lspkind-nvim",
         "L3MON4D3/LuaSnip",
         "lukas-reineke/cmp-under-comparator",
+        "tzachar/cmp-ai",
     },
 }
