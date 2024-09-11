@@ -14,11 +14,6 @@ local system_servers = {
         filetypes = { "qml" },
         single_file_support = true,
     },
-    sourcekit = {
-        cmd = { "sourcekit-lsp" },
-        filetypes = { "swift", "c", "cpp", "objective-c", "objective-cpp" },
-        root_dir = require("lspconfig").util.root_pattern(".git", "Package.swift", "compile_commands.json"),
-    },
     clangd = {
         cmd = {
             "clangd",
