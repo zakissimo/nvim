@@ -57,5 +57,9 @@ return {
             end, { expr = true })
         end,
     },
-    { "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" },
+    { "nvim-treesitter/nvim-treesitter", build = ":TSUpdate",
+        config = function()
+             require 'nvim-treesitter.install'.prefer_git = false
+        end
+    },
 }
