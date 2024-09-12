@@ -1,8 +1,6 @@
-local on_attach = require("zak.lsp").on_attach
-
 vim.api.nvim_create_autocmd("LspAttach", {
     group = vim.api.nvim_create_augroup("lsp-attach", { clear = true }),
-    callback = on_attach,
+    callback = require("zak.lsp").on_attach,
 })
 
 local system_servers = {
@@ -71,14 +69,14 @@ end
 
 mason.setup()
 
--- local mason_tool_installer_ok, mason_tool_installer = pcall(require, "mason-tool-installer")
--- if not mason_tool_installer_ok then
---     return
--- end
+local mason_tool_installer_ok, mason_tool_installer = pcall(require, "mason-tool-installer")
+if not mason_tool_installer_ok then
+    return
+end
 
--- local ensure_installed = vim.tbl_keys(mason_servers or {})
--- vim.list_extend(ensure_installed, {})
--- mason_tool_installer.setup({ ensure_installed = ensure_installed })
+local ensure_installed = vim.tbl_keys(mason_servers or {})
+vim.list_extend(ensure_installed, {})
+mason_tool_installer.setup({ ensure_installed = ensure_installed })
 
 local mason_lspconfig_ok, mason_lspconfig = pcall(require, "mason-lspconfig")
 if not mason_lspconfig_ok then
