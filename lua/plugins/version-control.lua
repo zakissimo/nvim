@@ -1,15 +1,13 @@
 return {
     {
         "NeogitOrg/neogit",
-        config = function()
-            require("neogit").setup()
-        end,
+        dependencies = {
+            "sindrets/diffview.nvim",
+        },
+        config = true,
         keys = {
             { "<Leader>s", "<CMD>Neogit<CR>" },
         },
-    },
-    {
-        "sindrets/diffview.nvim",
     },
     {
         "lewis6991/gitsigns.nvim",

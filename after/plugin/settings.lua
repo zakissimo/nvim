@@ -51,5 +51,5 @@ set.spelloptions = "camel"
 
 vim.cmd("set fillchars+=eob:│")
 
-set.ch = 1
+set.ch = 0
 set.ls = 3

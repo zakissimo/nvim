@@ -25,7 +25,7 @@ M.on_attach = function(event)
 
     if vim.lsp.inlay_hint then
         map("<leader>ih", function()
-            vim.lsp.inlay_hint.enable(event.buf, not vim.lsp.inlay_hint.is_enabled())
+            vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
         end)
     end
 end

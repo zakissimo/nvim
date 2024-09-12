@@ -1,8 +1,5 @@
 return {
     {
-        "sbulav/nredir.nvim",
-    },
-    {
         "willothy/flatten.nvim",
         config = true,
         lazy = false,
@@ -15,19 +12,22 @@ return {
     },
 
     {
-        "numToStr/Comment.nvim",
+        "ziontee113/icon-picker.nvim",
         config = function()
-            require("Comment").setup()
+            require("icon-picker").setup({
+                disable_legacy_commands = true,
+            })
         end,
-    },
-    {
-        "lukas-reineke/indent-blankline.nvim",
+        keys = {
+            { "<Leader><Leader>i", "<cmd>IconPickerNormal<cr>" },
+        },
     },
 
     {
         "echasnovski/mini.nvim",
         config = function()
             require("mini.ai").setup({ n_lines = 500 })
+            require("mini.comment").setup()
             require("mini.surround").setup()
             require("mini.pairs").setup({
                 -- In which modes mappings from this `config` should be created
@@ -70,33 +70,5 @@ return {
                 },
             })
         end,
-    },
-    {
-        "zakissimo/smoji.nvim",
-        config = function()
-            require("smoji")
-        end,
-        keys = {
-            { "<Leader><Leader>e", "<CMD>Smoji<CR>" },
-        },
-    },
-    {
-        "ziontee113/icon-picker.nvim",
-        config = function()
-            require("icon-picker").setup({
-                disable_legacy_commands = true,
-            })
-        end,
-        keys = {
-            { "<Leader><Leader>i", "<cmd>IconPickerNormal<cr>" },
-        },
-    },
-
-    {
-        "zakissimo/run.nvim",
-        dev = false,
-        keys = {
-            { "<Leader>cc", "<CMD>lua require'run'.cmd()<CR>" },
-        },
     },
 }
