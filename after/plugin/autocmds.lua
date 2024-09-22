@@ -18,6 +18,7 @@ vim.api.nvim_create_autocmd({ "BufEnter" }, {
             or ft == "javascript"
             or ft == "typescript"
             or ft == "svelte"
+            or ft == "json"
         then
             set.tabstop = 2
             set.shiftwidth = 2

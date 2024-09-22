@@ -54,6 +54,7 @@ local mapping = {
     ["<S-Tab>"] = cmp.config.disable,
 }
 
+local lspkind = require("lspkind")
 cmp.setup({
     snippet = {
         expand = function(args)
@@ -70,14 +71,19 @@ cmp.setup({
     formatting = {
         expandable_indicator = true,
         fields = { "kind", "abbr" },
-        format = require("lspkind").cmp_format({
-            mode = "symbol",
-            maxwidth = 50,
-            ellipsis_char = "...",
-            symbol_map = {
-                Codeium = "",
-            },
-        }),
+        format = function(entry, vim_item)
+            local kind = lspkind.cmp_format({
+                mode = "symbol_text",
+                maxwidth = 50,
+                symbol_map = {
+                    Codeium = "",
+                },
+            })(entry, vim_item)
+            local strings = vim.split(kind.kind, "%s", { trimempty = true })
+            kind.kind = " " .. (strings[1] or "") .. " "
+            kind.menu = ""
+            return kind
+        end,
     },
     sorting = {
         priority_weight = 2,
