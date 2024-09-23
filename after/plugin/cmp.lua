@@ -14,7 +14,7 @@ require("luasnip.loaders.from_vscode").lazy_load()
 local mapping = {
     ["<C-p>"] = cmp.mapping(cmp.mapping.select_prev_item(), { "i", "c" }),
     ["<C-n>"] = cmp.mapping(cmp.mapping.select_next_item(), { "i", "c" }),
-    ["<C-Space>"] = cmp.mapping.complete(),
+    ["<C-o>"] = cmp.mapping.complete(),
     ["<C-u>"] = cmp.mapping(cmp.mapping.scroll_docs(-1), { "i", "c" }),
     ["<C-d>"] = cmp.mapping(cmp.mapping.scroll_docs(1), { "i", "c" }),
     ["<C-c>"] = cmp.mapping({
@@ -88,18 +88,28 @@ cmp.setup({
     sorting = {
         priority_weight = 2,
         comparators = {
+            -- deprioritize `.box`, `.mut`, etc.
+            require("cmp-rust").deprioritize_postfix,
+            -- deprioritize `Borrow::borrow` and `BorrowMut::borrow_mut`
+            require("cmp-rust").deprioritize_borrow,
+            -- deprioritize `Deref::deref` and `DerefMut::deref_mut`
+            require("cmp-rust").deprioritize_deref,
+            -- deprioritize `Into::into`, `Clone::clone`, etc.
+            require("cmp-rust").deprioritize_common_traits,
             cmp.config.compare.offset,
             cmp.config.compare.exact,
             cmp.config.compare.score,
-            cmp.config.compare.recently_used,
             require("cmp-under-comparator").under,
             cmp.config.compare.kind,
+            cmp.config.compare.sort_text,
+            cmp.config.compare.length,
+            cmp.config.compare.order,
         },
     },
     sources = cmp.config.sources({
         { name = "codeium" },
-        { name = "nvim_lua" },
         { name = "nvim_lsp" },
+        { name = "nvim_lua" },
         { name = "luasnip" },
         { name = "path" },
         { name = "spell", max_item_count = 2, option = { keyword_pattern = [[\k\+]] } },

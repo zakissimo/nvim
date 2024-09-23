@@ -48,6 +48,11 @@ local mason_servers = {
                     enable = true,
                     command = "clippy",
                 },
+                completion = {
+                    postfix = {
+                        enable = false,
+                    },
+                },
             },
         },
     },
