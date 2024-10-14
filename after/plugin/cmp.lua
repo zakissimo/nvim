@@ -14,7 +14,7 @@ require("luasnip.loaders.from_vscode").lazy_load()
 local mapping = {
     ["<C-p>"] = cmp.mapping(cmp.mapping.select_prev_item(), { "i", "c" }),
     ["<C-n>"] = cmp.mapping(cmp.mapping.select_next_item(), { "i", "c" }),
-    ["<C-o>"] = cmp.mapping.complete(),
+    ["<C-o>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
     ["<C-u>"] = cmp.mapping(cmp.mapping.scroll_docs(-1), { "i", "c" }),
     ["<C-d>"] = cmp.mapping(cmp.mapping.scroll_docs(1), { "i", "c" }),
     ["<C-c>"] = cmp.mapping({
@@ -24,10 +24,6 @@ local mapping = {
     ["<C-y>"] = cmp.mapping.confirm({
         behavior = cmp.ConfirmBehavior.Insert,
         select = true,
-    }),
-    ["<M-y>"] = cmp.mapping.confirm({
-        behavior = cmp.ConfirmBehavior.Replace,
-        select = false,
     }),
     ["<C-j>"] = cmp.mapping(function(fallback)
         if luasnip.expand_or_jumpable() then
@@ -76,7 +72,7 @@ cmp.setup({
                 mode = "symbol_text",
                 maxwidth = 50,
                 symbol_map = {
-                    Codeium = "",
+                    Copilot = "",
                 },
             })(entry, vim_item)
             local strings = vim.split(kind.kind, "%s", { trimempty = true })
@@ -88,15 +84,8 @@ cmp.setup({
     sorting = {
         priority_weight = 2,
         comparators = {
-            -- deprioritize `.box`, `.mut`, etc.
-            require("cmp-rust").deprioritize_postfix,
-            -- deprioritize `Borrow::borrow` and `BorrowMut::borrow_mut`
-            require("cmp-rust").deprioritize_borrow,
-            -- deprioritize `Deref::deref` and `DerefMut::deref_mut`
-            require("cmp-rust").deprioritize_deref,
-            -- deprioritize `Into::into`, `Clone::clone`, etc.
-            require("cmp-rust").deprioritize_common_traits,
             cmp.config.compare.offset,
+            cmp.config.compare.scopes,
             cmp.config.compare.exact,
             cmp.config.compare.score,
             require("cmp-under-comparator").under,
@@ -107,7 +96,6 @@ cmp.setup({
         },
     },
     sources = cmp.config.sources({
-        { name = "codeium" },
         { name = "nvim_lsp" },
         { name = "nvim_lua" },
         { name = "luasnip" },

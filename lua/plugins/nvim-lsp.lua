@@ -1,13 +1,45 @@
 return {
-    {
-        "sheerun/vim-polyglot",
-    },
+    -- {
+    --     "sheerun/vim-polyglot",
+    -- },
     {
         "neovim/nvim-lspconfig",
         cmd = "LspInfo",
         event = { "BufReadPre", "BufNewFile" },
         dependencies = {
             { "nvim-lua/plenary.nvim" },
+
+            { "neomake/neomake" },
+
+            {
+                "folke/neodev.nvim",
+                config = function()
+                    require("neodev").setup({
+                        library = { plugins = { "nvim-dap-ui" }, types = true },
+                    })
+                end,
+            },
+            {
+                "mrcjkb/rustaceanvim",
+                version = "^5", -- Recommended
+                lazy = false, -- This plugin is already lazy
+                config = function()
+                    vim.g.rustaceanvim = {
+                        tools = {
+                            float_win_config = {
+                                border = "rounded",
+                            },
+                        },
+                        server = {
+                            on_attach = require("zak.lsp").on_attach,
+                        },
+                    }
+                end,
+            },
+
+            { "williamboman/mason.nvim", config = true },
+            { "williamboman/mason-lspconfig.nvim" },
+            { "WhoIsSethDaniel/mason-tool-installer.nvim" },
 
             { "mfussenegger/nvim-dap" },
             { "rcarriga/nvim-dap-ui", dependencies = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio" } },
@@ -18,10 +50,6 @@ return {
                 end,
             },
 
-            { "williamboman/mason.nvim", config = true },
-            { "williamboman/mason-lspconfig.nvim" },
-            { "WhoIsSethDaniel/mason-tool-installer.nvim" },
-
             { "stevearc/conform.nvim" },
             { "mfussenegger/nvim-lint" },
 
@@ -29,15 +57,6 @@ return {
                 "j-hui/fidget.nvim",
                 opts = { window = { blend = 0 } },
                 branch = "legacy",
-            },
-
-            {
-                "folke/neodev.nvim",
-                config = function()
-                    require("neodev").setup({
-                        library = { plugins = { "nvim-dap-ui" }, types = true },
-                    })
-                end,
             },
 
             {
@@ -57,9 +76,11 @@ return {
             end, { expr = true })
         end,
     },
-    { "nvim-treesitter/nvim-treesitter", build = ":TSUpdate",
+    {
+        "nvim-treesitter/nvim-treesitter",
+        build = ":TSUpdate",
         config = function()
-             require 'nvim-treesitter.install'.prefer_git = false
-        end
+            require("nvim-treesitter.install").prefer_git = false
+        end,
     },
 }

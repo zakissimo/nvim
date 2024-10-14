@@ -38,24 +38,24 @@ local system_servers = {
 }
 
 local mason_servers = {
-    rust_analyzer = {
-        settings = {
-            ["rust-analyzer"] = {
-                lens = {
-                    enable = true,
-                },
-                checkOnSave = {
-                    enable = true,
-                    command = "clippy",
-                },
-                completion = {
-                    postfix = {
-                        enable = false,
-                    },
-                },
-            },
-        },
-    },
+    -- rust_analyzer = {
+    --     settings = {
+    --         ["rust-analyzer"] = {
+    --             lens = {
+    --                 enable = true,
+    --             },
+    --             checkOnSave = {
+    --                 enable = true,
+    --                 command = "clippy",
+    --             },
+    --             completion = {
+    --                 postfix = {
+    --                     enable = false,
+    --                 },
+    --             },
+    --         },
+    --     },
+    -- },
     lua_ls = {
         settings = {
             Lua = {
