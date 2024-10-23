@@ -1,7 +1,4 @@
 return {
-    -- {
-    --     "sheerun/vim-polyglot",
-    -- },
     {
         "neovim/nvim-lspconfig",
         cmd = "LspInfo",
@@ -32,6 +29,29 @@ return {
                         },
                         server = {
                             on_attach = require("zak.lsp").on_attach,
+                            default_settings = {
+                                ["rust-analyzer"] = {
+                                    cargo = {
+                                        allFeatures = true,
+                                        loadOutDirsFromCheck = true,
+                                        runBuildScripts = true,
+                                    },
+                                    procMacro = {
+                                        enable = true,
+                                        ignored = {
+                                            ["async-trait"] = { "async_trait" },
+                                            ["napi-derive"] = { "napi" },
+                                            ["async-recursion"] = { "async_recursion" },
+                                        },
+                                    },
+                                    inlayHints = {
+                                        lifetimeElisionHints = {
+                                            enable = true,
+                                            useParameterNames = true,
+                                        },
+                                    },
+                                },
+                            },
                         },
                     }
                 end,

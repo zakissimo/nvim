@@ -3,6 +3,11 @@ if not cmp_ok then
     return
 end
 
+local types_ok, types = pcall(require, "cmp.types")
+if not types_ok then
+    return
+end
+
 local luasnip_ok, luasnip = pcall(require, "luasnip")
 if not luasnip_ok then
     return
@@ -51,6 +56,7 @@ local mapping = {
 }
 
 local lspkind = require("lspkind")
+
 cmp.setup({
     snippet = {
         expand = function(args)
@@ -58,28 +64,52 @@ cmp.setup({
         end,
     },
     window = {
-        completion = cmp.config.window.bordered(),
-        documentation = cmp.config.window.bordered(),
-        col_offset = -3,
-        side_padding = 0,
+        completion = {
+            border = "rounded",
+            winhighlight = "NormalFloat:FloatBorder,CursorLine:Visual,Search:None",
+            col_offset = -3,
+            side_padding = 1,
+            scrollbar = false,
+        },
+        documentation = {
+            border = "rounded",
+            scrollbar = false,
+            winhighlight = "NormalFloat:FloatBorder,CursorLine:Visual,Search:None",
+        },
     },
     mapping = mapping,
     formatting = {
-        expandable_indicator = true,
-        fields = { "kind", "abbr" },
+        fields = { "abbr", "kind" },
         format = function(entry, vim_item)
+            vim_item.menu = ""
             local kind = lspkind.cmp_format({
-                mode = "symbol_text",
                 maxwidth = 50,
-                symbol_map = {
-                    Copilot = "",
-                },
             })(entry, vim_item)
-            local strings = vim.split(kind.kind, "%s", { trimempty = true })
-            kind.kind = " " .. (strings[1] or "") .. " "
-            kind.menu = ""
             return kind
         end,
+    },
+    completion = {
+        autocomplete = {
+            types.cmp.TriggerEvent.TextChanged,
+            types.cmp.TriggerEvent.InsertEnter,
+        },
+        completeopt = "menuone,noinsert,preview",
+        keyword_length = 1,
+    },
+    matching = {
+        disallow_fuzzy_matching = true,
+        disallow_fullfuzzy_matching = true,
+        disallow_partial_fuzzy_matching = true,
+        disallow_partial_matching = false,
+        disallow_prefix_unmatching = true,
+    },
+    performance = {
+        debounce = 0,
+        throttle = 0,
+        fetching_timeout = 500,
+        confirm_resolve_timeout = 500,
+        async_budget = 10,
+        max_view_entries = 50,
     },
     sorting = {
         priority_weight = 2,
@@ -96,11 +126,9 @@ cmp.setup({
         },
     },
     sources = cmp.config.sources({
-        { name = "nvim_lsp" },
-        { name = "nvim_lua" },
-        { name = "luasnip" },
-        { name = "path" },
-        { name = "spell", max_item_count = 2, option = { keyword_pattern = [[\k\+]] } },
+        { name = "nvim_lsp", keyword_length = 1, priority = 100 },
+        { name = "path", keyword_length = 0, priority = 110 },
+        { name = "luasnip", keyword_length = 2, priority = 120 },
     }),
 })
 
