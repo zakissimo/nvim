@@ -3,11 +3,6 @@ if not cmp_ok then
     return
 end
 
-local types_ok, types = pcall(require, "cmp.types")
-if not types_ok then
-    return
-end
-
 local luasnip_ok, luasnip = pcall(require, "luasnip")
 if not luasnip_ok then
     return
@@ -65,16 +60,12 @@ cmp.setup({
     },
     window = {
         completion = {
-            border = "rounded",
-            winhighlight = "NormalFloat:FloatBorder,CursorLine:Visual,Search:None",
-            col_offset = -3,
-            side_padding = 1,
+            winhighlight = "NormalFloat:PmenuExtra,CursorLine:Visual,Search:None",
             scrollbar = false,
         },
         documentation = {
-            border = "rounded",
             scrollbar = false,
-            winhighlight = "NormalFloat:FloatBorder,CursorLine:Visual,Search:None",
+            winhighlight = "NormalFloat:PmenuExtra,CursorLine:Visual,Search:None",
         },
     },
     mapping = mapping,
@@ -87,14 +78,6 @@ cmp.setup({
             })(entry, vim_item)
             return kind
         end,
-    },
-    completion = {
-        autocomplete = {
-            types.cmp.TriggerEvent.TextChanged,
-            types.cmp.TriggerEvent.InsertEnter,
-        },
-        completeopt = "menuone,noinsert,preview",
-        keyword_length = 1,
     },
     matching = {
         disallow_fuzzy_matching = true,
@@ -109,30 +92,27 @@ cmp.setup({
         fetching_timeout = 500,
         confirm_resolve_timeout = 500,
         async_budget = 10,
-        max_view_entries = 50,
-    },
-    sorting = {
-        priority_weight = 2,
-        comparators = {
-            cmp.config.compare.offset,
-            cmp.config.compare.scopes,
-            cmp.config.compare.exact,
-            cmp.config.compare.score,
-            require("cmp-under-comparator").under,
-            cmp.config.compare.kind,
-            cmp.config.compare.sort_text,
-            cmp.config.compare.length,
-            cmp.config.compare.order,
-        },
+        max_view_entries = 9,
     },
     sources = cmp.config.sources({
         { name = "nvim_lsp", keyword_length = 1, priority = 100 },
-        { name = "path", keyword_length = 0, priority = 110 },
-        { name = "luasnip", keyword_length = 2, priority = 120 },
+        { name = "path", keyword_length = 0, priority = 100 },
+        { name = "luasnip", keyword_length = 2, priority = 1000 },
     }),
 })
 
 cmp.setup.cmdline({ "?", "/" }, {
+    formatting = {
+        fields = { "abbr" },
+        format = function(entry, vim_item)
+            vim_item.menu = ""
+            vim_item.kind = ""
+            local kind = lspkind.cmp_format({
+                maxwidth = 50,
+            })(entry, vim_item)
+            return kind
+        end,
+    },
     sources = cmp.config.sources({
         { name = "nvim_lsp_document_symbol" },
     }, {
@@ -141,6 +121,17 @@ cmp.setup.cmdline({ "?", "/" }, {
 })
 
 cmp.setup.cmdline(":", {
+    formatting = {
+        fields = { "abbr" },
+        format = function(entry, vim_item)
+            vim_item.menu = ""
+            vim_item.kind = ""
+            local kind = lspkind.cmp_format({
+                maxwidth = 50,
+            })(entry, vim_item)
+            return kind
+        end,
+    },
     sources = cmp.config.sources({
         { name = "path" },
     }, {

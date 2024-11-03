@@ -12,8 +12,7 @@ M.on_attach = function(event)
     map("gr", "<CMD>FzfLua lsp_references<CR>")
     map("gh", vim.diagnostic.open_float)
 
-    map("<leader>ca", vim.lsp.buf.code_action)
-    map("<leader>rn", vim.lsp.buf.rename)
+    map("<leader>c", vim.lsp.buf.code_action)
     map("<leader>q", vim.diagnostic.setloclist)
 
     map("K", vim.lsp.buf.hover)
