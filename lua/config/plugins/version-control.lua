@@ -15,11 +15,14 @@ return {
   },
   {
     "sindrets/diffview.nvim",
+    keys = {
+      { "<leader>t", "<cmd>DiffviewFileHistory %<cr>" },
+    },
   },
   {
     "mbbill/undotree",
     keys = {
-      { "<Leader>u", "<CMD>UndotreeToggle<CR>" },
+      { "<leader>u", "<cmd>UndotreeToggle<cr>" },
     },
   },
   {
