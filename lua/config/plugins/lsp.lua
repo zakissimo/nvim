@@ -72,7 +72,7 @@ return {
               },
             },
             server = {
-              on_attach = require("config.utils.lsp").setup_binds,
+              on_attach = require("config.utils.lsp").setup,
               default_settings = {
                 ["rust-analyzer"] = {
                   cargo = {

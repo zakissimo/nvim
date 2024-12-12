@@ -1,6 +1,6 @@
 M = {}
 
-M.setup_binds = function(event)
+M.setup = function(event)
   local map = function(keys, func)
     vim.keymap.set("n", keys, func, { buffer = event.buf })
   end
