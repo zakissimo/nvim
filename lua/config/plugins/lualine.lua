@@ -21,6 +21,8 @@ return {
   {
     "nvim-lualine/lualine.nvim",
     config = function()
+      vim.opt.ls = 3 -- This needs to be setup before lualine
+
       require("lualine").setup({
         options = {
           component_separators = { left = "", right = "" },
