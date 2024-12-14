@@ -5,8 +5,8 @@ M.setup = function(event)
     vim.keymap.set("n", keys, func, { buffer = event.buf })
   end
 
-  map("gd", "<CMD>Telescope lsp_definitions<CR>")
-  map("gr", "<CMD>Telescope lsp_references<CR>")
+  map("gd", vim.lsp.buf.definition)
+  map("gr", vim.lsp.buf.references)
   map("gh", vim.diagnostic.open_float)
 
   map("<leader>r", vim.lsp.buf.rename)

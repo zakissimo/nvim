@@ -32,18 +32,15 @@ return {
         ---@type blink.cmp.Config
         opts = {
           keymap = { preset = "default" },
-
           appearance = {
             use_nvim_cmp_as_default = true,
             nerd_font_variant = "mono",
           },
-
           sources = {
             default = { "lsp", "path", "snippets", "buffer", "lazydev" },
           },
           completion = { accept = { auto_brackets = { enabled = true } } },
           providers = {
-            -- dont show LuaLS require statements when lazydev has items
             lsp = { fallback_for = { "lazydev" } },
             lazydev = { name = "LazyDev", module = "lazydev.integrations.blink" },
           },
@@ -65,37 +62,16 @@ return {
         version = "^5",
         lazy = false,
         config = function()
+          ---@diagnostic disable-next-line: inject-field
           vim.g.rustaceanvim = {
             tools = {
               float_win_config = {
                 border = "rounded",
               },
+              executor = "quickfix",
             },
             server = {
               on_attach = require("config.utils.lsp").setup,
-              default_settings = {
-                ["rust-analyzer"] = {
-                  cargo = {
-                    allFeatures = true,
-                    loadOutDirsFromCheck = true,
-                    runBuildScripts = true,
-                  },
-                  procMacro = {
-                    enable = true,
-                    ignored = {
-                      ["async-trait"] = { "async_trait" },
-                      ["napi-derive"] = { "napi" },
-                      ["async-recursion"] = { "async_recursion" },
-                    },
-                  },
-                  inlayHints = {
-                    lifetimeElisionHints = {
-                      enable = true,
-                      useParameterNames = true,
-                    },
-                  },
-                },
-              },
             },
           }
         end,
