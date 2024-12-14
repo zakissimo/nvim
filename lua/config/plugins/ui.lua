@@ -45,4 +45,40 @@ return {
       })
     end,
   },
+
+  { "rcarriga/nvim-notify" },
+
+  {
+    "stevearc/dressing.nvim",
+    opts = {
+      input = {
+        relative = "editor",
+        win_options = {
+          winblend = 0,
+        },
+        select = {
+          win_options = {
+            winblend = 0,
+          },
+        },
+      },
+    },
+  },
+
+  {
+    "alvarosevilla95/luatab.nvim",
+    config = function()
+      require("luatab").setup({})
+    end,
+  },
+
+  {
+    "utilyre/barbecue.nvim",
+    dependencies = {
+      "SmiteshP/nvim-navic",
+    },
+    config = function()
+      require("barbecue").setup()
+    end,
+  },
 }
