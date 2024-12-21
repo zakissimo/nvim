@@ -30,7 +30,12 @@ M.capabilities = function()
   return vim.tbl_deep_extend("force", capabilities, require("blink.cmp").get_lsp_capabilities())
 end
 
-M.get_server = function(server_name)
+M.load_system_servers = function()
+  local lspconfig = require("lspconfig")
+  lspconfig.sourcekit.setup({})
+end
+
+M.get_mason_server = function(server_name)
   local servers = {
     lua_ls = {
       settings = {

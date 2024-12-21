@@ -11,11 +11,12 @@ return {
       {
         "williamboman/mason-lspconfig.nvim",
         config = function()
+          local lsp_utils = require("config.utils.lsp")
+          lsp_utils.load_system_servers()
           require("mason-lspconfig").setup({
             handlers = {
               function(server_name)
-                local lsp_utils = require("config.utils.lsp")
-                local server = lsp_utils.get_server(server_name) or {}
+                local server = lsp_utils.get_mason_server(server_name) or {}
                 server.capabilities = lsp_utils.capabilities()
                 require("lspconfig")[server_name].setup(server)
               end,
@@ -25,11 +26,8 @@ return {
       },
       {
         "saghen/blink.cmp",
+        version = "v0.*",
         lazy = false,
-        version = "v0.7.6",
-
-        ---@module 'blink.cmp'
-        ---@type blink.cmp.Config
         opts = {
           keymap = { preset = "default" },
           appearance = {
@@ -72,6 +70,7 @@ return {
             },
             server = {
               on_attach = require("config.utils.lsp").setup,
+              standalone = false,
             },
           }
         end,

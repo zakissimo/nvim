@@ -49,9 +49,9 @@ set.listchars = {
   trail = ".",
 }
 
-set.spell = true
-set.spelllang = "en,fr"
-set.spelloptions = "camel"
+-- set.spell = true
+-- set.spelllang = "en,fr"
+-- set.spelloptions = "camel"
 
 vim.cmd("set fillchars+=eob:│")
 
