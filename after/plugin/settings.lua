@@ -55,4 +55,4 @@ set.listchars = {
 
 vim.cmd("set fillchars+=eob:│")
 
-set.ch = 1
+set.ch = 0

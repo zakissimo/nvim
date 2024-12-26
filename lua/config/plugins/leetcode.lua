@@ -56,9 +56,9 @@ return {
     build = ":TSUpdate html",
     opts = {
       -- lang = "rust",
-      -- hooks = {
-      --   ["question_enter"] = generate_rust_project_json,
-      -- },
+      hooks = {
+        ["question_enter"] = generate_rust_project_json,
+      },
       injector = {
         ["cpp"] = {
           before = { "#include <bits/stdc++.h>", "using namespace std;" },
