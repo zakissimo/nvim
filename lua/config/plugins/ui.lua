@@ -11,7 +11,7 @@ end
 
 local filename = function()
   local file = vim.fn.expand("%:t")
-  if vim.bo.modified then
+  if #file ~= 0 and vim.bo.modified then
     return file .. " 󰷫"
   end
   return file

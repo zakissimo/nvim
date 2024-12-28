@@ -12,7 +12,7 @@ return {
         "williamboman/mason-lspconfig.nvim",
         config = function()
           local lsp_utils = require("config.utils.lsp")
-          lsp_utils.load_system_servers()
+          -- lsp_utils.load_system_servers()
           require("mason-lspconfig").setup({
             handlers = {
               function(server_name)
@@ -26,7 +26,7 @@ return {
       },
       {
         "saghen/blink.cmp",
-        version = "v0.*",
+        version = "*",
         lazy = false,
         opts = {
           keymap = {
@@ -41,12 +41,15 @@ return {
           },
           sources = {
             default = { "lsp", "path", "snippets", "buffer", "lazydev" },
+            providers = {
+              lazydev = {
+                name = "LazyDev",
+                module = "lazydev.integrations.blink",
+                score_offset = 100,
+              },
+            },
           },
           completion = { accept = { auto_brackets = { enabled = true } } },
-          providers = {
-            lsp = { fallback_for = { "lazydev" } },
-            lazydev = { name = "LazyDev", module = "lazydev.integrations.blink" },
-          },
           signature = { enabled = true },
         },
         opts_extend = { "sources.default" },
