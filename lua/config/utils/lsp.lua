@@ -30,9 +30,12 @@ M.capabilities = function()
   return vim.tbl_deep_extend("force", capabilities, require("blink.cmp").get_lsp_capabilities())
 end
 
-M.load_system_servers = function()
-  local lspconfig = require("lspconfig")
-  lspconfig.sourcekit.setup({})
+M.get_system_servers = function()
+  return {
+    sourcekit = {
+      filetypes = { "swift" },
+    },
+  }
 end
 
 M.get_mason_server = function(server_name)

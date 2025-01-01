@@ -11,14 +11,21 @@ return {
       {
         "williamboman/mason-lspconfig.nvim",
         config = function()
+          local lsp_config = require("lspconfig")
           local lsp_utils = require("config.utils.lsp")
-          -- lsp_utils.load_system_servers()
+          local system_server_configs = lsp_utils.get_system_servers()
+
+          for server, config in pairs(system_server_configs) do
+            config.capabilities = lsp_utils.capabilities()
+            lsp_config[server].setup(config)
+          end
+
           require("mason-lspconfig").setup({
             handlers = {
               function(server_name)
-                local server = lsp_utils.get_mason_server(server_name) or {}
-                server.capabilities = lsp_utils.capabilities()
-                require("lspconfig")[server_name].setup(server)
+                local config = lsp_utils.get_mason_server(server_name) or {}
+                config.capabilities = lsp_utils.capabilities()
+                require("lspconfig")[server_name].setup(config)
               end,
             },
           })
