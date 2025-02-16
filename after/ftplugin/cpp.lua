@@ -38,5 +38,5 @@ elseif build_dir ~= nil then
   find(string.format("%s/build", build_dir))
 else
   vim.opt.makeprg =
-    "c++ -Wall -Wextra -O0 -fno-elide-constructors -ggdb -fsanitize=address,undefined,leak -D_GLIBCXX_DEBUG %:p:h/*.cpp -o main"
+    "c++ -std=c++20 -Wall -Wextra -O0 -fno-elide-constructors -ggdb -fsanitize=address,undefined,leak -D_GLIBCXX_DEBUG %:p:h/*.cpp -o main"
 end
