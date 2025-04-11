@@ -93,49 +93,51 @@ return {
 
       {
         "stevearc/conform.nvim",
-        config = function()
-          require("conform").setup({
-            formatters_by_ft = {
-              python = { "autopep8" },
-              sh = { "shfmt" },
-              javascript = { "prettierd" },
-              typescript = { "prettierd" },
-              html = { "prettierd" },
-              css = { "prettierd" },
-              json = { "prettierd" },
-              yaml = { "prettierd" },
-              markdown = { "prettierd" },
-              lua = { "stylua" },
-              c = { "clang_format" },
-              cpp = { "clang_format" },
-              toml = { "taplo" },
+        event = { "BufWritePre" },
+        cmd = { "ConformInfo" },
+        opts = {
+          formatters_by_ft = {
+            python = { "autopep8" },
+            sh = { "shfmt" },
+            javascript = { "prettierd" },
+            typescript = { "prettierd" },
+            html = { "prettierd" },
+            css = { "prettierd" },
+            json = { "prettierd" },
+            yaml = { "prettierd" },
+            markdown = { "prettierd" },
+            lua = { "stylua" },
+            c = { "clang_format" },
+            cpp = { "clang_format" },
+            toml = { "taplo" },
+          },
+          format_on_save = function(bufnr)
+            if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
+              return
+            end
+            return { timeout_ms = 500, lsp_format = "fallback" }
+          end,
+          formatters = {
+            shfmt = {
+              prepend_args = { "--indent", "4" },
             },
-            format_on_save = {
-              timeout_ms = 500,
-              lsp_fallback = true,
+            stylua = {
+              prepend_args = { "--indent-type", "Spaces", "--indent-width", "2" },
             },
-            formatters = {
-              shfmt = {
-                prepend_args = { "--indent", "4" },
-              },
-              stylua = {
-                prepend_args = { "--indent-type", "Spaces", "--indent-width", "2" },
-              },
-              clang_format = {
-                prepend_args = function(_, _)
-                  local format_files = vim.fs.find(".clang-format", { upward = true, stop = vim.fn.expand("$HOME") })
-                  if #format_files == 0 then
-                    return {
-                      "-style",
-                      "{IndentWidth: 4, TabWidth: 4, UseTab: Never, PointerAlignment: Left}",
-                    }
-                  end
-                  return {}
-                end,
-              },
+            clang_format = {
+              prepend_args = function(_, _)
+                local format_files = vim.fs.find(".clang-format", { upward = true, stop = vim.fn.expand("$HOME") })
+                if #format_files == 0 then
+                  return {
+                    "-style",
+                    "{IndentWidth: 4, TabWidth: 4, UseTab: Never, PointerAlignment: Left}",
+                  }
+                end
+                return {}
+              end,
             },
-          })
-        end,
+          },
+        },
       },
 
       {

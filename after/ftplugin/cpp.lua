@@ -3,6 +3,8 @@ local build_files = { "build.sh", "Makefile", "CMakeLists.txt" }
 local root_dir = vim.fs.dirname(vim.fs.find(build_files, { upward = true, type = "file" })[1])
 local build_dir = vim.fs.dirname(vim.fs.find({ "build" }, { upward = true, type = "directory" })[1])
 
+vim.keymap.set("n", "<M-o>", "<CMD>ClangdSwitchSourceHeader<CR>", { silent = true })
+
 local function build(file, parent_dir)
   if file == "build.sh" then
     return string.format("sh %s/build.sh", parent_dir)
