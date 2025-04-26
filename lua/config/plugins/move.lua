@@ -18,10 +18,10 @@ return {
     keys = {
       { "<leader>m", "<CMD>HookedToggle<CR>", { "n" } },
       { "<M-m>", "<CMD>HookedMark<CR>", { "n" } },
-      { "<M-u>", "<CMD>HookedPull 1<CR>", { "n" } },
-      { "<M-i>", "<CMD>HookedPull 2<CR>", { "n" } },
-      { "<M-o>", "<CMD>HookedPull 3<CR>", { "n" } },
-      { "<M-p>", "<CMD>HookedPull 4<CR>", { "n" } },
+      { "<M-7>", "<CMD>HookedPull 1<CR>", { "n" } },
+      { "<M-8>", "<CMD>HookedPull 2<CR>", { "n" } },
+      { "<M-9>", "<CMD>HookedPull 3<CR>", { "n" } },
+      { "<M-0>", "<CMD>HookedPull 4<CR>", { "n" } },
     },
   },
   {

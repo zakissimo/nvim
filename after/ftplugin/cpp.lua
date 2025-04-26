@@ -7,7 +7,7 @@ vim.keymap.set("n", "<M-o>", "<CMD>ClangdSwitchSourceHeader<CR>", { silent = tru
 
 local function build(file, parent_dir)
   if file == "build.sh" then
-    return string.format("sh %s/build.sh", parent_dir)
+    return string.format("sh %s/build.sh build %s", parent_dir, vim.fn.expand("%:t"))
   end
   if file == "Makefile" then
     return string.format("make -C %s", parent_dir)

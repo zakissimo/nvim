@@ -131,7 +131,7 @@ return {
                 if #format_files == 0 then
                   return {
                     "-style",
-                    "{IndentWidth: 4, TabWidth: 4, UseTab: Never, PointerAlignment: Left}",
+                    "{IndentWidth: 4, TabWidth: 4, UseTab: Never, PointerAlignment: Left, ColumnLimit: 120}",
                   }
                 end
                 return {}
