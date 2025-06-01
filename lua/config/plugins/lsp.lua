@@ -3,31 +3,31 @@ return {
     "neovim/nvim-lspconfig",
     dependencies = {
       {
-        "williamboman/mason.nvim",
-        config = function()
-          require("mason").setup()
-        end,
+        "mason-org/mason.nvim",
       },
       {
-        "williamboman/mason-lspconfig.nvim",
+        "mason-org/mason-lspconfig.nvim",
         config = function()
           local lsp_config = require("lspconfig")
           local lsp_utils = require("config.utils.lsp")
-          local system_server_configs = lsp_utils.get_system_servers()
+          local servers = lsp_utils.servers()
 
-          for server, config in pairs(system_server_configs) do
-            config.capabilities = lsp_utils.capabilities()
+          local capabilities = lsp_utils.capabilities()
+          local on_attach = lsp_utils.on_attach
+
+          vim.lsp.config("*", {
+            capabilities = capabilities,
+            on_attach = on_attach,
+          })
+
+          for server, config in pairs(servers) do
+            config.capabilities = capabilities
             lsp_config[server].setup(config)
           end
 
+          require("mason").setup()
           require("mason-lspconfig").setup({
-            handlers = {
-              function(server_name)
-                local config = lsp_utils.get_mason_server(server_name) or {}
-                config.capabilities = lsp_utils.capabilities()
-                require("lspconfig")[server_name].setup(config)
-              end,
-            },
+            automatic_enable = true,
           })
         end,
       },
@@ -100,8 +100,10 @@ return {
           formatters_by_ft = {
             python = { "autopep8" },
             sh = { "shfmt" },
-            javascript = { "prettierd" },
-            typescript = { "prettierd" },
+            javascript = { "prettier" },
+            typescript = { "prettier" },
+            javascriptreact = { "prettier" },
+            typescriptreact = { "prettier" },
             html = { "prettierd" },
             css = { "prettierd" },
             json = { "prettierd" },
@@ -119,6 +121,9 @@ return {
             return { timeout_ms = 500, lsp_format = "fallback" }
           end,
           formatters = {
+            prettierd = {
+              prepend_args = { "--tab-width", "2", "--use-tabs", "false" },
+            },
             shfmt = {
               prepend_args = { "--indent", "4" },
             },

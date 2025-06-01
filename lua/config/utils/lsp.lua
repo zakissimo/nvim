@@ -1,6 +1,6 @@
 M = {}
 
-M.setup = function(event)
+M.on_attach = function(event)
   local map = function(keys, func)
     vim.keymap.set("n", keys, func, { buffer = event.buf })
   end
@@ -30,7 +30,7 @@ M.capabilities = function()
   return vim.tbl_deep_extend("force", capabilities, require("blink.cmp").get_lsp_capabilities())
 end
 
-M.get_system_servers = function()
+M.servers = function()
   return {
     sourcekit = {
       filetypes = { "swift" },
@@ -43,11 +43,6 @@ M.get_system_servers = function()
       end,
       single_file_support = true,
     },
-  }
-end
-
-M.get_mason_server = function(server_name)
-  local servers = {
     lua_ls = {
       settings = {
         Lua = {
@@ -58,7 +53,6 @@ M.get_mason_server = function(server_name)
       },
     },
   }
-  return servers[server_name]
 end
 
 return M
