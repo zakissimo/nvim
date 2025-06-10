@@ -71,26 +71,6 @@ return {
           },
         },
       },
-      {
-        "mrcjkb/rustaceanvim",
-        version = "^5",
-        lazy = false,
-        config = function()
-          ---@diagnostic disable-next-line: inject-field
-          vim.g.rustaceanvim = {
-            tools = {
-              float_win_config = {
-                border = "rounded",
-              },
-              executor = "quickfix",
-            },
-            server = {
-              on_attach = require("config.utils.lsp").setup,
-              standalone = false,
-            },
-          }
-        end,
-      },
 
       {
         "stevearc/conform.nvim",
@@ -104,11 +84,11 @@ return {
             typescript = { "prettier" },
             javascriptreact = { "prettier" },
             typescriptreact = { "prettier" },
-            html = { "prettierd" },
-            css = { "prettierd" },
-            json = { "prettierd" },
-            yaml = { "prettierd" },
-            markdown = { "prettierd" },
+            html = { "prettier" },
+            css = { "prettier" },
+            json = { "prettier" },
+            yaml = { "prettier" },
+            markdown = { "prettier" },
             lua = { "stylua" },
             c = { "clang_format" },
             cpp = { "clang_format" },
