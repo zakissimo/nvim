@@ -30,6 +30,19 @@ end, {
   desc = "Re-enable autoformat-on-save",
 })
 
+vim.api.nvim_create_autocmd("User", {
+  pattern = "TelescopeFindPre",
+  callback = function()
+    vim.opt_local.winborder = "none"
+    vim.api.nvim_create_autocmd("WinLeave", {
+      once = true,
+      callback = function()
+        vim.opt_local.winborder = "rounded"
+      end,
+    })
+  end,
+})
+
 vim.diagnostic.config({
   virtual_text = false,
   virtual_lines = false,

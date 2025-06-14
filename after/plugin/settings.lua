@@ -49,6 +49,8 @@ set.listchars = {
   trail = ".",
 }
 
+set.winborder = "rounded"
+
 -- set.spell = true
 -- set.spelllang = "en,fr"
 -- set.spelloptions = "camel"
