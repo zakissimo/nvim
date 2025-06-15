@@ -1,4 +1,5 @@
 return {
+  { "NeogitOrg/neogit" },
   {
     "kdheepak/lazygit.nvim",
     lazy = true,
@@ -16,7 +17,7 @@ return {
   {
     "sindrets/diffview.nvim",
     keys = {
-      { "<leader>t", "<cmd>DiffviewFileHistory %<cr>" },
+      { "<leader>d", "<cmd>DiffviewFileHistory %<cr>" },
     },
   },
   {
