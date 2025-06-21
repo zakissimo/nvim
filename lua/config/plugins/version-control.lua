@@ -1,5 +1,10 @@
 return {
-  { "NeogitOrg/neogit" },
+  {
+    "NeogitOrg/neogit",
+    keys = {
+      { "<leader>s", "<cmd>Neogit<cr>" },
+    },
+  },
   {
     "kdheepak/lazygit.nvim",
     lazy = true,
@@ -10,14 +15,14 @@ return {
       "LazyGitFilter",
       "LazyGitFilterCurrentFile",
     },
-    keys = {
-      { "<leader>s", "<cmd>LazyGit<cr>", desc = "LazyGit" },
-    },
+    -- keys = {
+    --   { "<leader>s", "<cmd>LazyGit<cr>", desc = "LazyGit" },
+    -- },
   },
   {
     "sindrets/diffview.nvim",
     keys = {
-      { "<leader>d", "<cmd>DiffviewFileHistory %<cr>" },
+      { "<leader>t", "<cmd>DiffviewFileHistory %<cr>" },
     },
   },
   {
