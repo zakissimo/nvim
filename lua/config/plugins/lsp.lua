@@ -20,10 +20,10 @@ return {
             on_attach = on_attach,
           })
 
-          for server, config in pairs(servers) do
-            config.capabilities = capabilities
-            lsp_config[server].setup(config)
-          end
+          -- for server, config in pairs(servers) do
+          --   config.capabilities = capabilities
+          --   lsp_config[server].setup(config)
+          -- end
 
           require("mason").setup()
           require("mason-lspconfig").setup({
