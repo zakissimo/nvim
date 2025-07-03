@@ -46,7 +46,17 @@ return {
     end,
   },
 
-  { "rcarriga/nvim-notify" },
+  {
+    "rcarriga/nvim-notify",
+    config = function()
+      local notify = require("notify")
+      vim.notify = notify
+      notify.setup({
+        background_colour = "#000000",
+        merge_duplicates = true,
+      })
+    end,
+  },
 
   {
     "stevearc/dressing.nvim",
