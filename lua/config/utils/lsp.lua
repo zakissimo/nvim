@@ -13,8 +13,13 @@ M.on_attach = function(event)
   map("<leader>c", vim.lsp.buf.code_action)
   map("<leader>q", vim.diagnostic.setloclist)
 
-  map("K", vim.lsp.buf.hover)
   map("<leader>k", vim.lsp.buf.signature_help)
+  map("K", function()
+    vim.lsp.buf.hover({
+      close_events = { "BufLeave", "WinLeave", "CursorMoved", "InsertEnter" },
+      border = "rounded",
+    })
+  end)
 
   map("<leader>el", "<CMD>Telescope diagnostics<CR>")
 
