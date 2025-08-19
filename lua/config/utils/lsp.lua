@@ -8,6 +8,12 @@ M.on_attach = function(event)
   map("gd", vim.lsp.buf.definition)
   map("gr", vim.lsp.buf.references)
   map("gh", vim.diagnostic.open_float)
+  map("gh", function()
+    vim.diagnostic.open_float({
+      close_events = { "BufLeave", "WinLeave", "CursorMoved", "InsertEnter" },
+      border = "rounded",
+    })
+  end)
 
   map("<leader>r", vim.lsp.buf.rename)
   map("<leader>c", vim.lsp.buf.code_action)
