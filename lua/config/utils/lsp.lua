@@ -10,7 +10,7 @@ M.on_attach = function(event)
   map("gh", vim.diagnostic.open_float)
   map("gh", function()
     vim.diagnostic.open_float({
-      close_events = { "BufLeave", "WinLeave", "CursorMoved", "InsertEnter" },
+      close_events = { "CursorMoved", "InsertEnter" },
       border = "rounded",
     })
   end)
@@ -22,7 +22,7 @@ M.on_attach = function(event)
   map("<leader>k", vim.lsp.buf.signature_help)
   map("K", function()
     vim.lsp.buf.hover({
-      close_events = { "BufLeave", "WinLeave", "CursorMoved", "InsertEnter" },
+      close_events = { "CursorMoved", "InsertEnter" },
       border = "rounded",
     })
   end)
