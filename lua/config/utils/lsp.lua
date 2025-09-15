@@ -47,7 +47,7 @@ M.servers = function()
       filetypes = { "swift" },
     },
     qmlls = {
-      cmd = { "qmlls6", "-E" },
+      cmd = { "qmlls6" },
       filetypes = { "qml", "qmljs" },
       root_dir = function(fname)
         return vim.fs.dirname(vim.fs.find({ ".git", ".qmlls.ini", "." }, { path = fname, upward = true })[1])
