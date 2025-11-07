@@ -8,7 +8,6 @@ return {
       {
         "mason-org/mason-lspconfig.nvim",
         config = function()
-          local lsp_config = require("lspconfig")
           local lsp_utils = require("config.utils.lsp")
           local servers = lsp_utils.servers()
 
@@ -22,7 +21,7 @@ return {
 
           for server, config in pairs(servers) do
             config.capabilities = capabilities
-            lsp_config[server].setup(config)
+            vim.lsp.config[server] = config
           end
 
           require("mason").setup()
@@ -34,7 +33,7 @@ return {
       {
         "mrcjkb/rustaceanvim",
         version = "^6", -- Recommended
-        lazy = false, -- This plugin is already lazy
+        lazy = false,   -- This plugin is already lazy
         config = function()
           local lsp_utils = require("config.utils.lsp")
           vim.g.rustaceanvim = {
