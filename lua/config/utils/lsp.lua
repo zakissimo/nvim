@@ -43,9 +43,6 @@ end
 
 M.servers = function()
   return {
-    sourcekit = {
-      filetypes = { "swift" },
-    },
     qmlls = {
       cmd = { "qmlls6" },
       filetypes = { "qml", "qmljs" },
@@ -53,15 +50,6 @@ M.servers = function()
         return vim.fs.dirname(vim.fs.find({ ".git", ".qmlls.ini", "." }, { path = fname, upward = true })[1])
       end,
       single_file_support = true,
-    },
-    lua_ls = {
-      settings = {
-        Lua = {
-          workspace = { checkThirdParty = false },
-          telemetry = { enable = false },
-          diagnostics = { disable = { "missing-fields" } },
-        },
-      },
     },
   }
 end

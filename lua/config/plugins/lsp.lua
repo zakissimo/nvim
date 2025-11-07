@@ -9,7 +9,6 @@ return {
         "mason-org/mason-lspconfig.nvim",
         config = function()
           local lsp_utils = require("config.utils.lsp")
-          local servers = lsp_utils.servers()
 
           local capabilities = lsp_utils.capabilities()
           local on_attach = lsp_utils.on_attach
@@ -18,11 +17,6 @@ return {
             capabilities = capabilities,
             on_attach = on_attach,
           })
-
-          for server, config in pairs(servers) do
-            config.capabilities = capabilities
-            vim.lsp.config[server] = config
-          end
 
           require("mason").setup()
           require("mason-lspconfig").setup({
