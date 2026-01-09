@@ -11,7 +11,7 @@ set.wrap = false
 set.linebreak = true
 set.breakindent = true
 set.formatoptions = "jcql"
-set.textwidth = 80
+set.textwidth = 100
 set.colorcolumn = "+1"
 
 vim.api.nvim_set_hl(0, "ColorColumn", { link = "CursorLine" })
