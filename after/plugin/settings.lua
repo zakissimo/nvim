@@ -51,9 +51,9 @@ set.listchars = {
 
 set.winborder = "rounded"
 
--- set.spell = true
--- set.spelllang = "en,fr"
--- set.spelloptions = "camel"
+set.spell = true
+set.spelllang = "en,fr"
+set.spelloptions = "camel"
 
 vim.cmd("set fillchars+=eob:│")
 
