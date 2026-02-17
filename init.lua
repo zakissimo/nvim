@@ -47,17 +47,11 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
   pattern = "*",
   callback = function()
     local ft = vim.bo.filetype
-    local lang = vim.treesitter.language.get_lang(ft) or ft
 
-    local has_parser = pcall(vim.treesitter.query.get, lang, "highlights")
+    local has_parser = pcall(vim.treesitter.get_parser, 0, ft)
 
     if has_parser then
       vim.treesitter.start()
-    else
-      local ok, _ = pcall(vim.cmd, "TSInstall " .. lang)
-      if ok then
-        vim.treesitter.start()
-      end
     end
   end,
 })
