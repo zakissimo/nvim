@@ -17,11 +17,11 @@ return {
     dev = false,
     keys = {
       { "<leader>m", "<CMD>HookedToggle<CR>", { "n" } },
-      { "<M-m>", "<CMD>HookedMark<CR>", { "n" } },
-      { "<M-7>", "<CMD>HookedPull 1<CR>", { "n" } },
-      { "<M-8>", "<CMD>HookedPull 2<CR>", { "n" } },
-      { "<M-9>", "<CMD>HookedPull 3<CR>", { "n" } },
-      { "<M-0>", "<CMD>HookedPull 4<CR>", { "n" } },
+      { "<M-m>",     "<CMD>HookedMark<CR>",   { "n" } },
+      { "<M-7>",     "<CMD>HookedPull 1<CR>", { "n" } },
+      { "<M-8>",     "<CMD>HookedPull 2<CR>", { "n" } },
+      { "<M-9>",     "<CMD>HookedPull 3<CR>", { "n" } },
+      { "<M-0>",     "<CMD>HookedPull 4<CR>", { "n" } },
     },
   },
   {
@@ -36,7 +36,6 @@ return {
         },
       })
       vim.keymap.set("n", "-", require("oil").open)
-      vim.keymap.set("n", "<leader>n", require("oil").toggle_float)
     end,
   },
   {

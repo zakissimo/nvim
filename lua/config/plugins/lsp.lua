@@ -116,7 +116,7 @@ return {
             return { timeout_ms = 500, lsp_format = "fallback" }
           end,
           formatters = {
-            prettierd = {
+            prettier = {
               prepend_args = { "--tab-width", "2", "--use-tabs", "false" },
             },
             shfmt = {
