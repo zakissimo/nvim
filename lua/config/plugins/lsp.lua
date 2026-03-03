@@ -6,6 +6,9 @@ return {
         "mason-org/mason.nvim",
       },
       {
+        "WhoIsSethDaniel/mason-tool-installer.nvim",
+      },
+      {
         "mason-org/mason-lspconfig.nvim",
         config = function()
           local lsp_utils = require("config.utils.lsp")
@@ -19,15 +22,37 @@ return {
           })
 
           require("mason").setup()
+          require("mason-tool-installer").setup({
+            ensure_installed = {
+              "stylua",
+              "shfmt",
+              "prettier",
+              "shellcheck",
+              "autopep8",
+            },
+          })
           require("mason-lspconfig").setup({
             automatic_enable = true,
+            ensure_installed = {
+              "clangd",
+              "lua_ls",
+              "pyright",
+              "bashls",
+              "gopls",
+              "ts_ls",
+              "jsonls",
+              "yamlls",
+              "html",
+              "cssls",
+              "marksman",
+            },
           })
         end,
       },
       {
         "mrcjkb/rustaceanvim",
         version = "^6", -- Recommended
-        lazy = false,   -- This plugin is already lazy
+        lazy = false, -- This plugin is already lazy
         config = function()
           local lsp_utils = require("config.utils.lsp")
           vim.g.rustaceanvim = {
