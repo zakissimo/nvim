@@ -50,9 +50,8 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
   callback = function()
     local ft = vim.bo.filetype
 
-    local has_parser = pcall(vim.treesitter.get_parser, 0, ft)
-
-    if has_parser then
+    local lang = vim.treesitter.language.get_lang(ft) or ft
+    if pcall(vim.treesitter.language.inspect, lang) then
       vim.treesitter.start()
     end
   end,
