@@ -16,11 +16,11 @@ local function build(file, parent_dir)
     local dir = parent_dir .. "/build"
     local up_build_dir = parent_dir .. "/../build"
     if vim.fn.isdirectory(dir) ~= 1 and vim.fn.isdirectory(up_build_dir) ~= 1 then
-      vim.fn.system(string.format("cmake -S . -B %s", dir))
+      vim.fn.system(string.format("cmake -S %s -B %s", parent_dir, dir))
     elseif vim.fn.isdirectory(up_build_dir) == 1 then
       dir = up_build_dir
     end
-    return string.format("make -C %s", dir)
+    return string.format("cmake --build %s", dir)
   end
 end
 
