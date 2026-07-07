@@ -3,21 +3,34 @@ return {
     "kawre/leetcode.nvim",
     build = ":TSUpdate html",
     opts = {
-      -- lang = "rust",
+      lang = "rust",
+      injector = {
+        ["rust"] = {
+          before = { "#[allow(dead_code)]", "fn main(){}", "#[allow(dead_code)]", "struct Solution;" },
+        }, ---@type table<lc.lang, lc.inject>
+      },
       hooks = {
+        ---@type fun(question: lc.ui.Question)[]
         ["question_enter"] = {
           function(question)
+            if question.lang ~= "rust" then
+              return
+            end
             local problem_dir = vim.fn.stdpath("data") .. "/leetcode/Cargo.toml"
             local content = [[
-                [package]
-                name = "leetcode"
-                edition = "2024"
+              [package]
+              name = "leetcode"
+              edition = "2024"
 
-                [lib]
-                name = "%s"
-                path = "%s"
-              ]]
+              [lib]
+              name = "%s"
+              path = "%s"
 
+              [dependencies]
+              rand = "0.8"
+              regex = "1"
+              itertools = "0.14.0"
+            ]]
             local file = io.open(problem_dir, "w")
             if file then
               local formatted = (content:gsub(" +", "")):format(question.q.frontend_id, question:path())
@@ -27,14 +40,6 @@ return {
               print("Failed to open file: " .. problem_dir)
             end
           end,
-        },
-      },
-      injector = {
-        ["cpp"] = {
-          before = { "#include <bits/stdc++.h>", "using namespace std;" },
-        },
-        ["rust"] = {
-          before = { "fn main(){}", "struct Solution;" },
         },
       },
     },

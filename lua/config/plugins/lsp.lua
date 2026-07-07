@@ -65,7 +65,14 @@ return {
               on_attach = lsp_utils.on_attach,
               default_settings = {
                 -- rust-analyzer language server configuration
-                ["rust-analyzer"] = {},
+                ["rust-analyzer"] = {
+                  cachePriming = { enable = false },
+                  cargo = {
+                    buildScripts = { invocationStrategy = "once" },
+                  },
+                  numThreads = 4,
+                  lru = { capacity = 128 },
+                },
               },
             },
             -- DAP configuration
