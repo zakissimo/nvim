@@ -46,3 +46,12 @@ map("n", "<C-Right>", "<CMD>vertical resize +2<CR>")
 
 map({ "c", "i" }, "<C-a>", "<Home>")
 map({ "c", "i" }, "<C-e>", "<End>")
+
+-- Terminal: leave terminal mode with double-Esc (single Esc stays free for TUIs)
+map("t", "<Esc><Esc>", "<C-\\><C-n>")
+
+-- Terminal: exit terminal mode and jump windows, mirroring the normal-mode nav
+map("t", "<C-j>", "<C-\\><C-n><C-w>j")
+map("t", "<C-k>", "<C-\\><C-n><C-w>k")
+map("t", "<C-h>", "<C-\\><C-n><C-w>h")
+map("t", "<C-l>", "<C-\\><C-n><C-w>l")
