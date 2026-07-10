@@ -28,22 +28,24 @@ return {
   },
   keys = {
     { "<leader>a", "<cmd>ClaudeCode<cr>", desc = "Toggle Claude" },
-    { "<leader>af", "<cmd>ClaudeCodeFocus<cr>", desc = "Focus Claude" },
-    { "<leader>ar", "<cmd>ClaudeCode --resume<cr>", desc = "Resume Claude" },
-    { "<leader>ac", "<cmd>ClaudeCode --continue<cr>", desc = "Continue Claude" },
-    { "<leader>am", "<cmd>ClaudeCodeSelectModel<cr>", desc = "Select Claude model" },
-    { "<leader>ab", "<cmd>ClaudeCodeAdd %<cr>", desc = "Add current buffer" },
-    { "<leader>as", "<cmd>ClaudeCodeSend<cr>", mode = "v", desc = "Send to Claude" },
-    {
-      "<leader>as",
-      "<cmd>ClaudeCodeTreeAdd<cr>",
-      desc = "Add file",
-      ft = { "NvimTree", "neo-tree", "oil", "minifiles", "netrw", "snacks_picker_list" },
-    },
-    -- Diff management
-    { "<leader>aa", "<cmd>ClaudeCodeDiffAccept<cr>", desc = "Accept diff" },
-    { "<leader>ad", "<cmd>ClaudeCodeDiffDeny<cr>", desc = "Deny diff" },
   },
+  init = function()
+    -- Tint the inline-diff add/delete lines with the active colorscheme's own diff
+    -- backgrounds (DiffAdd/DiffDelete) instead of the plugin's hardcoded green/red,
+    -- and drop the delete strikethrough (redundant once the line is already red).
+    -- Falls back to the plugin's defaults when a theme leaves those groups without a
+    -- background. The plugin re-asserts its groups with `default = true` on every
+    -- diff open, so this override only needs the groups to stay defined -- re-apply
+    -- on ColorScheme since a theme switch clears every highlight group.
+    local function sync_diff_hl()
+      local add = vim.api.nvim_get_hl(0, { name = "DiffAdd", link = false })
+      local del = vim.api.nvim_get_hl(0, { name = "DiffDelete", link = false })
+      vim.api.nvim_set_hl(0, "ClaudeCodeInlineDiffAdd", { bg = add.bg or 0x2a4a2a })
+      vim.api.nvim_set_hl(0, "ClaudeCodeInlineDiffDelete", { bg = del.bg or 0x4a2a2a })
+    end
+    vim.api.nvim_create_autocmd("ColorScheme", { callback = sync_diff_hl })
+    sync_diff_hl()
+  end,
   opts = {
     terminal = {
       split_side = "right", -- "left" or "right"
@@ -82,7 +84,7 @@ return {
       open_in_new_tab = true,
       keep_terminal_focus = false, -- If true, moves focus back to terminal after diff opens
       hide_terminal_in_new_tab = true,
-      auto_resize_terminal = true, -- Let the plugin manage the terminal width across the diff lifecycle
+      auto_resize_terminal = false, -- Let the plugin manage the terminal width across the diff lifecycle
       -- on_new_file_reject = "keep_empty", -- "keep_empty" or "close_window"
 
       -- Legacy aliases (still supported):
